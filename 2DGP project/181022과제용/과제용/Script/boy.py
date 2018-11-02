@@ -322,7 +322,7 @@ next_state_table = {
 next_state_table = {
 # fill here
     IdleState: { RIGHT_UP : RunState, LEFT_UP : RunState, RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState,
-                 SPACE: IdleState,LSHIFT : DashState, RSHIFT : DashState},
+                 SPACE: IdleState,LSHIFT : DashState, RSHIFT : DashState,JUMPUP : JumpState},
     RunState: { RIGHT_UP : IdleState,LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
                 SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState,LSHIFTUP:RunState,RSHIFTUP:RunState,JUMPUP : JumpState},
 
@@ -330,7 +330,7 @@ next_state_table = {
 
     DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
-    JumpState: {LEFT_UP: RunState}
+    JumpState: {}
 }
 
 
@@ -349,6 +349,10 @@ class Boy:
 
 
     def __init__(self):
+        self.kind = game_world.Player
+
+        self.land = False
+
         self.x, self.y = 1600 // 2, 90
         self.image = load_image('animation_sheet.png')
         self.dir = 1
@@ -357,10 +361,14 @@ class Boy:
         self.event_que = []
         self.cur_state = IdleState
         self.cur_state.enter(self, None)
+        self.imageState = Boy.idle
+
+        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature]
 
         self.font = load_font('ENCR10B.TTF', 16)
 
-        self.imageState = Boy.idle
+        self.selfGravity = True
+
 
         for i in range(Boy.actions):
             Boy.Images.append({"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None})
@@ -424,6 +432,11 @@ class Boy:
         game_world.add_object(ball, 1)
         pass
 
+    def SelfGravity(self):
+        if(self.selfGravity == False):
+            return
+
+        self.y -= 5.0
 
 
     def add_event(self, event):
@@ -431,10 +444,17 @@ class Boy:
 
     def update(self):
         #print(LeftRightKeylist.count(LEFT_KEY_ON_PRESS))
-
-        self.cur_state.do(self)
         #print(self.cur_state)
-        print(LeftRightKeylist)
+        #print(LeftRightKeylist)
+        #print(game_world.objects)
+
+
+
+        self.SelfGravity()
+        self.cur_state.do(self)
+        print(self.land)
+
+
 
         if len(self.event_que) > 0:
             event = self.event_que.pop()
@@ -492,7 +512,7 @@ class Boy:
             self.add_event(key_event)
 
     def get_bb(self):
-        return self.x - 10, self.y - 10, self.x + 10, self.y + 10
+        return self.x - 10, self.y - 25, self.x + 10, self.y + 25
     # fill here
 
     def draw_bb(self):

@@ -1,7 +1,18 @@
 
+#레이어가 높을수록 나중에 렌더링됨 그러니까 나중에 렌더링된게 우선적으로 보임
+
 # layer 0: Background Objects
 # layer 1: Foreground Objects
+
+
+Tag = ['Player','Feature','Monster','Effect','EnemyProjectile','PlayerProjectile']
+
+Player,Feature,Monster,Effect,EnemyProjectile,PlayerProjectile = range(6)
+
 objects = [[],[]]
+
+
+
 
 
 def add_object(o, layer):

@@ -10,12 +10,21 @@ from boy import Boy
 from grass import Grass
 from ball import Ball
 
+screenX = 1600
+screenY = 600
+
 
 name = "MainState"
 
 boy = None
 grass = None
 
+
+#예시
+def stage_1():
+    pass
+
+#기본 스테이지
 def enter():
     global boy, grass
     boy = Boy()
@@ -51,6 +60,16 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
+        for relation in boy.collisionRelation:
+            if relation == game_object.kind:
+                if(collide(boy,game_object)):
+                    print("지면과의 충돌")
+                    while(collide(boy,game_object)) :
+                        boy.y += 1
+                    boy.land = True
+                else:
+                    boy.land = False
+
 
 
 def draw():
@@ -60,8 +79,37 @@ def draw():
     update_canvas()
 
 
+def collide(a, b):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+
+    if left_a > right_b:
+        return False
+    if right_a < left_b:
+        return False
+    if top_a < bottom_b:
+        return False
+    if bottom_a > top_b:
+        return False
+    return True
+    # fill here
+    pass
 
 
+def PushCollide(floating,fixed):
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+
+    if left_a < right_b:
+        return False
+    if right_a > left_b:
+        return False
+    if top_a > bottom_b:
+        return False
+    if bottom_a < top_b:
+        return False
+
+    pass
 
 
 
