@@ -1,0 +1,10 @@
+
+
+
+allObjects = []
+
+
+movingObjects = []
+
+objectsOfAffectedByGravity = []
+
