@@ -25,6 +25,7 @@ FRAMES_PER_ACTION = 8
 gravity = 9.8
 
 
+LeftRightKeylist = []
 LEFT_KEY_ON_PRESS = False
 RIGHT_KEY_ON_PRESS = False
 
@@ -60,15 +61,11 @@ class IdleState:
     accum = 0
     @staticmethod
     def enter(boy,event):
-        if event == RIGHT_DOWN:
-            boy.velocity += RUN_SPEED_PPS
-        elif event == LEFT_DOWN:
-            boy.velocity -= RUN_SPEED_PPS
-        elif event == RIGHT_UP:
-            boy.velocity -= RUN_SPEED_PPS
-        elif event == LEFT_UP:
-            boy.velocity += RUN_SPEED_PPS
 
+
+
+
+        boy.velocity = 0
 
 
         IdleState.timer = get_time()
@@ -80,7 +77,6 @@ class IdleState:
     def exit(boy,event):
 
         if(event == RSHIFT):
-            print("쉽")
             pass
 
         if(event == SPACE):
@@ -89,6 +85,16 @@ class IdleState:
 
     @staticmethod
     def do(boy):
+
+
+        if(RIGHT_KEY_ON_PRESS or LEFT_KEY_ON_PRESS):
+            boy.cur_state = RunState
+            boy.cur_state.enter(boy,None)
+
+
+
+        boy.set_direction()
+
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
         IdleState.frameTime = get_time() - IdleState.timer
 
@@ -96,9 +102,9 @@ class IdleState:
         IdleState.accum += IdleState.frameTime
 
 
-
         if IdleState.accum >= 3:
             boy.add_event(SLEEP_TIMER)
+
 
     @staticmethod
     def draw(boy):
@@ -114,25 +120,19 @@ class RunState:
 
     @staticmethod
     def enter(boy, event):
-        if event == RIGHT_DOWN:
-            boy.velocity += RUN_SPEED_PPS
-        elif event == LEFT_DOWN:
-            boy.velocity -= RUN_SPEED_PPS
-        elif event == RIGHT_UP:
-            boy.velocity -= RUN_SPEED_PPS
-        elif event == LEFT_UP:
-            boy.velocity += RUN_SPEED_PPS
 
 
 
 
 
-        boy.dir = clamp(-1, boy.velocity, 1)
+
+
         boy.imageState = Boy.walking
 
 
     @staticmethod
     def exit(boy, event):
+
 
         if(event == SPACE):
             boy.fire_ball()
@@ -140,13 +140,37 @@ class RunState:
 
     @staticmethod
     def do(boy):
+
+
+
+
+        boy.set_direction()
+
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
         boy.x += boy.velocity * game_framework.frame_time
         boy.x = clamp(25, boy.x, 1600 - 25)
 
+
+        if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
+            if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                boy.dir = -1
+
+            elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                boy.dir = 1
+
+
+        boy.velocity = RUN_SPEED_PPS * boy.dir
+
+
+
         if(boy.velocity == 0):
             boy.cur_state = IdleState
             boy.cur_state.enter(boy,None)
+
+        elif (not (LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS)):
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy, None)
+
 
     @staticmethod
     def draw(boy):
@@ -187,14 +211,8 @@ class DashState:
 
     @staticmethod
     def enter(boy, event):
-        if event == RIGHT_DOWN:
-            boy.velocity += RUN_SPEED_PPS
-        elif event == LEFT_DOWN:
-            boy.velocity -= RUN_SPEED_PPS
-        elif event == RIGHT_UP:
-            boy.velocity -= RUN_SPEED_PPS
-        elif event == LEFT_UP:
-            boy.velocity += RUN_SPEED_PPS
+        boy.velocity = boy.dir * RUN_SPEED_PPS
+
 
 
         DashState.test = 0
@@ -203,15 +221,27 @@ class DashState:
     def exit(boy, event):
         #boy.x -= boy.velocity * 10
 
+        if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
+            boy.cur_state = RunState
+            if(boy.dir >= 0):
+                boy.cur_state.enter(boy, RIGHT_DOWN)
+            else:
+                boy.cur_state.enter(boy, LEFT_DOWN)
+
+        else:
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy, event)
 
 
-        boy.cur_state = RunState
-        boy.cur_state.enter(boy,None)
+
 
         pass
 
     @staticmethod
     def do(boy):
+
+        boy.set_direction()
+
         DashState.test +=1
 
         if(DashState.test > 60):
@@ -292,13 +322,13 @@ next_state_table = {
 next_state_table = {
 # fill here
     IdleState: { RIGHT_UP : RunState, LEFT_UP : RunState, RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState,
-                 SPACE: IdleState,LSHIFT : RunState, RSHIFT : RunState},
-    RunState: { RIGHT_UP : IdleState,LEFT_UP: IdleState, LEFT_DOWN: IdleState, RIGHT_DOWN : IdleState,
+                 SPACE: IdleState,LSHIFT : DashState, RSHIFT : DashState},
+    RunState: { RIGHT_UP : IdleState,LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
                 SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState,LSHIFTUP:RunState,RSHIFTUP:RunState,JUMPUP : JumpState},
 
     SleepState:  { LEFT_DOWN: RunState, RIGHT_DOWN :RunState, LEFT_UP: RunState, RIGHT_UP: RunState,SPACE: IdleState},
 
-    DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState},
+    DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
     JumpState: {LEFT_UP: RunState}
 }
@@ -378,7 +408,17 @@ class Boy:
 
         self.tempGravity = 3
 
+    def set_direction(self):
+        if(self.velocity > 0):
+            self.dir =  1
+        elif(self.velocity <0):
+            self.dir = -1
 
+
+        pass
+
+
+        pass
     def fire_ball(self):
         ball = Ball(self.x, self.y, self.dir * 3)
         game_world.add_object(ball, 1)
@@ -390,12 +430,15 @@ class Boy:
         self.event_que.insert(0, event)
 
     def update(self):
+        #print(LeftRightKeylist.count(LEFT_KEY_ON_PRESS))
+
         self.cur_state.do(self)
         #print(self.cur_state)
-
+        print(LeftRightKeylist)
 
         if len(self.event_que) > 0:
             event = self.event_que.pop()
+
 
             self.cur_state.exit(self, event)
             if(event in next_state_table[self.cur_state].keys()):
@@ -414,24 +457,33 @@ class Boy:
     def handle_event(self, event):
         global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
-            print("좌키누름")
             LEFT_KEY_ON_PRESS = True
-        elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:
-            print("좌키업")
+        if event.type == SDL_KEYUP and event.key == SDLK_LEFT:
             LEFT_KEY_ON_PRESS = False
 
         if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
-            print("우키누름")
             RIGHT_KEY_ON_PRESS = True
-        elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
-            print("우키업")
+        if event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
             RIGHT_KEY_ON_PRESS = False
 
 
-        if(LEFT_KEY_ON_PRESS):
-            print("좌키 누르는중")
-        if(RIGHT_KEY_ON_PRESS):
-            print("우키 누르는중")
+        if not "LEFT_KEY_ON_PRESS" in LeftRightKeylist:
+            if LEFT_KEY_ON_PRESS == True:
+                LeftRightKeylist.append("LEFT_KEY_ON_PRESS")
+
+        if not "RIGHT_KEY_ON_PRESS" in LeftRightKeylist:
+            if RIGHT_KEY_ON_PRESS == True:
+                LeftRightKeylist.append("RIGHT_KEY_ON_PRESS")
+
+        if "LEFT_KEY_ON_PRESS" in LeftRightKeylist:
+            if LEFT_KEY_ON_PRESS == False:
+                LeftRightKeylist.remove("LEFT_KEY_ON_PRESS")
+
+        if "RIGHT_KEY_ON_PRESS" in LeftRightKeylist:
+            if RIGHT_KEY_ON_PRESS == False:
+                LeftRightKeylist.remove("RIGHT_KEY_ON_PRESS")
+
+
 
 
 
