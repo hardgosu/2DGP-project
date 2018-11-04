@@ -11,3 +11,4 @@ game_framework.run(main_state)
 pico2d.close_canvas()
 
 #print(최종)
+

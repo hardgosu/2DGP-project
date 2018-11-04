@@ -33,7 +33,7 @@ DASH_KEY_ON_PRESS = False
 # Boy Event
 
 
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, LSHIFT, RSHIFT, LSHIFTUP, RSHIFTUP, JUMP_DOWN, JUMP_UP,STANDING_SHOT = range(13)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, LSHIFT, RSHIFT, LSHIFTUP, RSHIFTUP, JUMP_DOWN, JUMP_UP, SHOT_BUTTON = range(13)
 
 
 # fill here
@@ -49,10 +49,38 @@ key_event_table = {
     (SDL_KEYUP, SDLK_LSHIFT): LSHIFTUP,
     (SDL_KEYUP, SDLK_RSHIFT): RSHIFTUP,
     (SDL_KEYDOWN, SDLK_d) : JUMP_DOWN,
-    (SDL_KEYUP, SDLK_d): JUMP_UP
-
+    (SDL_KEYUP, SDLK_d): JUMP_UP,
+    (SDL_KEYDOWN, SDLK_a): SHOT_BUTTON
 
 }
+
+
+#복붙용 베이스 스테이트
+class BaseState:
+
+
+    @staticmethod
+    def enter(boy,event):
+        pass
+
+    @staticmethod
+    def exit(boy,event):
+        pass
+    @staticmethod
+    def do(boy):
+        pass
+        #boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+    @staticmethod
+    def draw(boy):
+        if boy.dir == 1:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+        else:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
+
+
+
 
 # Boy States
 
@@ -111,11 +139,10 @@ class IdleState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-
-            boy.Images[boy.imageState]["ImageFile"].clip_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], boy.x, boy.y)
-
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
 
 
 class RunState:
@@ -177,11 +204,10 @@ class RunState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
-
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
         else:
-            #Boy.Images[boy.imageState]["ImageFile"].clip_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], boy.x, boy.y)
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
 
 
 class SleepState:
@@ -224,12 +250,17 @@ class DashState:
     def exit(boy, event):
         #boy.x -= boy.velocity * 10
 
+        if(event == SHOT_BUTTON):
+            print("쉬벌")
+
+
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
             boy.cur_state = RunState
             if(boy.dir >= 0):
                 boy.cur_state.enter(boy, RIGHT_DOWN)
             else:
                 boy.cur_state.enter(boy, LEFT_DOWN)
+
 
         #대쉬중에 뭔가 다른키가 눌리면 탈출.. 그러나 나중에는 특정키만 누르면 탈출하도록..
         else:
@@ -265,9 +296,11 @@ class DashState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
+
 
 
 class JumpState:
@@ -357,6 +390,10 @@ class JumpState:
 
 
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+        
+        #임시로 프레임 고정
+        if(int(boy.frame) > 20):
+            boy.frame = 20
 
 
         #착지위치 설정. 당연히 추후에 수정..
@@ -370,9 +407,135 @@ class JumpState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
+
+
+#복붙용 베이스 스테이트
+class IdleShotState:
+
+
+    @staticmethod
+    def enter(boy,event):
+
+        boy.frame = 0
+
+        boy.imageState = boy.idleShot
+
+        pass
+
+    @staticmethod
+    def exit(boy,event):
+        pass
+    @staticmethod
+    def do(boy):
+
+        if(boy.frame >= Boy.Images[boy.imageState]["Frames"] - 1):
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
+
+
+        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+
+
+        pass
+
+
+    @staticmethod
+    def draw(boy):
+        if boy.dir == 1:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+        else:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
+
+class WalkingShotState:
+
+
+    startTimer = 0
+
+    shotTimer = 0
+
+
+
+
+    @staticmethod
+    def enter(boy,event):
+
+        if(event != SHOT_BUTTON or WalkingShotState.shotTimer == 0):
+            boy.frame = 0
+
+
+        boy.imageState = boy.walkingShot
+
+        WalkingShotState.startTimer = get_time()
+
+
+        WalkingShotState.shotTimer = 0
+
+        pass
+
+    @staticmethod
+    def exit(boy,event):
+        pass
+    @staticmethod
+    def do(boy):
+
+        WalkingShotState.shotTimer = get_time() - WalkingShotState.startTimer
+
+
+        if WalkingShotState.shotTimer >= 0.4:
+            boy.cur_state = RunState
+            boy.cur_state.enter(boy,None)
+            WalkingShotState.shotTimer = 0
+
+        boy.set_direction()
+
+        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+        boy.x += boy.velocity * game_framework.frame_time
+        boy.x = clamp(25, boy.x, 1600 - 25)
+
+
+        if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
+            if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                boy.dir = -1
+
+            elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                boy.dir = 1
+
+
+        boy.velocity = RUN_SPEED_PPS * boy.dir
+
+
+
+        if(boy.velocity == 0):
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
+
+        elif (not (LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS)):
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy, None)
+
+
+
+        #boy.x += boy.velocity * game_framework.frame_time
+
+
+        pass
+        #boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+    @staticmethod
+    def draw(boy):
+        if boy.dir == 1:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+        else:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
+
+
 
 
 """원본
@@ -411,31 +574,36 @@ next_state_table = {
 next_state_table = {
 # fill here
     IdleState: {RIGHT_UP : RunState, LEFT_UP : RunState, RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState,
-                SPACE: IdleState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState},
+                SPACE: IdleState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : IdleShotState},
     RunState: {RIGHT_UP : IdleState, LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
-               SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState, LSHIFTUP:RunState, RSHIFTUP:RunState, JUMP_DOWN : JumpState},
+               SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState, LSHIFTUP:RunState, RSHIFTUP:RunState, JUMP_DOWN : JumpState , SHOT_BUTTON : WalkingShotState},
 
     SleepState:  { LEFT_DOWN: RunState, RIGHT_DOWN :RunState, LEFT_UP: RunState, RIGHT_UP: RunState,SPACE: IdleState},
 
     DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
-    JumpState: { JUMP_UP : JumpState}
+    JumpState: { JUMP_UP : JumpState},
+
+    IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState},
+
+    WalkingShotState : {SHOT_BUTTON : WalkingShotState}
+
 }
 
 
 
 class Boy:
 
-    actions = 7
-    idle, walking, dashStart, dash, dashEnd, jump, idleShot =range(actions)
+    actions = 8
+    idle, walking, dashStart, dash, dashEnd, jump, idleShot, walkingShot =range(actions)
 
     #test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
     Images = []
 
 
-
-
+    Test = True
+    TestIndex = walkingShot
 
     def __init__(self):
         self.kind = game_world.Player
@@ -460,49 +628,67 @@ class Boy:
 
         self.velocityY = 0
 
+        self.firePositionX = 20
+        self.firePositionY = 20
+
+
 
         for i in range(Boy.actions):
-            Boy.Images.append({"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None})
+            Boy.Images.append({"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None , "XRevision" : None})
 
-        Boy.Images[Boy.idleShot]["ImageFile"] = load_image('X_IdleShot.png')
-        Boy.Images[Boy.idleShot]["IntervalX"] = 70
-        Boy.Images[Boy.idleShot]["IntervalY"] = 46
+        Boy.Images[Boy.idleShot]["ImageFile"] = load_image('X_IdleShot3.png')
+        Boy.Images[Boy.idleShot]["IntervalX"] = 63
+        Boy.Images[Boy.idleShot]["IntervalY"] = 45
         Boy.Images[Boy.idleShot]["Frames"] = 12
-
+        Boy.Images[Boy.idleShot]["XRevision"] = 50
 
 
         Boy.Images[Boy.idle]["ImageFile"] = load_image('X_Idle2.png')
         Boy.Images[Boy.idle]["IntervalX"] = 36
         Boy.Images[Boy.idle]["IntervalY"] = 46
         Boy.Images[Boy.idle]["Frames"] = 73
+        Boy.Images[Boy.idle]["XRevision"] = 0
 
-        Boy.Images[Boy.walking]["ImageFile"] = load_image('X_Right_Walking.png')
-        Boy.Images[Boy.walking]["IntervalX"] = 71
+
+        Boy.Images[Boy.walking]["ImageFile"] = load_image('X_Right_Walking2.png')
+        Boy.Images[Boy.walking]["IntervalX"] = 63
         Boy.Images[Boy.walking]["IntervalY"] = 47
         Boy.Images[Boy.walking]["Frames"] = 14
+        Boy.Images[Boy.walking]["XRevision"] = 50
 
         Boy.Images[Boy.dashStart]["ImageFile"] = load_image('X_DashBegin.png')
         Boy.Images[Boy.dashStart]["IntervalX"] = 50
         Boy.Images[Boy.dashStart]["IntervalY"] = 46
         Boy.Images[Boy.dashStart]["Frames"] = 3
+        Boy.Images[Boy.dashStart]["XRevision"] = 0
+
 
         Boy.Images[Boy.dashEnd]["ImageFile"] = load_image('X_DashEnd.png')
         Boy.Images[Boy.dashEnd]["IntervalX"] = 70
         Boy.Images[Boy.dashEnd]["IntervalY"] = 47
         Boy.Images[Boy.dashEnd]["Frames"] = 9
+        Boy.Images[Boy.dashEnd]["XRevision"] = 0
+
 
         Boy.Images[Boy.dash]["ImageFile"] = load_image('X_Dash.png')
         Boy.Images[Boy.dash]["IntervalX"] = 70
         Boy.Images[Boy.dash]["IntervalY"] = 46
         Boy.Images[Boy.dash]["Frames"] = 3
+        Boy.Images[Boy.dash]["XRevision"] = 0
+
 
         Boy.Images[Boy.jump]["ImageFile"] = load_image('X_jump.png')
         Boy.Images[Boy.jump]["IntervalX"] = 36
         Boy.Images[Boy.jump]["IntervalY"] = 58
         Boy.Images[Boy.jump]["Frames"] = 24
+        Boy.Images[Boy.jump]["XRevision"] = 0
 
 
-
+        Boy.Images[Boy.walkingShot]["ImageFile"] = load_image('X_Walking_Shot3.png')
+        Boy.Images[Boy.walkingShot]["IntervalX"] = 63
+        Boy.Images[Boy.walkingShot]["IntervalY"] = 47
+        Boy.Images[Boy.walkingShot]["Frames"] = 16
+        Boy.Images[Boy.walkingShot]["XRevision"] = 48
 
 
         self.tempGravity = 3
@@ -568,6 +754,34 @@ class Boy:
 
     def handle_event(self, event):
         global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS,DASH_KEY_ON_PRESS
+
+        if Boy.Test:
+
+
+            if event.type == SDL_KEYDOWN and event.key == SDLK_r:
+                Boy.TestIndex += 1
+            if event.type == SDL_KEYDOWN and event.key == SDLK_t:
+                Boy.TestIndex -= 1
+
+
+
+            if event.type == SDL_KEYDOWN and event.key == SDLK_q:
+                Boy.Images[Boy.TestIndex]["IntervalX"] += 1
+                print(Boy.Images[Boy.TestIndex]["IntervalX"])
+
+            if event.type == SDL_KEYDOWN and event.key == SDLK_e:
+                Boy.Images[Boy.TestIndex]["IntervalX"] -= 1
+                print(Boy.Images[Boy.TestIndex]["IntervalX"])
+
+            if event.type == SDL_KEYDOWN and event.key == SDLK_w:
+                Boy.Images[Boy.TestIndex]["XRevision"] -= 1
+                print(Boy.Images[Boy.TestIndex]["XRevision"])
+            if event.type == SDL_KEYDOWN and event.key == SDLK_s:
+                Boy.Images[Boy.TestIndex]["XRevision"] += 1
+                print(Boy.Images[Boy.TestIndex]["XRevision"])
+            clamp(0,Boy.TestIndex,Boy.actions)
+
+
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
             LEFT_KEY_ON_PRESS = True
         if event.type == SDL_KEYUP and event.key == SDLK_LEFT:
