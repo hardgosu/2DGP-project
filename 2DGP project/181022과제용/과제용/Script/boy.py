@@ -1,5 +1,6 @@
 from pico2d import *
 from ball import Ball
+from busterProjectile import BusterProjectile
 
 import game_world
 import game_framework
@@ -108,9 +109,10 @@ class IdleState:
 
         if(event == RSHIFT):
             pass
-
-        if(event == SPACE):
+        if(event == SHOT_BUTTON):
             boy.fire_ball()
+            print("뭐")
+
         pass
 
     @staticmethod
@@ -163,8 +165,9 @@ class RunState:
     def exit(boy, event):
 
 
-        if(event == SPACE):
+        if(event == SHOT_BUTTON):
             boy.fire_ball()
+            print("뭐")
         pass
 
     @staticmethod
@@ -428,6 +431,11 @@ class IdleShotState:
 
     @staticmethod
     def exit(boy,event):
+
+        if(event == SHOT_BUTTON):
+            boy.fire_ball()
+            print("뭐")
+
         pass
     @staticmethod
     def do(boy):
@@ -480,7 +488,9 @@ class WalkingShotState:
 
     @staticmethod
     def exit(boy,event):
-        pass
+        if(event == SHOT_BUTTON):
+            boy.fire_ball()
+            print("뭐")
     @staticmethod
     def do(boy):
 
@@ -576,7 +586,7 @@ next_state_table = {
     IdleState: {RIGHT_UP : RunState, LEFT_UP : RunState, RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState,
                 SPACE: IdleState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : IdleShotState},
     RunState: {RIGHT_UP : IdleState, LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
-               SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState, LSHIFTUP:RunState, RSHIFTUP:RunState, JUMP_DOWN : JumpState , SHOT_BUTTON : WalkingShotState},
+               SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : WalkingShotState},
 
     SleepState:  { LEFT_DOWN: RunState, RIGHT_DOWN :RunState, LEFT_UP: RunState, RIGHT_UP: RunState,SPACE: IdleState},
 
@@ -586,7 +596,7 @@ next_state_table = {
 
     IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState},
 
-    WalkingShotState : {SHOT_BUTTON : WalkingShotState}
+    WalkingShotState : {SHOT_BUTTON : WalkingShotState,LSHIFT : DashState, RSHIFT : DashState}
 
 }
 
@@ -631,6 +641,7 @@ class Boy:
         self.firePositionX = 20
         self.firePositionY = 20
 
+        self.busterSpeed = 5
 
 
         for i in range(Boy.actions):
@@ -705,8 +716,10 @@ class Boy:
 
         pass
     def fire_ball(self):
-        ball = Ball(self.x, self.y, self.dir * 3)
-        game_world.add_object(ball, 1)
+        projectile = BusterProjectile(self.x,self.y,self.dir,self.busterSpeed)
+
+        game_world.add_object(projectile, 1)
+
         pass
 
     def SelfGravity(self):

@@ -66,9 +66,7 @@ def update():
                     print("지면과의 충돌")
                     while(collide(boy,game_object)) :
                         boy.y = 90
-                    boy.land = True
-                else:
-                    boy.land = False
+
 
 
 
