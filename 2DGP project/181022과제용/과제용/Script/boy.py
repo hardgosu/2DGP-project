@@ -97,7 +97,7 @@ class IdleState:
 
 
         boy.velocity = 0
-
+        boy.velocityY = 0
 
         IdleState.timer = get_time()
         IdleState.accum = 0
@@ -557,7 +557,14 @@ class JumpingShotState:
     #매 시간단위로 감소하는 속력
     decrease = 0.3* PIXEL_PER_METER
 
-    accum = 0
+
+
+    timer = False
+    startTimer = 0
+
+    shotTimer = 0
+
+
     up = False
     falling = False
 
@@ -590,10 +597,27 @@ class JumpingShotState:
 
         if(event == SHOT_BUTTON):
             boy.fire_ball()
+            JumpingShotState.startTimer = get_time()
+            if( JumpState.up):
+                boy.imageState = Boy.jumpShotBeginFlash
+            elif(JumpState.falling):
+                boy.imageState = Boy.jumpShotFallingFlash
+            JumpingShotState.timer = True
 
         pass
     @staticmethod
     def do(boy):
+
+
+        if(JumpingShotState.timer):
+            JumpingShotState.shotTimer = get_time() - JumpingShotState.startTimer
+            if( JumpingShotState.shotTimer > 0.1):
+                JumpingShotState.timer = False
+                if( JumpState.up):
+                    boy.imageState = Boy.jumpShotBegin
+                elif(JumpState.falling):
+                    boy.imageState = Boy.jumpShotFalling
+
 
         JumpingShotState.falling = JumpState.falling
         JumpingShotState.up = JumpState.up
@@ -659,10 +683,13 @@ class JumpingShotState:
             if (int(boy.frame) > 5):
                 boy.frame = 6
 
-        if(JumpState.falling and boy.imageState != Boy.jumpShotFalling):
-            boy.frame = 0
-            boy.imageState = Boy.jumpShotFalling
-            print("떨어짐")
+        if(JumpState.falling):
+            if JumpingShotState.timer == False and boy.imageState != Boy.jumpShotFalling:
+                boy.frame = 0
+                boy.imageState = Boy.jumpShotFalling
+            elif JumpingShotState.timer == True and boy.imageState != Boy.jumpShotFallingFlash:
+                boy.frame = 0
+                boy.imageState = Boy.jumpShotFallingFlash
 
 
         # 착지위치 설정. 당연히 추후에 수정..
@@ -871,7 +898,7 @@ class Boy:
         Boy.Images[Boy.jumpShotFallingFlash]["IntervalX"] = 63
         Boy.Images[Boy.jumpShotFallingFlash]["IntervalY"] = 56
         Boy.Images[Boy.jumpShotFallingFlash]["Frames"] = 7
-        Boy.Images[Boy.jumpShotFallingFlash]["XRevision"] = 48
+        Boy.Images[Boy.jumpShotFallingFlash]["XRevision"] = 42
 
 
 
