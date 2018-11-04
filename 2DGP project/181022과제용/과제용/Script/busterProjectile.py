@@ -55,6 +55,8 @@ class BusterProjectile:
 
 
 
+
+
     def __init__(self,x,y,dir,velocityX):
 
         if(BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] == None):
@@ -98,6 +100,9 @@ class BusterProjectile:
 
         self.tempGravity = 3
 
+        self.startTimer = get_time()
+        self.endTimer = 0
+
     def set_direction(self):
 
 
@@ -111,6 +116,11 @@ class BusterProjectile:
     def update(self):
 
 
+        self.endTimer = get_time() - self.startTimer
+
+
+
+
 
         self.set_direction()
 
@@ -118,7 +128,8 @@ class BusterProjectile:
 
         self.x += self.velocity * self.dir * game_framework.frame_time
 
-
+        if(self.endTimer > 1.2):
+            game_world.remove_object(self)
 
 
         pass
