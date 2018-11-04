@@ -28,6 +28,7 @@ gravity = 9.8
 LeftRightKeylist = []
 LEFT_KEY_ON_PRESS = False
 RIGHT_KEY_ON_PRESS = False
+DASH_KEY_ON_PRESS = False
 
 # Boy Event
 
@@ -209,6 +210,7 @@ class DashState:
 
     test = 0
     level = 0
+    dashSpeed = 5
 
     @staticmethod
     def enter(boy, event):
@@ -257,7 +259,7 @@ class DashState:
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
 
 
-        boy.x += boy.velocity * 5 * game_framework.frame_time
+        boy.x += boy.velocity * DashState.dashSpeed * game_framework.frame_time
         boy.x = clamp(25, boy.x, 1600 - 25)
 
     @staticmethod
@@ -304,13 +306,29 @@ class JumpState:
 
 
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
-            if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
-                boy.velocity = RUN_SPEED_PPS * boy.dir
-                boy.dir = -1
 
-            elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
-                boy.dir = 1
-                boy.velocity = RUN_SPEED_PPS * boy.dir
+            if(DASH_KEY_ON_PRESS):
+                if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                    boy.dir = -1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir * DashState.dashSpeed
+
+
+                elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                    boy.dir = 1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir* DashState.dashSpeed
+
+
+            else:
+
+                if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+                    boy.dir = -1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+
+
+                elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                    boy.dir = 1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
         else:
             boy.velocity = 0
 
@@ -549,7 +567,7 @@ class Boy:
         self.font.draw(self.x - 60, self.y + 50, '(Time: %3.2f)' % get_time(), (255, 255, 0))
 
     def handle_event(self, event):
-        global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS
+        global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS,DASH_KEY_ON_PRESS
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
             LEFT_KEY_ON_PRESS = True
         if event.type == SDL_KEYUP and event.key == SDLK_LEFT:
@@ -560,6 +578,21 @@ class Boy:
         if event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
             RIGHT_KEY_ON_PRESS = False
 
+        if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
+            RIGHT_KEY_ON_PRESS = True
+        if event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
+            RIGHT_KEY_ON_PRESS = False
+
+        if event.type == SDL_KEYDOWN and event.key == SDLK_LSHIFT:
+            DASH_KEY_ON_PRESS = True
+        if event.type == SDL_KEYUP and event.key == SDLK_LSHIFT:
+            DASH_KEY_ON_PRESS = False
+
+
+
+
+
+
 
         if not "LEFT_KEY_ON_PRESS" in LeftRightKeylist:
             if LEFT_KEY_ON_PRESS == True:
@@ -569,6 +602,9 @@ class Boy:
             if RIGHT_KEY_ON_PRESS == True:
                 LeftRightKeylist.append("RIGHT_KEY_ON_PRESS")
 
+
+
+
         if "LEFT_KEY_ON_PRESS" in LeftRightKeylist:
             if LEFT_KEY_ON_PRESS == False:
                 LeftRightKeylist.remove("LEFT_KEY_ON_PRESS")
@@ -576,6 +612,7 @@ class Boy:
         if "RIGHT_KEY_ON_PRESS" in LeftRightKeylist:
             if RIGHT_KEY_ON_PRESS == False:
                 LeftRightKeylist.remove("RIGHT_KEY_ON_PRESS")
+
 
 
 
