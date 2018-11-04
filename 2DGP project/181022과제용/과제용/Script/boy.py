@@ -32,7 +32,7 @@ RIGHT_KEY_ON_PRESS = False
 # Boy Event
 
 
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SLEEP_TIMER,SPACE,LSHIFT,RSHIFT, LSHIFTUP, RSHIFTUP, JUMPUP, STANDING_SHOT = range(12)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, LSHIFT, RSHIFT, LSHIFTUP, RSHIFTUP, JUMP_DOWN, JUMP_UP,STANDING_SHOT = range(13)
 
 
 # fill here
@@ -47,7 +47,8 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_RSHIFT): RSHIFT,
     (SDL_KEYUP, SDLK_LSHIFT): LSHIFTUP,
     (SDL_KEYUP, SDLK_RSHIFT): RSHIFTUP,
-    (SDL_KEYDOWN, SDLK_d) : JUMPUP
+    (SDL_KEYDOWN, SDLK_d) : JUMP_DOWN,
+    (SDL_KEYUP, SDLK_d): JUMP_UP
 
 
 }
@@ -281,12 +282,19 @@ class JumpState:
 
     @staticmethod
     def enter(boy,event):
-        JumpState.accum = 0
 
-        boy.frame = 0
-        boy.imageState = Boy.jump
 
-        boy.velocityY = JumpState.jumpSpeed
+
+        if(not JumpState.up and not JumpState.falling):
+            boy.velocityY = JumpState.jumpSpeed
+            JumpState.accum = 0
+
+            boy.frame = 0
+            boy.imageState = Boy.jump
+
+        if(event == JUMP_UP):
+            if(JumpState.up):
+                boy.velocityY = 0
 
     @staticmethod
     def exit(boy,event):
@@ -317,6 +325,7 @@ class JumpState:
             JumpState.up = False
             JumpState.falling = True
 
+
         #if JumpState.up:
         #    print("Jumping")
 
@@ -331,10 +340,14 @@ class JumpState:
 
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
 
+
+        #착지위치 설정. 당연히 추후에 수정..
         if boy.y < 90:
             boy.y = 90
             boy.cur_state = IdleState
             boy.cur_state.enter(boy,None)
+            JumpState.falling = False
+            JumpState.up = False
 
     @staticmethod
     def draw(boy):
@@ -379,16 +392,16 @@ next_state_table = {
 
 next_state_table = {
 # fill here
-    IdleState: { RIGHT_UP : RunState, LEFT_UP : RunState, RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState,
-                 SPACE: IdleState,LSHIFT : DashState, RSHIFT : DashState,JUMPUP : JumpState},
-    RunState: { RIGHT_UP : IdleState,LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
-                SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState,LSHIFTUP:RunState,RSHIFTUP:RunState,JUMPUP : JumpState},
+    IdleState: {RIGHT_UP : RunState, LEFT_UP : RunState, RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState,
+                SPACE: IdleState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState},
+    RunState: {RIGHT_UP : IdleState, LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
+               SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState, LSHIFTUP:RunState, RSHIFTUP:RunState, JUMP_DOWN : JumpState},
 
     SleepState:  { LEFT_DOWN: RunState, RIGHT_DOWN :RunState, LEFT_UP: RunState, RIGHT_UP: RunState,SPACE: IdleState},
 
     DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
-    JumpState: { }
+    JumpState: { JUMP_UP : JumpState}
 }
 
 
