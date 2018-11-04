@@ -239,7 +239,7 @@ class DashState:
 
     test = 0
     level = 0
-    dashSpeed = 5
+    dashSpeed = 3
 
     @staticmethod
     def enter(boy, event):
@@ -336,6 +336,10 @@ class JumpState:
 
     @staticmethod
     def exit(boy,event):
+
+        if(event == SHOT_BUTTON):
+            boy.fire_ball()
+
         pass
     @staticmethod
     def do(boy):
@@ -490,7 +494,7 @@ class WalkingShotState:
     def exit(boy,event):
         if(event == SHOT_BUTTON):
             boy.fire_ball()
-            print("뭐")
+
     @staticmethod
     def do(boy):
 
@@ -545,6 +549,143 @@ class WalkingShotState:
             boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
 
 
+#복붙용 베이스 스테이트
+class JumpingShotState:
+
+    #점프 시작 속도
+    jumpSpeed = 20 * PIXEL_PER_METER
+    #매 시간단위로 감소하는 속력
+    decrease = 0.3* PIXEL_PER_METER
+
+    accum = 0
+    up = False
+    falling = False
+
+
+
+    @staticmethod
+    def enter(boy,event):
+
+
+
+
+        boy.frame = boy.frame * 0.5384
+
+
+        #점프상태 클래스의 상태변수를 가져온다
+        JumpingShotState.falling = JumpState.falling
+        JumpingShotState.up = JumpState.up
+
+
+        if(JumpingShotState.up):
+            boy.imageState = Boy.jumpShotBegin
+        elif(JumpingShotState.falling):
+            boy.imageState = Boy.jumpShotFalling
+
+
+        pass
+
+    @staticmethod
+    def exit(boy,event):
+
+        if(event == SHOT_BUTTON):
+            boy.fire_ball()
+
+        pass
+    @staticmethod
+    def do(boy):
+
+        JumpingShotState.falling = JumpState.falling
+        JumpingShotState.up = JumpState.up
+
+        if (LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
+
+            if (DASH_KEY_ON_PRESS):
+                if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                    boy.dir = -1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir * DashState.dashSpeed
+
+
+                elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                    boy.dir = 1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir * DashState.dashSpeed
+
+
+            else:
+
+                if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+                    boy.dir = -1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+
+
+                elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                    boy.dir = 1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+        else:
+            boy.velocity = 0
+
+        if boy.velocityY > 0:
+            JumpState.up = True
+            JumpState.falling = False
+        elif boy.velocityY < 0:
+            JumpState.up = False
+            JumpState.falling = True
+
+
+
+        # if JumpState.up:
+        #    print("Jumping")
+
+        # if JumpState.falling:
+        #    print("Falling")
+
+        boy.x += boy.velocity * game_framework.frame_time
+        boy.y += boy.velocityY * game_framework.frame_time
+
+        boy.velocityY -= JumpState.decrease
+
+        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+        # 임시로 프레임 고정
+
+
+
+        if(JumpState.up):
+            if (int(boy.frame) > 11):
+                boy.frame = 11
+
+        if(JumpState.falling):
+            if (int(boy.frame) > 5):
+                boy.frame = 6
+
+        if(JumpState.falling and boy.imageState != Boy.jumpShotFalling):
+            boy.frame = 0
+            boy.imageState = Boy.jumpShotFalling
+            print("떨어짐")
+
+
+        # 착지위치 설정. 당연히 추후에 수정..
+        if boy.y < 90:
+            boy.y = 90
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy, None)
+            JumpingShotState.falling = False
+            JumpingShotState.up = False
+            JumpState.falling = False
+            JumpState.up = False
+        pass
+
+
+    @staticmethod
+    def draw(boy):
+        if boy.dir == 1:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+        else:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
+
+
 
 
 
@@ -592,11 +733,13 @@ next_state_table = {
 
     DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
-    JumpState: { JUMP_UP : JumpState},
+    JumpState: { JUMP_UP : JumpState , SHOT_BUTTON : JumpingShotState},
 
-    IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState},
+    IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState ,  JUMP_DOWN : JumpState},
 
-    WalkingShotState : {SHOT_BUTTON : WalkingShotState,LSHIFT : DashState, RSHIFT : DashState}
+    WalkingShotState : {SHOT_BUTTON : WalkingShotState,LSHIFT : DashState, RSHIFT : DashState , JUMP_DOWN : JumpState},
+
+    JumpingShotState : {}
 
 }
 
@@ -604,8 +747,8 @@ next_state_table = {
 
 class Boy:
 
-    actions = 8
-    idle, walking, dashStart, dash, dashEnd, jump, idleShot, walkingShot =range(actions)
+    actions = 12
+    idle, walking, dashStart, dash, dashEnd, jump, idleShot, walkingShot, jumpShotBegin, jumpShotFalling, jumpShotBeginFlash, jumpShotFallingFlash =range(actions)
 
     #test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
@@ -642,6 +785,8 @@ class Boy:
         self.firePositionY = 20
 
         self.busterSpeed = 5
+
+        self.boundingBoxOn = False
 
 
         for i in range(Boy.actions):
@@ -700,6 +845,35 @@ class Boy:
         Boy.Images[Boy.walkingShot]["IntervalY"] = 47
         Boy.Images[Boy.walkingShot]["Frames"] = 16
         Boy.Images[Boy.walkingShot]["XRevision"] = 48
+
+        Boy.Images[Boy.jumpShotBegin]["ImageFile"] = load_image('X_Jumping_Shot_Begin.png')
+        Boy.Images[Boy.jumpShotBegin]["IntervalX"] = 63
+        Boy.Images[Boy.jumpShotBegin]["IntervalY"] = 57
+        Boy.Images[Boy.jumpShotBegin]["Frames"] = 14
+        Boy.Images[Boy.jumpShotBegin]["XRevision"] = 48
+
+
+        Boy.Images[Boy.jumpShotFalling]["ImageFile"] = load_image('X_Jumping_Shot_Falling.png')
+        Boy.Images[Boy.jumpShotFalling]["IntervalX"] = 63
+        Boy.Images[Boy.jumpShotFalling]["IntervalY"] = 56
+        Boy.Images[Boy.jumpShotFalling]["Frames"] = 7
+        Boy.Images[Boy.jumpShotFalling]["XRevision"] = 42
+
+
+        Boy.Images[Boy.jumpShotBeginFlash]["ImageFile"] = load_image('X_Jumping_Shot_Begin_Flash.png')
+        Boy.Images[Boy.jumpShotBeginFlash]["IntervalX"] = 63
+        Boy.Images[Boy.jumpShotBeginFlash]["IntervalY"] = 57
+        Boy.Images[Boy.jumpShotBeginFlash]["Frames"] = 14
+        Boy.Images[Boy.jumpShotBeginFlash]["XRevision"] = 48
+
+
+        Boy.Images[Boy.jumpShotFallingFlash]["ImageFile"] = load_image('X_Jumping_Shot_Falling_Flash.png')
+        Boy.Images[Boy.jumpShotFallingFlash]["IntervalX"] = 63
+        Boy.Images[Boy.jumpShotFallingFlash]["IntervalY"] = 56
+        Boy.Images[Boy.jumpShotFallingFlash]["Frames"] = 7
+        Boy.Images[Boy.jumpShotFallingFlash]["XRevision"] = 48
+
+
 
 
         self.tempGravity = 3
@@ -761,8 +935,11 @@ class Boy:
 
 
     def draw(self):
+
         self.cur_state.draw(self)
-        self.draw_bb()
+
+        if(self.boundingBoxOn):
+            self.draw_bb()
         self.font.draw(self.x - 60, self.y + 50, '(Time: %3.2f)' % get_time(), (255, 255, 0))
 
     def handle_event(self, event):

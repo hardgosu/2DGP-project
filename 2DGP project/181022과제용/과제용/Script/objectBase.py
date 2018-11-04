@@ -33,7 +33,7 @@ class ObjectBase:
         self.velocityY = 0
 
 
-
+        self.boundingBoxOn = True
 
 
         self.tempGravity = 3
