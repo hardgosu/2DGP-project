@@ -32,7 +32,7 @@ RIGHT_KEY_ON_PRESS = False
 # Boy Event
 
 
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SLEEP_TIMER,SPACE,LSHIFT,RSHIFT,LSHIFTUP,RSHIFTUP,JUMPUP,STANDING_SHOT = range(12)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP,SLEEP_TIMER,SPACE,LSHIFT,RSHIFT, LSHIFTUP, RSHIFTUP, JUMPUP, STANDING_SHOT = range(12)
 
 
 # fill here
@@ -47,7 +47,7 @@ key_event_table = {
     (SDL_KEYDOWN, SDLK_RSHIFT): RSHIFT,
     (SDL_KEYUP, SDLK_LSHIFT): LSHIFTUP,
     (SDL_KEYUP, SDLK_RSHIFT): RSHIFTUP,
-    (SDL_KEYUP, SDLK_d) : JUMPUP
+    (SDL_KEYDOWN, SDLK_d) : JUMPUP
 
 
 }
@@ -228,6 +228,7 @@ class DashState:
             else:
                 boy.cur_state.enter(boy, LEFT_DOWN)
 
+        #대쉬중에 뭔가 다른키가 눌리면 탈출.. 그러나 나중에는 특정키만 누르면 탈출하도록..
         else:
             boy.cur_state = IdleState
             boy.cur_state.enter(boy, event)
@@ -267,16 +268,73 @@ class DashState:
 
 
 class JumpState:
+
+
+    #점프 시작 속도
+    jumpSpeed = 20 * PIXEL_PER_METER
+    #매 시간단위로 감소하는 속력
+    decrease = 0.3* PIXEL_PER_METER
+
+    accum = 0
+    up = False
+    falling = False
+
     @staticmethod
     def enter(boy,event):
+        JumpState.accum = 0
+
         boy.frame = 0
         boy.imageState = Boy.jump
+
+        boy.velocityY = JumpState.jumpSpeed
+
     @staticmethod
     def exit(boy,event):
         pass
     @staticmethod
     def do(boy):
+
+
+        if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
+            if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                boy.velocity = RUN_SPEED_PPS * boy.dir
+                boy.dir = -1
+
+            elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                boy.dir = 1
+                boy.velocity = RUN_SPEED_PPS * boy.dir
+        else:
+            boy.velocity = 0
+
+
+
+
+
+        if boy.velocityY > 0:
+            JumpState.up = True
+            JumpState.falling = False
+        elif boy.velocityY < 0:
+            JumpState.up = False
+            JumpState.falling = True
+
+        #if JumpState.up:
+        #    print("Jumping")
+
+        #if JumpState.falling:
+        #    print("Falling")
+
+        boy.x += boy.velocity * game_framework.frame_time
+        boy.y += boy.velocityY * game_framework.frame_time
+
+        boy.velocityY -= JumpState.decrease
+
+
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+        if boy.y < 90:
+            boy.y = 90
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
 
     @staticmethod
     def draw(boy):
@@ -330,7 +388,7 @@ next_state_table = {
 
     DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
-    JumpState: {}
+    JumpState: { }
 }
 
 
@@ -367,7 +425,9 @@ class Boy:
 
         self.font = load_font('ENCR10B.TTF', 16)
 
-        self.selfGravity = True
+        self.selfGravity = False
+
+        self.velocityY = 0
 
 
         for i in range(Boy.actions):
@@ -436,7 +496,8 @@ class Boy:
         if(self.selfGravity == False):
             return
 
-        self.y -= 5.0
+        if(self.land == False):
+            self.y -= 100 * game_framework.frame_time
 
 
     def add_event(self, event):
@@ -452,7 +513,7 @@ class Boy:
 
         self.SelfGravity()
         self.cur_state.do(self)
-        print(self.land)
+
 
 
 
