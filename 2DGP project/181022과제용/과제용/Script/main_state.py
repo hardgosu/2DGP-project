@@ -9,6 +9,9 @@ import game_world
 from boy import Boy
 from grass import Grass
 from ball import Ball
+from testBack import TestBack
+
+from enemyTest import EnemyTest
 
 screenX = 1600
 screenY = 600
@@ -20,17 +23,29 @@ boy = None
 grass = None
 
 
+enemyTest = None
+
+testBack = None
+
 #예시
 def stage_1():
     pass
 
 #기본 스테이지
 def enter():
-    global boy, grass
+    global boy, grass , enemyTest , testBack
     boy = Boy()
     grass = Grass()
+    enemyTest = EnemyTest()
+    testBack = TestBack()
+
+
+    game_world.add_object(testBack,0)
+
     game_world.add_object(grass, 0)
     game_world.add_object(boy, 1)
+    game_world.add_object(enemyTest,1)
+
 
 def exit():
     global boy, grass

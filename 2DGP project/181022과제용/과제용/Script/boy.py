@@ -142,8 +142,6 @@ class IdleState:
         IdleState.accum += IdleState.frameTime
 
 
-        if IdleState.accum >= 3:
-            boy.add_event(SLEEP_TIMER)
 
 
     @staticmethod
@@ -805,8 +803,6 @@ next_state_table = {
     RunState: {RIGHT_UP : IdleState, LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
                SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : WalkingShotState},
 
-    SleepState:  { LEFT_DOWN: RunState, RIGHT_DOWN :RunState, LEFT_UP: RunState, RIGHT_UP: RunState,SPACE: IdleState},
-
     DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
     JumpState: { JUMP_UP : JumpState , SHOT_BUTTON : JumpingShotState},
@@ -888,7 +884,7 @@ class Boy:
         Boy.Images[Boy.idleShot]["IntervalX"] = 63
         Boy.Images[Boy.idleShot]["IntervalY"] = 45
         Boy.Images[Boy.idleShot]["Frames"] = 12
-        Boy.Images[Boy.idleShot]["XRevision"] = 50
+        Boy.Images[Boy.idleShot]["XRevision"] = 51
 
 
         Boy.Images[Boy.idle]["ImageFile"] = load_image('X_Idle2.png')

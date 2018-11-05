@@ -38,6 +38,8 @@ class ObjectBase:
 
         self.tempGravity = 3
 
+        self.subject = None
+
     def set_direction(self):
         if(self.velocity > 0):
             self.dir =  1

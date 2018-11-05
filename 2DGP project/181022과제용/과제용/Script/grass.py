@@ -16,7 +16,7 @@ class Grass:
         self.kind = game_world.Feature
 
 
-        self.image = load_image('animation_sheet.png')
+
 
 
 
@@ -31,16 +31,20 @@ class Grass:
         self.imageState = None
 
 
-        self.image = load_image('grass.png')
+        self.image = load_image('good.png')
+
+        self.boundingBoxOn = False
 
     def update(self):
         pass
 
     def draw(self):
-        self.image.draw(400, 30)
         self.image.draw(1200, 30)
+        self.image.draw(400, 30)
 
-        self.draw_bb()
+
+        if(self.boundingBoxOn):
+            self.draw_bb()
 
     def get_bb(self):
         return self.x - 800, self.y, self.x + 800, self.y + self.image.h - 15
