@@ -28,7 +28,8 @@ def remove_object(o):
         if o in objects[i]:
             objects[i].remove(o)
             del o
-
+            break
+#교수님이 지적한 버그,break 추가
 
 def clear():
     for o in all_objects():

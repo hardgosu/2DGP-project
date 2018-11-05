@@ -12,3 +12,4 @@ pico2d.close_canvas()
 
 #print(최종)
 
+#최종
