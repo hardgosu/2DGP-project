@@ -1,6 +1,7 @@
 from pico2d import *
 from ball import Ball
 from busterProjectile import BusterProjectile
+from charging import Charging
 
 import game_world
 import game_framework
@@ -30,6 +31,13 @@ LeftRightKeylist = []
 LEFT_KEY_ON_PRESS = False
 RIGHT_KEY_ON_PRESS = False
 DASH_KEY_ON_PRESS = False
+SHOT_KEY_ON_PRESS = False
+
+
+
+
+
+
 
 # Boy Event
 
@@ -714,6 +722,47 @@ class JumpingShotState:
 
 
 
+#복붙용 베이스 스테이트
+class IdleChargeShotState:
+
+
+    @staticmethod
+    def enter(boy,event):
+
+        boy.imageState = Boy.idleChargeShot
+
+        boy.frame = 0
+
+        pass
+
+    @staticmethod
+    def exit(boy,event):
+        pass
+    @staticmethod
+    def do(boy):
+
+        if(boy.frame >=Boy.Images[boy.imageState]["Frames"] - 1):
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
+
+
+        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+
+
+        pass
+        #boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+    @staticmethod
+    def draw(boy):
+        if boy.dir == 1:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"] , Boy.Images[boy.imageState]["IntervalY"] , 0, '', boy.x , boy.y + 9, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+        else:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"] , Boy.Images[boy.imageState]["IntervalY"] , 0, 'h', boy.x , boy.y + 9, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+
+
+
+
 
 
 """원본
@@ -766,7 +815,9 @@ next_state_table = {
 
     WalkingShotState : {SHOT_BUTTON : WalkingShotState,LSHIFT : DashState, RSHIFT : DashState , JUMP_DOWN : JumpState},
 
-    JumpingShotState : {}
+    JumpingShotState : {},
+
+    IdleChargeShotState : { RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SHOT_BUTTON : IdleChargeShotState}
 
 }
 
@@ -774,16 +825,16 @@ next_state_table = {
 
 class Boy:
 
-    actions = 12
-    idle, walking, dashStart, dash, dashEnd, jump, idleShot, walkingShot, jumpShotBegin, jumpShotFalling, jumpShotBeginFlash, jumpShotFallingFlash =range(actions)
+    actions = 13
+    idle, walking, dashStart, dash, dashEnd, jump, idleShot, walkingShot, jumpShotBegin, jumpShotFalling, jumpShotBeginFlash, jumpShotFallingFlash, idleChargeShot =range(actions)
 
     #test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
     Images = []
 
 
-    Test = True
-    TestIndex = walkingShot
+    Test = False
+    TestIndex = idleChargeShot
 
     def __init__(self):
         self.kind = game_world.Player
@@ -811,9 +862,23 @@ class Boy:
         self.firePositionX = 20
         self.firePositionY = 20
 
-        self.busterSpeed = 5
+        self.busterSpeed = 7
 
         self.boundingBoxOn = False
+
+        self.chargeTimeLimit = 0.5
+
+        # 차지샷 관련 필드
+        self.canChargeShot = False
+        self.chargeStartTimer = 0
+        self.chargeTimer = 0
+        self.chargeBlocked = False
+        self.beginCharge = False
+
+
+        # 차지 효과 이펙트를 보관한다
+        self.charging = None
+
 
 
         for i in range(Boy.actions):
@@ -900,7 +965,11 @@ class Boy:
         Boy.Images[Boy.jumpShotFallingFlash]["Frames"] = 7
         Boy.Images[Boy.jumpShotFallingFlash]["XRevision"] = 42
 
-
+        Boy.Images[Boy.idleChargeShot]["ImageFile"] = load_image('X_Idle_Charge_Shot2.png')
+        Boy.Images[Boy.idleChargeShot]["IntervalX"] = 81
+        Boy.Images[Boy.idleChargeShot]["IntervalY"] = 78
+        Boy.Images[Boy.idleChargeShot]["Frames"] = 16
+        Boy.Images[Boy.idleChargeShot]["XRevision"] = 56
 
 
         self.tempGravity = 3
@@ -915,7 +984,15 @@ class Boy:
         pass
 
 
+    def shot_charging_effect(self):
+
+
+        self.charging = Charging(self)
+
+        game_world.add_object(self.charging,1)
+
         pass
+
     def fire_ball(self):
         projectile = BusterProjectile(self.x,self.y,self.dir,self.busterSpeed)
 
@@ -945,7 +1022,32 @@ class Boy:
         self.SelfGravity()
         self.cur_state.do(self)
 
+        if(SHOT_KEY_ON_PRESS):
+            if(self.beginCharge):
+                self.chargeTimer = get_time() - self.chargeStartTimer
+                if (self.charging == None):
+                    if(self.chargeTimer > self.chargeTimeLimit / 5):
+                        self.shot_charging_effect()
 
+                #print("차지중")
+                #print(self.chargeTimer)
+
+            elif(not self.beginCharge):
+                self.chargeStartTimer = get_time()
+                self.beginCharge = True
+
+
+
+        elif(not SHOT_KEY_ON_PRESS and self.beginCharge):
+            if(self.chargeTimer >= self.chargeTimeLimit):
+                print("차지 샷이다")
+            
+            #print("차치중아님")
+            self.chargeTimer = 0
+            self.beginCharge = False
+            if(self.charging != None):
+                self.charging.destroy()
+                self.charging = None
 
 
         if len(self.event_que) > 0:
@@ -961,6 +1063,10 @@ class Boy:
                 print("없는키")
 
 
+
+
+
+
     def draw(self):
 
         self.cur_state.draw(self)
@@ -970,7 +1076,30 @@ class Boy:
         self.font.draw(self.x - 60, self.y + 50, '(Time: %3.2f)' % get_time(), (255, 255, 0))
 
     def handle_event(self, event):
-        global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS,DASH_KEY_ON_PRESS
+        global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS,DASH_KEY_ON_PRESS, SHOT_KEY_ON_PRESS
+
+        """""
+
+        if(event.type == SDL_KEYDOWN and event.key == SDLK_q):
+            print("시발")
+            if(self.charging != None):
+                self.charging.Images[Charging.charge1]["IntervalX"] += 1
+                print(self.charging.Images[Charging.charge1]["IntervalX"])
+        if(event.type == SDL_KEYDOWN and event.key == SDLK_w):
+            if(self.charging != None):
+                self.charging.Images[Charging.charge1]["IntervalX"] -= 1
+                print(self.charging.Images[Charging.charge1]["IntervalX"])
+
+        if(event.type == SDL_KEYDOWN and event.key == SDLK_e):
+            print("시발")
+            if(self.charging != None):
+                self.charging.Images[Charging.charge1]["XRevision"] += 1
+                print(self.charging.Images[Charging.charge1]["XRevision"])
+        if(event.type == SDL_KEYDOWN and event.key == SDLK_r):
+            if(self.charging != None):
+                self.charging.Images[Charging.charge1]["XRevision"] -= 1
+                print(self.charging.Images[Charging.charge1]["XRevision"])
+        """""
 
         if Boy.Test:
 
@@ -1019,6 +1148,10 @@ class Boy:
         if event.type == SDL_KEYUP and event.key == SDLK_LSHIFT:
             DASH_KEY_ON_PRESS = False
 
+        if event.type == SDL_KEYDOWN and event.key == SDLK_a:
+            SHOT_KEY_ON_PRESS = True
+        if event.type == SDL_KEYUP and event.key == SDLK_a:
+            SHOT_KEY_ON_PRESS = False
 
 
 
