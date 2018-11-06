@@ -147,9 +147,9 @@ class IdleState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"] , Boy.Images[boy.imageState]["IntervalY"]  )
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"])
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, Boy.Images[boy.imageState]["IntervalX"] , Boy.Images[boy.imageState]["IntervalY"] )
 
 
 
