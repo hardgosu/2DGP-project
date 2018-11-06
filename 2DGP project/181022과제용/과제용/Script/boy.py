@@ -318,7 +318,7 @@ class JumpState:
     #점프 시작 속도
     jumpSpeed = 20 * PIXEL_PER_METER
     #매 시간단위로 감소하는 속력
-    decrease = 0.3* PIXEL_PER_METER
+    decrease = 0.8* PIXEL_PER_METER
 
     accum = 0
     up = False
