@@ -245,7 +245,7 @@ class DashState:
 
     test = 0
     level = 0
-    dashSpeed = 3
+    dashSpeed = 2
 
     @staticmethod
     def enter(boy, event):
@@ -260,7 +260,7 @@ class DashState:
         #boy.x -= boy.velocity * 10
 
         if(event == SHOT_BUTTON):
-            print("쉬벌")
+            print("야호")
 
 
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
@@ -288,12 +288,12 @@ class DashState:
 
         DashState.test +=1
 
-        if(DashState.test > 60):
+        if(DashState.test > 30):
             DashState.exit(boy,None)
             DashState.test = 0
-        elif DashState.test < 40:
+        elif DashState.test < 20:
             boy.imageState = Boy.dash
-        elif DashState.test < 60:
+        elif DashState.test < 30:
             boy.imageState = Boy.dashEnd
 
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
