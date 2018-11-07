@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ea04c62-0041-49bb-b25c-c5c6a72e0fa9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/boy.py" beforeDir="false" afterPath="$PROJECT_DIR$/181022과제용/과제용/Script/boy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +14,14 @@
     <session id="-180768872">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.22" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.56" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -38,31 +39,19 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="png" value="4" />
-          <entry key="py" value="23" />
+          <entry key="py" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="4" />
-          <entry key="Python" value="23" />
+          <entry key="Python" value="24" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/main_state.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/objectBase.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,8 +73,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/mygame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="266">
+              <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -93,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/boy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="247" column="17" selection-start-line="247" selection-start-column="17" selection-end-line="247" selection-end-column="17" />
+            <state relative-caret-position="99">
+              <caret line="752" lean-forward="true" selection-start-line="752" selection-end-line="752" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <marker date="1541524009024" expanded="true" signature="22719:22723" ph="..." />
@@ -110,12 +99,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/charging.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1007">
-              <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+            <state relative-caret-position="418">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <marker date="1541523234926" expanded="true" signature="2422:2483" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/busterProjectile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
         </entry>
@@ -128,7 +126,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/enemyTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1482">
+            <state relative-caret-position="1425">
               <caret line="78" column="80" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -140,7 +138,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/testBack.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2622">
+            <state relative-caret-position="2565">
               <caret line="138" column="8" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -199,7 +197,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="331" />
     <option name="y" value="165" />
     <option name="width" value="1491" />
@@ -213,7 +211,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -243,6 +240,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -353,15 +351,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
-    <editor active="true" />
+    <frame x="331" y="165" width="1491" height="1168" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16115052" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28148657" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21077283" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21006776" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -456,17 +453,43 @@
     <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/middleBuster.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/busterProjectile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/grass.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="485">
           <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/main_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/grass.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/enemyTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="78" column="80" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/testBack.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2565">
+          <caret line="138" column="8" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -480,46 +503,24 @@
     <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/good.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/grass.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/charging.py">
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/boy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
-          <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+        <state relative-caret-position="99">
+          <caret line="752" lean-forward="true" selection-start-line="752" selection-end-line="752" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <marker date="1541523234926" expanded="true" signature="2422:2483" ph="..." />
+            <marker date="1541524009024" expanded="true" signature="22719:22723" ph="..." />
+            <marker date="1541524009024" expanded="true" signature="33050:33057" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/enemyTest.py">
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/mygame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1482">
-          <caret line="78" column="80" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
+        <state relative-caret-position="266">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/testBack.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2622">
-          <caret line="138" column="8" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/main_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -540,25 +541,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/mygame.py">
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/charging.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="418">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#0#20#0" expanded="true" />
+            <marker date="1541523234926" expanded="true" signature="2422:2483" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/boy.py">
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/busterProjectile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="247" column="17" selection-start-line="247" selection-start-column="17" selection-end-line="247" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <marker date="1541524009024" expanded="true" signature="22719:22723" ph="..." />
-            <marker date="1541524009024" expanded="true" signature="33050:33057" ph="..." />
-          </folding>
+        <state relative-caret-position="437">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
