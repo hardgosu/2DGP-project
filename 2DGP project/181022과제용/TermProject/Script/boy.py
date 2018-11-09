@@ -853,7 +853,7 @@ class Boy:
         self.land = False
 
         self.x, self.y = 1600 // 2, 90
-        self.image = load_image('animation_sheet.png')
+
         self.dir = 1
         self.velocity = 0
         self.frame = 0
