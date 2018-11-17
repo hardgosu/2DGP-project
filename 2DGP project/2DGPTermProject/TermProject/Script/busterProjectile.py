@@ -2,6 +2,7 @@ from pico2d import *
 import game_world
 import game_framework
 
+from objectBase import ObjectBase
 
 
 # Boy Run Speed
@@ -26,7 +27,7 @@ FRAMES_PER_ACTION = 8
 
 
 
-class BusterProjectile:
+class BusterProjectile(ObjectBase):
 
     actions = 6
     small,middleStart,middle,big,charge1,charge2, = range(actions)
@@ -116,6 +117,11 @@ class BusterProjectile:
         self.startTimer = get_time()
         self.endTimer = 0
 
+
+        #버스터 충돌효과 이펙트
+        self.hitEffectMiddle = None
+        self.hitEffectBig = None
+
     def set_direction(self):
 
 
@@ -164,4 +170,7 @@ class BusterProjectile:
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
+
+    def CollisionHandling(self):
+        print('충돌사후처리')
 

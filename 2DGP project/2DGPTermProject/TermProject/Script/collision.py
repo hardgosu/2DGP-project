@@ -27,7 +27,7 @@ def create_world():
 
     print(InitializeData.Sibal)
     print(InitializeData.currentPath)
-    print('슈발')
+
 
 
 

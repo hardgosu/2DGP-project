@@ -74,3 +74,5 @@ class ObjectBase:
         pass
         #draw_rectangle(*self.get_bb())
 
+    def CollisionHandling(self):
+        pass

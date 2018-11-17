@@ -84,7 +84,7 @@ def update():
                     if relation == game_object.kind:
                         if (collide(game_object_b,game_object)):
                             if (type(game_object_b) == BusterProjectile):
-                                print("버스터 충돌")
+                                game_object_b.CollisionHandling()
 
 
 
