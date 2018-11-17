@@ -43,47 +43,44 @@ class BusterHitEffect(ObjectBase):
         Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
 
 
-    Images[middle]["IntervalX"] = 24
-    Images[middle]["IntervalY"] = 14
-    Images[middle]["Frames"] = 4
-    Images[middle]["XRevision"] = 25
+    Images[middle]["IntervalX"] = 100
+    Images[middle]["IntervalY"] = 100
+    Images[middle]["Frames"] = 5
+    Images[middle]["XRevision"] = 0
 
-    Images[big]["IntervalX"] = 24
-    Images[big]["IntervalY"] = 24
-    Images[big]["Frames"] = 4
-    Images[big]["XRevision"] = 19
-
-
-
-    Images[big]["IntervalX"] = 62
-    Images[big]["IntervalY"] = 30
-    Images[big]["Frames"] = 3
-    Images[big]["XRevision"] = 62
+    Images[big]["IntervalX"] = 100
+    Images[big]["IntervalY"] = 100
+    Images[big]["Frames"] = 5
+    Images[big]["XRevision"] = 0
 
 
+
+    Images[reflection]["IntervalX"] = 100
+    Images[reflection]["IntervalY"] = 100
+    Images[reflection]["Frames"] = 5
+    Images[reflection]["XRevision"] = 0
+
+    spriteSheet = None
 
 
     def __init__(self,x,y,dir,velocityX,imageState):
 
-        if(BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] == None):
-            BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] = load_image('middleBuster.png')
 
-        if(BusterProjectile.Images[BusterProjectile.middle]["ImageFile"] == None):
-            BusterProjectile.Images[BusterProjectile.middle]["ImageFile"] = load_image('middleBusterMoving.png')
-
-        if(BusterProjectile.Images[BusterProjectile.big]["ImageFile"] == None):
-            BusterProjectile.Images[BusterProjectile.big]["ImageFile"] = load_image('X_Big_Buster.png')
+        if BusterHitEffect.spriteSheet == None:
+            BusterHitEffect.spriteSheet = load_image('X_Buster_Hit_SpriteSheet.png')
+            for i in range(BusterHitEffect.actions):
+                BusterHitEffect.Images[i]["ImageFile"] = BusterHitEffect.spriteSheet
+                pass
 
 
 
-
-
-        self.kind = game_world.PlayerProjectile
+        self.kind = game_world.Effect
 
         self.land = False
 
         self.x, self.y = x, y
         self.dir = clamp(-1,dir,1)
+
         self.velocity = velocityX *RUN_SPEED_PPS
         self.frame = 0
         self.event_que = []
@@ -94,7 +91,7 @@ class BusterHitEffect(ObjectBase):
         #self.cur_state.enter(self, None)
         self.imageState = imageState
 
-        self.collisionRelation = [game_world.Monster,game_world.Feature]
+        self.collisionRelation = []
 
 
 
@@ -109,7 +106,7 @@ class BusterHitEffect(ObjectBase):
         self.x += self.firePositionX
         self.y += self.firePositionY
 
-        self.boundingBoxOn = True
+        self.boundingBoxOn = False
 
         self.tempGravity = 3
 
@@ -117,9 +114,6 @@ class BusterHitEffect(ObjectBase):
         self.endTimer = 0
 
 
-        #버스터 충돌효과 이펙트
-        self.hitEffectMiddle = None
-        self.hitEffectBig = None
 
     def set_direction(self):
 
@@ -142,11 +136,12 @@ class BusterHitEffect(ObjectBase):
 
         self.set_direction()
 
-        self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % BusterProjectile.Images[self.imageState]["Frames"]
+#        self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % BusterHitEffect.Images[self.imageState]["Frames"]
+        self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time)
 
         self.x += self.velocity * self.dir * game_framework.frame_time
 
-        if(self.endTimer > 1.2):
+        if(self.frame >= BusterHitEffect.Images[self.imageState]["Frames"]):
             game_world.remove_object(self)
 
 
@@ -156,10 +151,11 @@ class BusterHitEffect(ObjectBase):
     def draw(self):
         if self.boundingBoxOn:
             self.draw_bb()
+
         if self.dir == 1:
-            BusterProjectile.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterProjectile.Images[self.imageState]["IntervalX"] + BusterProjectile.Images[self.imageState]["XRevision"], 0, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"], 0, '', self.x , self.y, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"])
+            BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
         else:
-            BusterProjectile.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterProjectile.Images[self.imageState]["IntervalX"] + BusterProjectile.Images[self.imageState]["XRevision"], 0, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"], 0, 'h', self.x , self.y, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"])
+            BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
 
 
 
@@ -171,5 +167,5 @@ class BusterHitEffect(ObjectBase):
         draw_rectangle(*self.get_bb())
 
     def CollisionHandling(self):
-        print('충돌사후처리')
+        pass
 

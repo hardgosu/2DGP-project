@@ -89,7 +89,7 @@ class TestBack:
         self.x += self.firePositionX
         self.y += self.firePositionY
 
-        self.boundingBoxOn = False
+        self.boundingBoxOn = True
 
         self.tempGravity = 3
 
@@ -133,11 +133,11 @@ class TestBack:
 
 
     def draw(self):
-        if self.boundingBoxOn:
-            self.draw_bb()
+
 
         TestBack.Images[self.imageState]["ImageFile"].draw(800,300,1600,600)
-
+        if self.boundingBoxOn:
+            self.draw_bb()
         #TestBack.Images[self.imageState]["ImageFile"].h = TestBack.Images[self.imageState]["ImageFile"].h * 1.5
 
         #if self.dir == 1:
@@ -151,7 +151,7 @@ class TestBack:
 
 
     def get_bb(self):
-        return self.x - 87, self.y - 95, self.x + 87, self.y + 95
+        return self.x - 100 , self.y - 100, self.x + 100, self.y + 100
     # fill here
 
     def draw_bb(self):

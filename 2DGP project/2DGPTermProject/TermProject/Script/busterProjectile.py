@@ -3,7 +3,7 @@ import game_world
 import game_framework
 
 from objectBase import ObjectBase
-
+from busterHitEffect import BusterHitEffect
 
 # Boy Run Speed
 # fill expressions correctly
@@ -119,8 +119,8 @@ class BusterProjectile(ObjectBase):
 
 
         #버스터 충돌효과 이펙트
-        self.hitEffectMiddle = None
-        self.hitEffectBig = None
+        self.hitEffect = None
+
 
     def set_direction(self):
 
@@ -172,5 +172,7 @@ class BusterProjectile(ObjectBase):
         draw_rectangle(*self.get_bb())
 
     def CollisionHandling(self):
-        print('충돌사후처리')
-
+        print(self.dir)
+        busterHitEffect = BusterHitEffect(self.x,self.y,0,self.velocity,0)
+        game_world.add_object(busterHitEffect, 1)
+        game_world.remove_object(self)

@@ -7,7 +7,7 @@
 
 Tag = ['Player','Feature','Monster','Effect','EnemyProjectile','PlayerProjectile']
 
-Player,Feature,Monster,Effect,EnemyProjectile,PlayerProjectile = range(6)
+Player,Feature,Monster,Effect,EnemyProjectile,PlayerProjectile,Effect = range(7)
 
 objects = [[],[]]
 
