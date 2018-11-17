@@ -119,7 +119,7 @@ class IdleState:
             pass
         if(event == SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.middle)
-            print("뭐")
+
         elif(event == CHARGE_SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.big)
 
@@ -176,10 +176,8 @@ class RunState:
 
         if(event == SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.middle)
-            print("뭐")
 
         elif(event == CHARGE_SHOT_BUTTON):
-            print("z")
             boy.fire_ball(BusterProjectile.big)
         pass
 
@@ -454,7 +452,7 @@ class IdleShotState:
 
         if(event == SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.middle)
-            print("뭐")
+
         elif(event == CHARGE_SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.big)
         pass
@@ -980,7 +978,7 @@ class Boy:
         Boy.Images[Boy.idleChargeShot]["IntervalX"] = 81
         Boy.Images[Boy.idleChargeShot]["IntervalY"] = 78
         Boy.Images[Boy.idleChargeShot]["Frames"] = 16
-        Boy.Images[Boy.idleChargeShot]["XRevision"] = 59
+        Boy.Images[Boy.idleChargeShot]["XRevision"] = 58
 
 
         self.tempGravity = 3
@@ -1006,7 +1004,7 @@ class Boy:
 
     def fire_ball(self,imageState):
 
-        print("aa")
+
 
         projectile = BusterProjectile(self.x,self.y,self.dir,self.busterSpeed,imageState)
 

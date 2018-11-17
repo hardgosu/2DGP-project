@@ -2,7 +2,8 @@ from pico2d import *
 import game_world
 import game_framework
 import main_state
-
+from objectBase import ObjectBase
+from busterProjectile import BusterProjectile
 
 # Boy Run Speed
 # fill expressions correctly
@@ -26,7 +27,7 @@ FRAMES_PER_ACTION = 8
 
 
 
-class EnemyTest:
+class EnemyTest(ObjectBase):
 
     actions = 1
     idle = 0
@@ -98,6 +99,16 @@ class EnemyTest:
         self.startTimer = get_time()
         self.endTimer = 0
 
+        self.hPMax = 100
+
+        self.curHP = clamp(0,self.hPMax,self.hPMax)
+
+        self.shallHandleCollision = True
+
+        self.deathAnimation = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
+        self.beingDeath = False
+
+
         #self.subject = boy
 
     def set_direction(self):
@@ -106,6 +117,11 @@ class EnemyTest:
 
         pass
 
+    def DeathAnimation(self):
+
+
+
+        pass
 
     def destroy(self):
         game_world.remove_object(self)
@@ -149,4 +165,14 @@ class EnemyTest:
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
+    
+    def CollisionHandling(self,object):
+
+        if(not self.shallHandleCollision):
+            return
+
+        self.curHP -= object.damage
+        if(self.curHP <= 0):
+            self.destroy()
+
 

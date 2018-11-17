@@ -58,7 +58,7 @@ class TestBack:
 
 
 
-        self.kind = game_world.Monster
+        self.kind = game_world.Feature
 
         self.land = False
 

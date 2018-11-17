@@ -39,6 +39,22 @@ class ObjectBase:
         self.tempGravity = 3
 
         self.subject = None
+        self.hPMax = 1
+        self.curHP = 1
+        self.damage = 0
+
+
+
+        self.deathAnimation = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
+        self.beingDeath = False
+
+
+        self.shallHandleCollision = False
+
+    def Destroy(self):
+        pass
+    def DeathAnimation(self):
+        pass
 
     def set_direction(self):
 
@@ -70,5 +86,6 @@ class ObjectBase:
         pass
         #draw_rectangle(*self.get_bb())
 
-    def CollisionHandling(self):
+
+    def CollisionHandling(self,object):
         pass

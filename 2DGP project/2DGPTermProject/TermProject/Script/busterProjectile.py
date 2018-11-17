@@ -95,7 +95,7 @@ class BusterProjectile(ObjectBase):
         #self.cur_state.enter(self, None)
         self.imageState = imageState
 
-        self.collisionRelation = [game_world.Monster,game_world.Feature]
+        self.collisionRelation = [game_world.Monster]
 
 
 
@@ -120,6 +120,7 @@ class BusterProjectile(ObjectBase):
 
         #버스터 충돌효과 이펙트
         self.hitEffect = None
+        self.damage = 10
 
 
     def set_direction(self):
@@ -171,8 +172,8 @@ class BusterProjectile(ObjectBase):
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
 
-    def CollisionHandling(self):
-        print(self.dir)
+    def CollisionHandling(self,object):
+
         busterHitEffect = BusterHitEffect(self.x,self.y,self.dir,self.velocity,2)
         game_world.add_object(busterHitEffect, 1)
         game_world.remove_object(self)
