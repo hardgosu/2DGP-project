@@ -78,13 +78,13 @@ def update():
         game_object.update()
 
         for game_object_b in game_world.all_objects():
-            if (type(game_object_b) == BusterProjectile):
-                print("버스터 충돌")
+
             if(game_object_b != game_object):
                 for relation in game_object_b.collisionRelation:
                     if relation == game_object.kind:
                         if (collide(game_object_b,game_object)):
-                            pass
+                            if (type(game_object_b) == BusterProjectile):
+                                print("버스터 충돌")
 
 
 

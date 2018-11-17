@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ea04c62-0041-49bb-b25c-c5c6a72e0fa9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/boy.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/boy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/busterProjectile.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/busterProjectile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/enemyTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/enemyTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/game_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/game_world.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/grass.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/grass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -133,8 +127,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="85" column="64" lean-forward="true" selection-start-line="85" selection-start-column="64" selection-end-line="85" selection-end-column="64" />
+            <state relative-caret-position="494">
+              <caret line="86" column="47" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -596,8 +590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="85" column="64" lean-forward="true" selection-start-line="85" selection-start-column="64" selection-end-line="85" selection-end-column="64" />
+        <state relative-caret-position="494">
+          <caret line="86" column="47" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="47" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
