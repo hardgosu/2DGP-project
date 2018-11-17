@@ -51,6 +51,14 @@ class EnemyTest(ObjectBase):
 
 
 
+    deathAnimationActions = 3
+
+    defaultDeathAnimation, deathImmediately, specialDeathAnimation = range(deathAnimationActions)
+
+    deathAnimations = []
+
+    for i in range(deathAnimationActions):
+        deathAnimations.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
 
 
 
@@ -105,8 +113,12 @@ class EnemyTest(ObjectBase):
 
         self.shallHandleCollision = True
 
-        self.deathAnimation = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
-        self.beingDeath = False
+
+        self.deathAnimation = EnemyTest.deathImmediately
+
+
+
+
 
 
         #self.subject = boy
@@ -125,6 +137,7 @@ class EnemyTest(ObjectBase):
 
     def destroy(self):
         game_world.remove_object(self)
+
 
         pass
 
