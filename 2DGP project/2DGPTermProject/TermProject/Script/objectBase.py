@@ -41,10 +41,6 @@ class ObjectBase:
         self.subject = None
 
     def set_direction(self):
-        if(self.velocity > 0):
-            self.dir =  1
-        elif(self.velocity <0):
-            self.dir = -1
 
 
         pass

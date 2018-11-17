@@ -173,6 +173,6 @@ class BusterProjectile(ObjectBase):
 
     def CollisionHandling(self):
         print(self.dir)
-        busterHitEffect = BusterHitEffect(self.x,self.y,0,self.velocity,0)
+        busterHitEffect = BusterHitEffect(self.x,self.y,self.dir,self.velocity,2)
         game_world.add_object(busterHitEffect, 1)
         game_world.remove_object(self)

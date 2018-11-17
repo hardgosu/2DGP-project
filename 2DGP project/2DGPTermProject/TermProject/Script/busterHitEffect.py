@@ -17,7 +17,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 # Boy Action Speed
 # fill expressions correctly
 
-TIME_PER_ACTION = 0.5
+TIME_PER_ACTION = 0.25
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
@@ -115,11 +115,7 @@ class BusterHitEffect(ObjectBase):
 
 
 
-    def set_direction(self):
 
-
-
-        pass
 
 
 
@@ -136,10 +132,12 @@ class BusterHitEffect(ObjectBase):
 
         self.set_direction()
 
-#        self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % BusterHitEffect.Images[self.imageState]["Frames"]
+        #self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % BusterHitEffect.Images[self.imageState]["Frames"]
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time)
 
-        self.x += self.velocity * self.dir * game_framework.frame_time
+        #self.x += self.velocity * self.dir * game_framework.frame_time
+
+
 
         if(self.frame >= BusterHitEffect.Images[self.imageState]["Frames"]):
             game_world.remove_object(self)
@@ -149,14 +147,15 @@ class BusterHitEffect(ObjectBase):
 
 
     def draw(self):
-        if self.boundingBoxOn:
-            self.draw_bb()
 
         if self.dir == 1:
+
             BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
         else:
             BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
 
+        if self.boundingBoxOn:
+            self.draw_bb()
 
 
     def get_bb(self):
