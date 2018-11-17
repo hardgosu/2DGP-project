@@ -76,7 +76,7 @@ class EnemyTest:
         #self.cur_state.enter(self, None)
         self.imageState = EnemyTest.idle
 
-        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature]
+        self.collisionRelation = [game_world.Feature]
 
 
 

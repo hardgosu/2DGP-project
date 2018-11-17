@@ -12,6 +12,7 @@ from ball import Ball
 from testBack import TestBack
 
 from enemyTest import EnemyTest
+from busterProjectile import BusterProjectile
 
 screenX = 1600
 screenY = 600
@@ -75,12 +76,17 @@ def handle_events():
 def update():
     for game_object in game_world.all_objects():
         game_object.update()
-        for relation in boy.collisionRelation:
-            if relation == game_object.kind:
-                if(collide(boy,game_object)):
-                    print("지면과의 충돌")
-                    while(collide(boy,game_object)) :
-                        boy.y = 90
+
+        for game_object_b in game_world.all_objects():
+            if (type(game_object_b) == BusterProjectile):
+                print("버스터 충돌")
+            if(game_object_b != game_object):
+                for relation in game_object_b.collisionRelation:
+                    if relation == game_object.kind:
+                        if (collide(game_object_b,game_object)):
+                            pass
+
+
 
 
 

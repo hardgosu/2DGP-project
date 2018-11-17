@@ -1145,27 +1145,27 @@ class Boy:
 
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
             LEFT_KEY_ON_PRESS = True
-        if event.type == SDL_KEYUP and event.key == SDLK_LEFT:
+        elif event.type == SDL_KEYUP and event.key == SDLK_LEFT:
             LEFT_KEY_ON_PRESS = False
 
-        if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
             RIGHT_KEY_ON_PRESS = True
-        if event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
+        elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
             RIGHT_KEY_ON_PRESS = False
 
-        if event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_RIGHT:
             RIGHT_KEY_ON_PRESS = True
-        if event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
+        elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
             RIGHT_KEY_ON_PRESS = False
 
-        if event.type == SDL_KEYDOWN and event.key == SDLK_LSHIFT:
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_LSHIFT:
             DASH_KEY_ON_PRESS = True
-        if event.type == SDL_KEYUP and event.key == SDLK_LSHIFT:
+        elif event.type == SDL_KEYUP and event.key == SDLK_LSHIFT:
             DASH_KEY_ON_PRESS = False
 
-        if event.type == SDL_KEYDOWN and event.key == SDLK_a:
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_a:
             SHOT_KEY_ON_PRESS = True
-        if event.type == SDL_KEYUP and event.key == SDLK_a:
+        elif event.type == SDL_KEYUP and event.key == SDLK_a:
             SHOT_KEY_ON_PRESS = False
 
 
@@ -1180,7 +1180,6 @@ class Boy:
         if not "RIGHT_KEY_ON_PRESS" in LeftRightKeylist:
             if RIGHT_KEY_ON_PRESS == True:
                 LeftRightKeylist.append("RIGHT_KEY_ON_PRESS")
-
 
 
 

@@ -3,511 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="4ea04c62-0041-49bb-b25c-c5c6a72e0fa9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/.idea/과제용.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/2D 게임 프로그래밍 프로젝트2차.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/ENCR10B.TTF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/TestBack2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/TestBack3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Charge_Effect_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Dash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_DashBegin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_DashEnd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Idle2 - 복사본.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Idle2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_IdleShot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_IdleShot2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_IdleShot3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Idle_Charge_Shot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Idle_Charge_Shot2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Jumping_Shot_Begin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Jumping_Shot_Begin_Flash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Jumping_Shot_Falling.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Jumping_Shot_Falling_Flash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Left_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Right_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Right_Walking2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Start_Left_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Start_Right_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Walking_Shot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Walking_Shot2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_Walking_Shot3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_idle2_left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/X_jump.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/animation_sheet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/ball.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/ball21x21.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/ball41x41.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/boy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/boys_team_1000.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/brick180x40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/busterProjectile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/charging.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/collision.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/enemyTest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/game_framework.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/game_world.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/good.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/grass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/grass.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/main_state.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/middleBuster.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/middleBusterMoving.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/mygame.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/new.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/objectBase.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/run_animation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/test.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/testBack.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/testBoss.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/PathData.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/PlayerBase.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/Script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/ShowFiles.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/WorldObjectBase.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/aoooo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/ball.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/boy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/game_framework.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/game_framework2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/grass.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/gravity.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/main_state.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/megaman.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/mygame.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/mygame2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/objectBase.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/objectManager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/갈아엎음/rockman.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/보관용.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/Script/보관용2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d-1.3.4.dist-info/INSTALLER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d-1.3.4.dist-info/METADATA" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d-1.3.4.dist-info/RECORD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d-1.3.4.dist-info/WHEEL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d-1.3.4.dist-info/entry_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d-1.3.4.dist-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.FLAC.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.freetype.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.jpeg.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.mikmod.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.modplug.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.ogg-vorbis.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.png.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.smpeg.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.tiff.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.webp.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/LICENSE.zlib.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/SDL2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/SDL2_image.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/SDL2_mixer.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/SDL2_ttf.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libFLAC-8.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libfreetype-6.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libjpeg-9.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libmikmod-2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libmodplug-1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libogg-0.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libpng16-16.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libtiff-5.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libvorbis-0.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libvorbisfile-3.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/libwebp-4.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/smpeg2.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/DLL/zlib1.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/data/ConsolaMalgun.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/pico2d.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/pre_run.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/audio.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/blendmode.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/clipboard.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/cpuinfo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/dll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/endian.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/error.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/events.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/algorithms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/array.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/color.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/colorpalettes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/common.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/compat.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/draw.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/ebs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/events.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/font.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/gui.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/image.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/particles.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/pixelaccess.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/resources.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/sprite.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/surface.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/ext/window.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/filesystem.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/gamecontroller.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/gesture.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/haptic.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/hints.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/joystick.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/keyboard.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/keycode.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/loadso.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/log.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/messagebox.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/mouse.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/pixels.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/platform.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/power.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/rect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/render.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/rwops.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/scancode.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/sdlgfx.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/sdlimage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/sdlmixer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/sdlttf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/shape.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/stdinc.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/surface.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/syswm.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/audio_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/clipboard_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/cpuinfo_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/endian_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/error_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/events_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/filesystem_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/hints_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/joystick_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/keyboard_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/log_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/mouse_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/pixels_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/platform_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/power_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/rect_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/render_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/rwops_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_algorithms_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_array_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_color_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_draw_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_ebs_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_events_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_font_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_gui_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_image_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_particles_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_pixelaccess_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_resources_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_sprite_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl2ext_window_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdl_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdlgfx_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdlimage_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdlmixer_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/sdlttf_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/shape_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/surface_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/syswm_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/timer_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/util/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/util/runtests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/util/support.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/util/testrunner.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/util/testutils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/version_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/test/video_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/timer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/touch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/version.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/pico2d/sdl2/video.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/BigBuster.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/TestBack.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/TestBack2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/TestBack3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Charge_Effect_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Dash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_DashBegin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_DashEnd.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Idle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Idle2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_IdleShot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_IdleShot2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_IdleShot3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Idle_Charge_Shot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Idle_Charge_Shot2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Jumping_Shot_Begin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Jumping_Shot_Begin_Flash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Jumping_Shot_Falling.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Jumping_Shot_Falling_Flash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Left_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Ready.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Right_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Right_Walking2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Start_Left_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Start_Right_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Walking_Shot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Walking_Shot2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_Walking_Shot3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_idle2_left.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/X_jump.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/animation_sheet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/frame_000.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/middleBuster.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/middleBusterMoving.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/new.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/testBoss.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/untitled3 (2).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/we.spj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/실패작/X_Left_Walking (2).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/실패작/X_Left_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/실패작/X_Right_Walking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_01.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_02.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_03.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_04.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_05.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_06.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_07.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_08.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_09.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/ChargeEffect1/XBusterChargeEffect1_10.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashBegin (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashBegin (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashBegin (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashEnd (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashRun (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashRun (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/DashRun (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/a (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/z (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/z (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/z (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/z (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/z (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/z (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/z (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (10).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (11).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (12).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleChargeShot/zzs (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/IdleShot (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/JumpingShotFalling/a (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/JumpingShotFalling/a (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/JumpingShotFalling/a (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/JumpingShotFalling/a (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/JumpingShotFalling/a (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/JumpingShotFalling/a (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/JumpingShotFalling/b.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightJSFalling/a (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightJSFalling/a (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightJSFalling/a (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightJSFalling/a (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightJSFalling/a (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightJSFalling/a (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightJSFalling/b.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/a (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/b (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/b (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/b (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/b (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/LightingJumpingShotBeg/b (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames01.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames02.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames03.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames04.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames05.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames06.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames07.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames08.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/frames09.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/gg (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/gg (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/gg (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/gg (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/gg (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/gg (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/gg (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (10).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (11).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (12).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (13).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (14).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (15).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (16).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/qwe (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/u (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/v (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/v (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/v (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/v (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/v (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/v (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/tlqkf/v (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot2/새 폴더/frames01.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/a (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/a (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/a (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/a (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/b (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/b (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/b (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/asdsad/b (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames01.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames02.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames03.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames04.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames05.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames06.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames07.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames08.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/frames09.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/gg (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/gg (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/gg (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/gg (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/gg (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/gg (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/gg (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (10).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (11).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (12).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (13).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (14).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (15).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (16).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/qwe (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/u (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/v (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/v (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/v (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/v (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/v (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/v (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShot3/tlqkf/v (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames01.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames02.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames03.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames04.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames05.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames06.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames07.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames08.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/frames09.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/gg (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/gg (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/gg (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/gg (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/gg (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/gg (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/dashShotLight/gg (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/q (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/z (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/z (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/z (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/z (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/jumpingShotBeg/z (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (3).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (4).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (5).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (6).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (7).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (8).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/no (9).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/zxzx (1).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/zxzx (2).gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/181022과제용/과제용/spriteSheet/작업/zxzx (3).gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/boy.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/boy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/busterProjectile.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/busterProjectile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/enemyTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/enemyTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/game_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/game_world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/grass.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/grass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -520,6 +21,7 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="9" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.15" value="1" />
@@ -528,37 +30,152 @@
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.56" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="99" />
-          <entry key="py" value="6550" />
+          <entry key="py" value="6915" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="99" />
-          <entry key="Python" value="6550" />
+          <entry key="Python" value="6915" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="png" value="4" />
-          <entry key="py" value="24" />
+          <entry key="py" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="4" />
-          <entry key="Python" value="24" />
+          <entry key="Python" value="34" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/boy.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3128">
+              <caret line="1010" column="27" selection-start-line="1010" selection-start-column="27" selection-end-line="1010" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/busterProjectile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/enemyTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="62" column="20" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/ball.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/collision.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/charging.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-969">
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="85" column="64" lean-forward="true" selection-start-line="85" selection-start-column="64" selection-end-line="85" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/game_world.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="836">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/grass.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/mygame.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -596,12 +213,19 @@
         <option value="$PROJECT_DIR$/181022과제용/과제용/Script/charging.py" />
         <option value="$PROJECT_DIR$/181022과제용/과제용/Script/mygame.py" />
         <option value="$PROJECT_DIR$/181022과제용/과제용/Script/boy.py" />
+        <option value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/mygame.py" />
+        <option value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/boy.py" />
+        <option value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/enemyTest.py" />
+        <option value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/busterProjectile.py" />
+        <option value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/grass.py" />
+        <option value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/game_world.py" />
+        <option value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="331" />
-    <option name="y" value="165" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="840" />
+    <option name="y" value="100" />
     <option name="width" value="1491" />
     <option name="height" value="1168" />
   </component>
@@ -613,6 +237,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -623,13 +248,25 @@
             <path>
               <item name="2DGP project" type="b2602c69:ProjectViewProjectNode" />
               <item name="2DGP project" type="462c0819:PsiDirectoryNode" />
-              <item name="181022과제용" type="462c0819:PsiDirectoryNode" />
+              <item name="2DGPTermProject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2DGP project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DGP project" type="462c0819:PsiDirectoryNode" />
+              <item name="2DGPTermProject" type="462c0819:PsiDirectoryNode" />
+              <item name="TermProject" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="2DGP project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="2DGP project" type="462c0819:PsiDirectoryNode" />
+              <item name="2DGPTermProject" type="462c0819:PsiDirectoryNode" />
+              <item name="TermProject" type="462c0819:PsiDirectoryNode" />
+              <item name="Script" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -654,7 +291,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.mygame">
+  <component name="RunManager" selected="Python.mygame (3)">
     <configuration name="mygame (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="2DGP project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -697,6 +334,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="mygame (3)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="2DGP project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/2DGPTermProject/TermProject/Script/mygame.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="mygame" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="2DGP project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -722,9 +380,11 @@
       <item itemvalue="Python.mygame" />
       <item itemvalue="Python.mygame (1)" />
       <item itemvalue="Python.mygame (2)" />
+      <item itemvalue="Python.mygame (3)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.mygame (3)" />
         <item itemvalue="Python.mygame" />
         <item itemvalue="Python.mygame (2)" />
         <item itemvalue="Python.mygame (1)" />
@@ -745,14 +405,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="840" y="100" width="1491" height="1168" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16115052" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28148657" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2099922" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20909971" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -771,16 +432,8 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/Buster.py" />
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/ball.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="54" lean-forward="true" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/brick180x40.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/ball.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/brick180x40.png" />
     <entry file="file://$PROJECT_DIR$/../../../혁신/파이썬연습/2018-2DGP-master/2018-2DGP-master/Labs/Lecture13/ball.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -844,99 +497,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/middleBuster.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/grass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/main_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/objectBase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/boy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15941">
-          <caret line="846" column="40" selection-start-line="846" selection-start-column="40" selection-end-line="846" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/charging.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/busterProjectile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/grass.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/enemyTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="78" column="80" selection-start-line="78" selection-start-column="80" selection-end-line="78" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/testBack.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2565">
-          <caret line="138" column="8" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/game_world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/good.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/mygame.py">
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/middleBuster.png" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/grass.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/main_state.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/objectBase.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/boy.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/charging.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/busterProjectile.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/grass.png" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/enemyTest.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/testBack.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/game_world.py" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/good.png" />
+    <entry file="file://$PROJECT_DIR$/181022과제용/과제용/Script/mygame.py" />
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/mygame.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/ball.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/charging.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-969">
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/collision.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/enemyTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="62" column="20" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/boy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3128">
+          <caret line="1010" column="27" selection-start-line="1010" selection-start-column="27" selection-end-line="1010" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/grass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/game_world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/busterProjectile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2DGPTermProject/TermProject/Script/main_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="85" column="64" lean-forward="true" selection-start-line="85" selection-start-column="64" selection-end-line="85" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

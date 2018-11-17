@@ -16,7 +16,7 @@ class Grass:
         self.kind = game_world.Feature
 
 
-
+        self.collisionRelation = [game_world.Monster,game_world.Player]
 
 
 

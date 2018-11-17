@@ -94,7 +94,7 @@ class BusterProjectile:
         #self.cur_state.enter(self, None)
         self.imageState = imageState
 
-        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature]
+        self.collisionRelation = [game_world.Monster,game_world.Feature]
 
 
 
