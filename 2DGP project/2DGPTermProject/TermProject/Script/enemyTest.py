@@ -4,6 +4,8 @@ import game_framework
 import main_state
 from objectBase import ObjectBase
 from busterProjectile import BusterProjectile
+from explosionEffect import ExplosionEffect
+
 
 # Boy Run Speed
 # fill expressions correctly
@@ -62,6 +64,18 @@ class EnemyTest(ObjectBase):
 
 
 
+
+    deathAnimations[deathImmediately]["IntervalX"] = 100
+    deathAnimations[deathImmediately]["IntervalY"] = 100
+    deathAnimations[deathImmediately]["Frames"] = 20
+    deathAnimations[deathImmediately]["XRevision"] = 0
+
+
+
+
+
+
+
     def __init__(self):
 
         if(EnemyTest.Images[EnemyTest.idle]["ImageFile"] == None):
@@ -114,10 +128,12 @@ class EnemyTest(ObjectBase):
         self.shallHandleCollision = True
 
 
-        self.deathAnimation = EnemyTest.deathImmediately
+        self.deathAnimationNumber = EnemyTest.deathImmediately
 
+        self.beingDeath = False
+        self.deathAnimationFrame = 0
 
-
+        self.clearness = 1
 
 
 
@@ -131,6 +147,15 @@ class EnemyTest(ObjectBase):
 
     def DeathAnimation(self):
 
+        self.beingDeath = True
+        self.shallHandleCollision = False
+
+        if( self.deathAnimationNumber == EnemyTest.deathImmediately):
+            self.clearness = (self.clearness + 0.5) % 1
+            EnemyTest.Images[self.imageState]["ImageFile"].opacify(self.clearness)
+
+
+            pass
 
 
         pass
@@ -152,7 +177,19 @@ class EnemyTest(ObjectBase):
 
         #self.set_direction()
 
-        self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % EnemyTest.Images[self.imageState]["Frames"]
+        if(not self.beingDeath):
+            self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % EnemyTest.Images[self.imageState]["Frames"]
+
+        else:
+            if(self.deathAnimationNumber == EnemyTest.deathImmediately):
+                self.DeathAnimation()
+                self.deathAnimationFrame = (self.deathAnimationFrame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % EnemyTest.deathAnimations[self.deathAnimationNumber]["Frames"]
+
+                if (self.deathAnimationFrame >= EnemyTest.deathAnimations[self.deathAnimationNumber]["Frames"] - 1):
+                    self.destroy()
+
+
+
 
         #self.x += self.velocity * self.dir * game_framework.frame_time
 
@@ -170,6 +207,9 @@ class EnemyTest(ObjectBase):
         else:
             EnemyTest.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * EnemyTest.Images[self.imageState]["IntervalX"] + EnemyTest.Images[self.imageState]["XRevision"], 0, EnemyTest.Images[self.imageState]["IntervalX"], EnemyTest.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, EnemyTest.Images[self.imageState]["IntervalX"], EnemyTest.Images[self.imageState]["IntervalY"])
 
+        if self.beingDeath:
+            pass
+
 
 
     def get_bb(self):
@@ -186,6 +226,6 @@ class EnemyTest(ObjectBase):
 
         self.curHP -= object.damage
         if(self.curHP <= 0):
-            self.destroy()
+            self.DeathAnimation()
 
 
