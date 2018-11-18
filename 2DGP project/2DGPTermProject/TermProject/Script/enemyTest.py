@@ -1,7 +1,11 @@
 from pico2d import *
+
 import game_world
 import game_framework
 import main_state
+import random
+
+
 from objectBase import ObjectBase
 from busterProjectile import BusterProjectile
 from explosionEffect import ExplosionEffect
@@ -151,9 +155,12 @@ class EnemyTest(ObjectBase):
         self.shallHandleCollision = False
 
         if( self.deathAnimationNumber == EnemyTest.deathImmediately):
-            self.clearness = (self.clearness + 0.5) % 1
+            self.clearness = (self.clearness + 0.3) % 1
             EnemyTest.Images[self.imageState]["ImageFile"].opacify(self.clearness)
-
+            if(int(self.deathAnimationFrame) % 3 == 0):
+                explosion = ExplosionEffect(random.randint( int(self.get_bb()[0]) , int(self.get_bb()[2]) ),random.randint( int(self.get_bb()[1]) , int(self.get_bb()[3]) ),self.dir,0,0)
+                game_world.add_object(explosion,1)
+                pass
 
             pass
 
