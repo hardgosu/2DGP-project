@@ -50,10 +50,10 @@ class EnemyTest(ObjectBase):
         Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
 
 
-    Images[idle]["IntervalX"] = 172
-    Images[idle]["IntervalY"] = 207
+    Images[idle]["IntervalX"] = 250
+    Images[idle]["IntervalY"] = 250
     Images[idle]["Frames"] = 16
-    Images[idle]["XRevision"] = 171
+    Images[idle]["XRevision"] = 0
 
 
 
@@ -83,7 +83,7 @@ class EnemyTest(ObjectBase):
     def __init__(self):
 
         if(EnemyTest.Images[EnemyTest.idle]["ImageFile"] == None):
-            EnemyTest.Images[EnemyTest.idle]["ImageFile"] = load_image('testBoss.png')
+            EnemyTest.Images[EnemyTest.idle]["ImageFile"] = load_image('sprite/ModenBoss2-3.png')
 
 
 
@@ -91,7 +91,7 @@ class EnemyTest(ObjectBase):
 
         self.land = False
 
-        self.x, self.y = main_state.screenX - 180,90
+        self.x, self.y = main_state.screenX - 180,160
         self.dir = 1
         #self.velocity = velocityX *RUN_SPEED_PPS
         self.frame = 0
@@ -118,14 +118,14 @@ class EnemyTest(ObjectBase):
         self.x += self.firePositionX
         self.y += self.firePositionY
 
-        self.boundingBoxOn = True
+        self.boundingBoxOn = False
 
         self.tempGravity = 3
 
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 100
+        self.hPMax = 200
 
         self.curHP = clamp(0,self.hPMax,self.hPMax)
 
@@ -160,9 +160,9 @@ class EnemyTest(ObjectBase):
             if(int(self.deathAnimationFrame) % 3 == 0):
                 explosion = ExplosionEffect(random.randint( int(self.get_bb()[0]) , int(self.get_bb()[2]) ),random.randint( int(self.get_bb()[1]) , int(self.get_bb()[3]) ),self.dir,0,0)
                 game_world.add_object(explosion,1)
-                pass
 
-            pass
+
+
 
 
         pass
@@ -220,7 +220,7 @@ class EnemyTest(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 87, self.y - 95, self.x + 87, self.y + 95
+        return self.x - 70, self.y - 125, self.x + 70, self.y + 70
     # fill here
 
     def draw_bb(self):
