@@ -418,8 +418,8 @@ class JumpState:
 
 
         #착지위치 설정. 당연히 추후에 수정..
-        if boy.y < 90:
-            boy.y = 90
+        if boy.y < boy.landingYPosition:
+            boy.y = boy.landingYPosition
             boy.cur_state = IdleState
             boy.cur_state.enter(boy,None)
             JumpState.falling = False
@@ -850,6 +850,9 @@ class Boy:
     def __init__(self):
         self.kind = game_world.Player
 
+
+
+        self.landingYPosition = 90;
         self.land = False
 
         self.x, self.y = 1600 // 2, 90
