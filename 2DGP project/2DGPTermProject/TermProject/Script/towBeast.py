@@ -71,6 +71,8 @@ class TowBeast(ObjectBase):
     Images[shouting]["XRevision"] = 0
 
 
+
+
     deathAnimationActions = 3
 
     defaultDeathAnimation, deathImmediately, specialDeathAnimation = range(deathAnimationActions)
@@ -89,7 +91,7 @@ class TowBeast(ObjectBase):
     def __init__(self):
 
         if (TowBeast.spriteSheet == None):
-            TowBeast.spriteSheet = load_image('sprite/IcePick.png')
+            TowBeast.spriteSheet = load_image('sprite/towBeast.png')
 
         self.kind = game_world.Monster
 
