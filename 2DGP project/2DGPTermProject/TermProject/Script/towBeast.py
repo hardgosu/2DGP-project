@@ -89,7 +89,7 @@ class TowBeast(ObjectBase):
     def __init__(self):
 
         if (TowBeast.spriteSheet == None):
-            TowBeast.spriteSheet = load_image('sprite/towBeast.png')
+            TowBeast.spriteSheet = load_image('sprite/IcePick.png')
 
         self.kind = game_world.Monster
 
