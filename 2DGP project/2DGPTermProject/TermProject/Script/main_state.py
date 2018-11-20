@@ -14,6 +14,8 @@ from testBack import TestBack
 from enemyTest import EnemyTest
 from busterProjectile import BusterProjectile
 
+from towBeast import TowBeast
+
 
 screenX = 1600
 screenY = 600
@@ -40,14 +42,14 @@ def enter():
     grass = Grass()
     enemyTest = EnemyTest()
     testBack = TestBack()
-
+    towBeast = TowBeast()
 
     game_world.add_object(testBack,0)
 
     game_world.add_object(grass, 0)
     game_world.add_object(boy, 1)
     game_world.add_object(enemyTest,1)
-
+    game_world.add_object(towBeast,1)
 
 def exit():
     global boy, grass
@@ -133,4 +135,5 @@ def PushCollide(floating,fixed):
     pass
 
 
-
+def get_boy():
+    return boy
