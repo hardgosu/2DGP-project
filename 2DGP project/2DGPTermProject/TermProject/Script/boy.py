@@ -723,14 +723,12 @@ class JumpingShotState:
 
 
 
-    timer = False
+    isTimerOn = False
     startTimer = 0
 
     shotTimer = 0
 
 
-    up = False
-    falling = False
 
 
 
@@ -743,15 +741,12 @@ class JumpingShotState:
         boy.frame = boy.frame * 0.5384
 
 
-        #점프상태 클래스의 상태변수를 가져온다
-        JumpingShotState.falling = JumpState.falling
-        JumpingShotState.up = JumpState.up
 
 
-        if(JumpingShotState.up):
-            boy.imageState = Boy.jumpShotBegin
-        elif(JumpingShotState.falling):
-            boy.imageState = Boy.jumpShotFalling
+
+
+        boy.imageState = Boy.jumpShotBegin
+
 
 
         pass
@@ -762,11 +757,10 @@ class JumpingShotState:
         if(event == SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.middle)
             JumpingShotState.startTimer = get_time()
-            if( JumpState.up):
-                boy.imageState = Boy.jumpShotBeginFlash
-            elif(JumpState.falling):
-                boy.imageState = Boy.jumpShotFallingFlash
-            JumpingShotState.timer = True
+
+            boy.imageState = Boy.jumpShotBeginFlash
+
+            JumpingShotState.isTimerOn = True
         elif(event == CHARGE_SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.big)
         pass
@@ -774,18 +768,15 @@ class JumpingShotState:
     def do(boy):
 
 
-        if(JumpingShotState.timer):
+        if(JumpingShotState.isTimerOn):
             JumpingShotState.shotTimer = get_time() - JumpingShotState.startTimer
             if( JumpingShotState.shotTimer > 0.1):
-                JumpingShotState.timer = False
-                if( JumpState.up):
-                    boy.imageState = Boy.jumpShotBegin
-                elif(JumpState.falling):
-                    boy.imageState = Boy.jumpShotFalling
+                JumpingShotState.isTimerOn = False
+
+                boy.imageState = Boy.jumpShotBegin
 
 
-        JumpingShotState.falling = JumpState.falling
-        JumpingShotState.up = JumpState.up
+
 
         if (LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
 
@@ -814,12 +805,10 @@ class JumpingShotState:
         else:
             boy.velocity = 0
 
-        if boy.velocityY > 0:
-            JumpState.up = True
-            JumpState.falling = False
-        elif boy.velocityY < 0:
-            JumpState.up = False
-            JumpState.falling = True
+
+        if boy.velocityY <= 0:
+            boy.cur_state = JumpingShotFallingState
+            boy.cur_state.enter(boy,None)
 
 
 
@@ -840,21 +829,10 @@ class JumpingShotState:
 
 
 
-        if(JumpState.up):
-            if (int(boy.frame) > 11):
-                boy.frame = 11
 
-        if(JumpState.falling):
-            if (int(boy.frame) > 5):
-                boy.frame = 6
+        if (int(boy.frame) > 11):
+            boy.frame = 11
 
-        if(JumpState.falling):
-            if JumpingShotState.timer == False and boy.imageState != Boy.jumpShotFalling:
-                boy.frame = 0
-                boy.imageState = Boy.jumpShotFalling
-            elif JumpingShotState.timer == True and boy.imageState != Boy.jumpShotFallingFlash:
-                boy.frame = 0
-                boy.imageState = Boy.jumpShotFallingFlash
 
 
         # 착지위치 설정. 당연히 추후에 수정..
@@ -974,8 +952,9 @@ next_state_table = {
 
     IdleChargeShotState : { RIGHT_DOWN : RunState, LEFT_DOWN: RunState},
 
-    FallingState : {}
+    FallingState : {},
 
+    JumpingShotFallingState : {}
 }
 
 
