@@ -90,6 +90,82 @@ class BaseState:
 
 
 
+class FallingState:
+
+    decrease = 0.9* PIXEL_PER_METER
+
+    @staticmethod
+    def enter(boy,event):
+
+        if(boy.imageState != boy.jump):
+            boy.frame = 17
+        boy.imageState = boy.jump
+
+        boy.velocityY = 0
+
+        pass
+
+    @staticmethod
+    def exit(boy,event):
+        pass
+    @staticmethod
+    def do(boy):
+
+        if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
+
+            if(DASH_KEY_ON_PRESS):
+                if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                    boy.dir = -1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir * DashState.dashSpeedModulus
+
+
+                elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                    boy.dir = 1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir* DashState.dashSpeedModulus
+
+
+            else:
+
+                if LeftRightKeylist[-1] == "LEFT_KEY_ON_PRESS":
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+                    boy.dir = -1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+
+
+                elif LeftRightKeylist[-1] == "RIGHT_KEY_ON_PRESS":
+                    boy.dir = 1
+                    boy.velocity = RUN_SPEED_PPS * boy.dir
+        else:
+            boy.velocity = 0
+
+
+        boy.x += boy.velocity * game_framework.frame_time
+        boy.y += boy.velocityY * game_framework.frame_time
+
+        boy.velocityY -= JumpState.decrease
+
+        boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
+
+        if(int(boy.frame) > 20):
+            boy.frame = 20
+
+        if(boy.y <= boy.landingYPosition):
+            boy.y = boy.landingYPosition
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
+
+
+        pass
+
+
+    @staticmethod
+    def draw(boy):
+        if boy.dir == 1:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+        else:
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
+
 
 
 # Boy States
@@ -327,24 +403,21 @@ class JumpState:
     decrease = 0.9* PIXEL_PER_METER
 
     accum = 0
-    up = False
-    falling = False
+
 
     @staticmethod
     def enter(boy,event):
 
 
 
-        if(not JumpState.up and not JumpState.falling):
-            boy.velocityY = JumpState.jumpSpeed
-            JumpState.accum = 0
 
-            boy.frame = 0
-            boy.imageState = Boy.jump
+        boy.velocityY = JumpState.jumpSpeed
+        JumpState.accum = 0
 
-        if(event == JUMP_UP):
-            if(JumpState.up):
-                boy.velocityY = 0
+        boy.frame = 0
+        boy.imageState = Boy.jump
+
+
 
     @staticmethod
     def exit(boy,event):
@@ -355,7 +428,9 @@ class JumpState:
             boy.fire_ball(BusterProjectile.big)
 
 
+
         pass
+
     @staticmethod
     def do(boy):
 
@@ -389,14 +464,13 @@ class JumpState:
 
 
 
+        if(int(boy.frame) > 20):
+            boy.frame = 20
 
 
-        if boy.velocityY > 0:
-            JumpState.up = True
-            JumpState.falling = False
-        elif boy.velocityY < 0:
-            JumpState.up = False
-            JumpState.falling = True
+        if boy.velocityY < 0:
+            boy.cur_state = FallingState
+            boy.cur_state.enter(boy,None)
 
 
         #if JumpState.up:
@@ -413,18 +487,10 @@ class JumpState:
 
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
         
-        #임시로 프레임 고정
-        if(int(boy.frame) > 20):
-            boy.frame = 20
 
 
-        #착지위치 설정. 당연히 추후에 수정..
-        if boy.y < boy.landingYPosition:
-            boy.y = boy.landingYPosition
-            boy.cur_state = IdleState
-            boy.cur_state.enter(boy,None)
-            JumpState.falling = False
-            JumpState.up = False
+
+
 
     @staticmethod
     def draw(boy):
@@ -715,8 +781,8 @@ class JumpingShotState:
 
 
         # 착지위치 설정. 당연히 추후에 수정..
-        if boy.y < 90:
-            boy.y = 90
+        if boy.y < boy.landingYPosition:
+            boy.y = boy.landingYPosition
             boy.cur_state = IdleState
             boy.cur_state.enter(boy, None)
             JumpingShotState.falling = False
@@ -821,7 +887,7 @@ next_state_table = {
 
     DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
 
-    JumpState: { JUMP_UP : JumpState , SHOT_BUTTON : JumpingShotState,CHARGE_SHOT_BUTTON : JumpingShotState},
+    JumpState: { JUMP_UP : FallingState , SHOT_BUTTON : JumpingShotState,CHARGE_SHOT_BUTTON : JumpingShotState},
 
     IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState ,  JUMP_DOWN : JumpState},
 
@@ -829,7 +895,9 @@ next_state_table = {
 
     JumpingShotState : {},
 
-    IdleChargeShotState : { RIGHT_DOWN : RunState, LEFT_DOWN: RunState}
+    IdleChargeShotState : { RIGHT_DOWN : RunState, LEFT_DOWN: RunState},
+
+    FallingState : {}
 
 }
 
@@ -856,7 +924,7 @@ class Boy:
         self.landingYPosition = 90;
         self.land = False
 
-        self.x, self.y = 1600 // 2, 90
+        self.x, self.y = 1600 // 2, 200
 
         self.dir = 1
         self.velocity = 0
