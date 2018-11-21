@@ -149,10 +149,11 @@ class FallingState:
         if(int(boy.frame) > 20):
             boy.frame = 20
 
-        if(boy.y <= boy.landingYPosition):
-            boy.y = boy.landingYPosition
-            boy.cur_state = IdleState
-            boy.cur_state.enter(boy,None)
+        if( boy.land):
+            if(boy.y <= boy.landingYPosition):
+                boy.y = boy.landingYPosition
+                boy.cur_state = IdleState
+                boy.cur_state.enter(boy,None)
 
 
         pass
