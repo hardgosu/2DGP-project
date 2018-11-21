@@ -92,19 +92,47 @@ class JumpingShotFallingState:
 
     decrease = 0.9* PIXEL_PER_METER
 
+    startTimer = 0
+
+    isTimerOn = False
+
     @staticmethod
     def enter(boy,event):
 
-        if(boy.imageState != boy.jump):
-            boy.frame = 17
-        boy.imageState = boy.jump
 
-        boy.velocityY = 0
+        if(event == SHOT_BUTTON):
+            boy.fire_ball(BusterProjectile.middle)
+            JumpingShotFallingState.startTimer = get_time()
+
+            boy.imageState = Boy.jumpShotBeginFlash
+
+            JumpingShotFallingState.isTimerOn = True
+        elif(event == CHARGE_SHOT_BUTTON):
+            boy.fire_ball(BusterProjectile.big)
+
+        boy.frame = 0
+
+
+        boy.imageState = Boy.jumpShotFalling
+
+
+
 
         pass
 
     @staticmethod
     def exit(boy,event):
+
+        if(event == SHOT_BUTTON):
+            boy.fire_ball(BusterProjectile.middle)
+            JumpingShotFallingState.startTimer = get_time()
+
+            boy.imageState = Boy.jumpShotBeginFlash
+
+            JumpingShotFallingState.isTimerOn = True
+        elif(event == CHARGE_SHOT_BUTTON):
+            boy.fire_ball(BusterProjectile.big)
+
         pass
     @staticmethod
     def do(boy):
@@ -142,10 +170,12 @@ class JumpingShotFallingState:
 
         boy.velocityY -= JumpState.decrease
 
+
+
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
 
-        if(int(boy.frame) > 20):
-            boy.frame = 20
+        if(int(boy.frame) > 5):
+            boy.frame = 6
 
         if( boy.land):
             if(boy.y <= boy.landingYPosition):
@@ -952,7 +982,7 @@ next_state_table = {
 
     IdleChargeShotState : { RIGHT_DOWN : RunState, LEFT_DOWN: RunState},
 
-    FallingState : {},
+    FallingState : {SHOT_BUTTON : JumpingShotFallingState,CHARGE_SHOT_BUTTON : JumpingShotFallingState},
 
     JumpingShotFallingState : {}
 }
