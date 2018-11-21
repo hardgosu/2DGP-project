@@ -98,22 +98,32 @@ class JumpingShotFallingState:
 
     @staticmethod
     def enter(boy,event):
+        if(boy.imageState == boy.jump):
+            boy.frame = boy.frame * 0.584
 
+        else:
+            boy.frame = 0
+
+
+        boy.imageState = Boy.jumpShotFalling
 
         if(event == SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.middle)
             JumpingShotFallingState.startTimer = get_time()
 
-            boy.imageState = Boy.jumpShotBeginFlash
+            boy.imageState = Boy.jumpShotFallingFlash
 
             JumpingShotFallingState.isTimerOn = True
         elif(event == CHARGE_SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.big)
 
-        boy.frame = 0
+            JumpingShotFallingState.startTimer = get_time()
+
+            boy.imageState = Boy.jumpShotFallingFlash
+
+            JumpingShotFallingState.isTimerOn = True
 
 
-        boy.imageState = Boy.jumpShotFalling
 
 
 
@@ -127,11 +137,17 @@ class JumpingShotFallingState:
             boy.fire_ball(BusterProjectile.middle)
             JumpingShotFallingState.startTimer = get_time()
 
-            boy.imageState = Boy.jumpShotBeginFlash
+            boy.imageState = Boy.jumpShotFallingFlash
 
             JumpingShotFallingState.isTimerOn = True
         elif(event == CHARGE_SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.big)
+
+            JumpingShotFallingState.startTimer = get_time()
+
+            boy.imageState = Boy.jumpShotFallingFlash
+
+            JumpingShotFallingState.isTimerOn = True
 
         pass
     @staticmethod
@@ -328,6 +344,9 @@ class IdleState:
         IdleState.timer += IdleState.frameTime
         IdleState.accum += IdleState.frameTime
 
+        if(not boy.land or boy.landingYPosition < boy.y):
+            boy.cur_state = FallingState
+            boy.cur_state.enter(boy,None)
 
 
 
@@ -766,16 +785,34 @@ class JumpingShotState:
     def enter(boy,event):
 
 
-
         #프레임 동기화
         boy.frame = boy.frame * 0.5384
-
-
-
-
-
-
         boy.imageState = Boy.jumpShotBegin
+
+        if(event == SHOT_BUTTON):
+            boy.fire_ball(BusterProjectile.middle)
+            JumpingShotState.startTimer = get_time()
+
+            boy.imageState = Boy.jumpShotBeginFlash
+
+            JumpingShotState.isTimerOn = True
+        elif(event == CHARGE_SHOT_BUTTON):
+            boy.fire_ball(BusterProjectile.big)
+
+            JumpingShotState.startTimer = get_time()
+
+            boy.imageState = Boy.jumpShotBeginFlash
+
+            JumpingShotState.isTimerOn = True
+
+
+
+
+
+
+
+
+
 
 
 
@@ -793,6 +830,13 @@ class JumpingShotState:
             JumpingShotState.isTimerOn = True
         elif(event == CHARGE_SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.big)
+
+            JumpingShotState.startTimer = get_time()
+
+            boy.imageState = Boy.jumpShotBeginFlash
+
+            JumpingShotState.isTimerOn = True
+
         pass
     @staticmethod
     def do(boy):
