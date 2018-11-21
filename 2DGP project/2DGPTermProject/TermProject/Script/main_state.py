@@ -86,10 +86,13 @@ def update():
                 for relation in game_object_b.collisionRelation:
                     if relation == game_object.kind:
                         if (collide(game_object_b,game_object)):
-                            if (type(game_object_b) == BusterProjectile):
+                            if (game_object_b.kind == game_world.PlayerProjectile):
                                 game_object_b.CollisionHandling(None)
                                 if (game_object.kind == game_world.Monster):
                                     game_object.CollisionHandling(game_object_b)
+                            elif (game_object_b.kind == game_world.Feature):
+                                game_object.land = True
+
 
 
 

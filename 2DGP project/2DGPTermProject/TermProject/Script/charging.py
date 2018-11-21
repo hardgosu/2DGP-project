@@ -65,7 +65,7 @@ class Charging:
         if(Charging.Images[Charging.charge2]["ImageFile"] == None):
             Charging.Images[Charging.charge2]["ImageFile"] = load_image('middleBusterMoving.png')
 
-        self.kind = game_world.PlayerProjectile
+        self.kind = game_world.EffectAA
 
         self.land = False
 
