@@ -64,7 +64,7 @@ class BusterProjectile(ObjectBase):
 
 
 
-    def __init__(self,x,y,dir,velocityX,imageState):
+    def __init__(self,boy,imageState):
 
         if(BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] == None):
             BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] = load_image('middleBuster.png')
@@ -83,9 +83,9 @@ class BusterProjectile(ObjectBase):
 
         self.land = False
 
-        self.x, self.y = x, y
-        self.dir = clamp(-1,dir,1)
-        self.velocity = velocityX *RUN_SPEED_PPS
+        self.x, self.y = boy.x, boy.y
+        self.dir = clamp(-1,boy.dir,1)
+        self.velocity = boy.busterSpeed *RUN_SPEED_PPS
         self.frame = 0
         self.event_que = []
 
@@ -103,8 +103,8 @@ class BusterProjectile(ObjectBase):
 
         self.velocityY = 0
 
-        self.firePositionX = PIXEL_PER_METER * 0.3
-        self.firePositionY = PIXEL_PER_METER * 0.2
+        self.firePositionX = PIXEL_PER_METER * boy.firePositionX
+        self.firePositionY = PIXEL_PER_METER * boy.firePositionY
 
 
         self.x += self.firePositionX
@@ -121,6 +121,9 @@ class BusterProjectile(ObjectBase):
         #버스터 충돌효과 이펙트
         self.hitEffect = None
         self.damage = 10
+
+        if(self.imageState == BusterProjectile.big):
+            self.damage *=4
 
 
     def set_direction(self):

@@ -50,6 +50,7 @@ class ObjectBase:
 
 
         self.shallHandleCollision = False
+        self.immortal = True
 
     def Destroy(self):
         pass

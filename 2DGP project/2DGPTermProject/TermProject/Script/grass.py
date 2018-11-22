@@ -33,7 +33,7 @@ class Grass:
 
         self.image = load_image('good.png')
 
-        self.boundingBoxOn = False
+        self.boundingBoxOn = True
 
     def update(self):
         pass
@@ -47,7 +47,8 @@ class Grass:
             self.draw_bb()
 
     def get_bb(self):
-        return self.x - 800, self.y, self.x + 800, self.y + self.image.h - 15
+
+        return self.x - 800, self.y, self.x + 800, self.y + self.image.h - 10
     # fill here
 
     def draw_bb(self):

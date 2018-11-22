@@ -84,17 +84,20 @@ class BaseState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
 
 class JumpingShotFallingState:
 
     decrease = 0.9* PIXEL_PER_METER
 
-    startTimer = 0
+
 
     isTimerOn = False
+    startTimer = 0
+
+    shotTimer = 0
 
     @staticmethod
     def enter(boy,event):
@@ -153,6 +156,14 @@ class JumpingShotFallingState:
     @staticmethod
     def do(boy):
 
+
+        if(JumpingShotFallingState.isTimerOn):
+            JumpingShotFallingState.shotTimer = get_time() - JumpingShotFallingState.startTimer
+            if( JumpingShotFallingState.shotTimer > 0.1):
+                JumpingShotFallingState.isTimerOn = False
+
+                boy.imageState = Boy.jumpShotFalling
+
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
 
             if(DASH_KEY_ON_PRESS):
@@ -206,9 +217,10 @@ class JumpingShotFallingState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
 
 
 
@@ -284,9 +296,9 @@ class FallingState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
 
 
 
@@ -353,9 +365,9 @@ class IdleState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
 
 
 
@@ -394,7 +406,7 @@ class RunState:
 
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
         boy.x += boy.velocity * game_framework.frame_time
-        boy.x = clamp(25, boy.x, 1600 - 25)
+        #boy.x = clamp(25, boy.x, 1600 - 25)
 
 
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
@@ -421,9 +433,10 @@ class RunState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
 
 
 
@@ -508,14 +521,15 @@ class DashState:
 
 
         boy.x += boy.velocity * DashState.dashSpeedModulus * game_framework.frame_time
-        boy.x = clamp(25, boy.x, 1600 - 25)
+        #boy.x = clamp(25, boy.x, 1600 - 25)
 
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
 
 
 
@@ -621,9 +635,10 @@ class JumpState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
 
 
 
@@ -667,9 +682,10 @@ class IdleShotState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
 
 
 
@@ -722,7 +738,7 @@ class WalkingShotState:
 
         boy.frame = (boy.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Boy.Images[boy.imageState]["Frames"]
         boy.x += boy.velocity * game_framework.frame_time
-        boy.x = clamp(25, boy.x, 1600 - 25)
+        #boy.x = clamp(25, boy.x, 1600 - 25)
 
 
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
@@ -756,9 +772,10 @@ class WalkingShotState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
 
 
 
@@ -804,16 +821,6 @@ class JumpingShotState:
             boy.imageState = Boy.jumpShotBeginFlash
 
             JumpingShotState.isTimerOn = True
-
-
-
-
-
-
-
-
-
-
 
 
         pass
@@ -914,19 +921,17 @@ class JumpingShotState:
             boy.y = boy.landingYPosition
             boy.cur_state = IdleState
             boy.cur_state.enter(boy, None)
-            JumpingShotState.falling = False
-            JumpingShotState.up = False
-            JumpState.falling = False
-            JumpState.up = False
+
         pass
 
 
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+
 
 
 
@@ -965,9 +970,9 @@ class IdleChargeShotState:
     @staticmethod
     def draw(boy):
         if boy.dir == 1:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + 9 * boy.scale , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
-            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + 9* boy.scale, int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
+            boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, 'h', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"], int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
 
 
 
@@ -1051,7 +1056,8 @@ class Boy:
 
 
 
-        self.landingYPosition = 90;
+
+        self.landingYPosition = 90
         self.land = False
 
         self.x, self.y = 1600 // 2, 200
@@ -1064,7 +1070,7 @@ class Boy:
         self.cur_state.enter(self, None)
         self.imageState = Boy.idle
 
-        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature]
+        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature,game_world.FootBoard]
 
         self.font = load_font('ENCR10B.TTF', 16)
 
@@ -1072,8 +1078,11 @@ class Boy:
 
         self.velocityY = 0
 
-        self.firePositionX = 20
-        self.firePositionY = 20
+        self.firePositionX = 0.4
+        self.firePositionY = 0.9
+
+        self.chargingPositionX = 0
+        self.chargingPositionY = 0.7
 
         self.busterSpeed = 7
 
@@ -1095,7 +1104,7 @@ class Boy:
         self.scale = 1
 
         for i in range(Boy.actions):
-            Boy.Images.append({"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None , "XRevision" : None})
+            Boy.Images.append({"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None , "XRevision" : None , "PivotY" : 0})
 
         Boy.Images[Boy.idleShot]["ImageFile"] = load_image('X_IdleShot3.png')
         Boy.Images[Boy.idleShot]["IntervalX"] = 63
@@ -1183,9 +1192,20 @@ class Boy:
         Boy.Images[Boy.idleChargeShot]["IntervalY"] = 78
         Boy.Images[Boy.idleChargeShot]["Frames"] = 16
         Boy.Images[Boy.idleChargeShot]["XRevision"] = 58
-
+        Boy.Images[Boy.idleChargeShot]["PivotY"] = 7
 
         self.tempGravity = 3
+
+    def GetBusterStartPosition(self):
+
+
+        return 0
+
+    def GetNormalizedPivotY(self):
+
+
+        return Boy.Images[self.imageState]["PivotY"] / Boy.Images[self.imageState]["IntervalY"]
+
 
     def set_direction(self):
         if(self.velocity > 0):
@@ -1210,7 +1230,7 @@ class Boy:
 
 
 
-        projectile = BusterProjectile(self.x,self.y,self.dir,self.busterSpeed,imageState)
+        projectile = BusterProjectile(self,imageState)
 
         game_world.add_object(projectile, 1)
 
@@ -1233,7 +1253,7 @@ class Boy:
         #print(LeftRightKeylist)
         #print(game_world.objects)
 
-
+        #print(self.land)
 
         self.SelfGravity()
         self.cur_state.do(self)
@@ -1256,7 +1276,6 @@ class Boy:
 
         elif(not SHOT_KEY_ON_PRESS and self.beginCharge):
             if(self.chargeTimer >= self.chargeTimeLimit):
-                print("차지 샷이다")
                 self.add_event(CHARGE_SHOT_BUTTON)
             
             #print("차치중아님")
@@ -1273,11 +1292,9 @@ class Boy:
 
             self.cur_state.exit(self, event)
             if(event in next_state_table[self.cur_state].keys()):
-                print("있는키")
                 self.cur_state = next_state_table[self.cur_state][event]
                 self.cur_state.enter(self, event)
-            else:
-                print("없는키")
+
 
 
 

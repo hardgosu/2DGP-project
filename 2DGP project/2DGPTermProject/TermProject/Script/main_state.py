@@ -16,6 +16,7 @@ from busterProjectile import BusterProjectile
 
 from towBeast import TowBeast
 
+from footBoard import FootBoard
 
 screenX = 1600
 screenY = 600
@@ -31,6 +32,9 @@ enemyTest = None
 
 testBack = None
 
+
+
+
 #예시
 def stage_1():
     pass
@@ -44,9 +48,14 @@ def enter():
     testBack = TestBack()
     towBeast = TowBeast()
 
+    footBoard = FootBoard()
+
     game_world.add_object(testBack,0)
 
     game_world.add_object(grass, 0)
+
+    game_world.add_object(footBoard, 0)
+
     game_world.add_object(boy, 1)
     game_world.add_object(enemyTest,1)
     game_world.add_object(towBeast,1)
@@ -77,7 +86,10 @@ def handle_events():
 
 
 def update():
+
+
     for game_object in game_world.all_objects():
+
         game_object.update()
 
         for game_object_b in game_world.all_objects():
@@ -85,13 +97,22 @@ def update():
             if(game_object_b != game_object):
                 for relation in game_object_b.collisionRelation:
                     if relation == game_object.kind:
-                        if (collide(game_object_b,game_object)):
-                            if (game_object_b.kind == game_world.PlayerProjectile):
+                        if (game_object_b.kind == game_world.PlayerProjectile):
+                            if (collide(game_object_b, game_object)):
                                 game_object_b.CollisionHandling(None)
                                 if (game_object.kind == game_world.Monster):
                                     game_object.CollisionHandling(game_object_b)
-                            elif (game_object_b.kind == game_world.Feature):
+                        elif (game_object_b.kind == game_world.Feature):
+                            if (collide(game_object_b, game_object)):
                                 game_object.land = True
+                                game_object.landingYPosition = game_object_b.get_bb()[3]
+                            else:
+                                game_object.land = False
+                        elif (game_object_b.kind == game_world.FootBoard):
+                            if (collide(game_object_b, game_object)):
+                                game_object_b.CollisionHandling(game_object)
+                            pass
+
 
 
 

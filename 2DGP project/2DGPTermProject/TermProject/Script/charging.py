@@ -71,6 +71,11 @@ class Charging:
         self.land = False
 
         self.x, self.y = boy.x,boy.y
+
+
+        self.chargingPositionX = PIXEL_PER_METER * boy.chargingPositionX
+        self.chargingPositionY = PIXEL_PER_METER * boy.chargingPositionY
+
         self.dir = clamp(-1,boy.dir,1)
         #self.velocity = velocityX *RUN_SPEED_PPS
         self.frame = 0
@@ -90,12 +95,10 @@ class Charging:
 
         self.velocityY = 0
 
-        self.firePositionX = PIXEL_PER_METER * 0.3
-        self.firePositionY = PIXEL_PER_METER * 0.2
 
 
-        self.x += self.firePositionX
-        self.y += self.firePositionY
+
+
 
         self.boundingBoxOn = False
 
@@ -126,7 +129,7 @@ class Charging:
         self.endTimer = get_time() - self.startTimer
 
 
-        self.x ,self.y = self.subject.x,self.subject.y
+        self.x ,self.y = self.subject.x + self.chargingPositionX ,self.subject.y + self.chargingPositionY
 
 
         #self.set_direction()
