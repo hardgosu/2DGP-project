@@ -1098,6 +1098,7 @@ class Boy:
         self.beginCharge = False
 
 
+
         # 차지 효과 이펙트를 보관한다
         self.charging = None
 
@@ -1195,6 +1196,9 @@ class Boy:
         Boy.Images[Boy.idleChargeShot]["PivotY"] = 7
 
         self.tempGravity = 3
+
+
+
 
     def GetBusterStartPosition(self):
 

@@ -11,6 +11,9 @@ from grass import Grass
 from ball import Ball
 from testBack import TestBack
 
+from boy import FallingState
+from boy import JumpingShotFallingState
+
 from enemyTest import EnemyTest
 from busterProjectile import BusterProjectile
 
@@ -106,12 +109,12 @@ def update():
                             if (collide(game_object_b, game_object)):
                                 game_object.land = True
                                 game_object.landingYPosition = game_object_b.get_bb()[3]
-                            else:
-                                game_object.land = False
+
                         elif (game_object_b.kind == game_world.FootBoard):
                             if (collide(game_object_b, game_object)):
-                                game_object_b.CollisionHandling(game_object)
-                            pass
+                                if(game_object.land == False and game_object.velocityY < 0):
+                                    game_object_b.CollisionHandling(game_object)
+
 
 
 
