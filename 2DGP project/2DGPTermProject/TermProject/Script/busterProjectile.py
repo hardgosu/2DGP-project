@@ -68,10 +68,11 @@ class BusterProjectile(ObjectBase):
     sounds = []
 
     for i in range(soundKind):
-        sounds.append({"SoundFile": None})
+        sounds.append({"SoundFile": None,"Volume" : None})
 
 
-   # sounds[soundMiddle] = load_wav("")
+
+
 
 
 
@@ -87,9 +88,12 @@ class BusterProjectile(ObjectBase):
         if(BusterProjectile.Images[BusterProjectile.big]["ImageFile"] == None):
             BusterProjectile.Images[BusterProjectile.big]["ImageFile"] = load_image('X_Big_Buster.png')
 
-
-
-
+        if(BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"] == None):
+            BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"] = load_wav("sound/XE_Buster0.wav")
+            BusterProjectile.sounds[BusterProjectile.soundMiddle]["Volume"] = 5
+        if(BusterProjectile.sounds[BusterProjectile.soundBig]["SoundFile"] == None):
+            BusterProjectile.sounds[BusterProjectile.soundBig]["SoundFile"] = load_wav("sound/XE_Buster2.wav")
+            BusterProjectile.sounds[BusterProjectile.soundBig]["Volume"] = 5
 
 
 
@@ -138,6 +142,16 @@ class BusterProjectile(ObjectBase):
 
         if(self.imageState == BusterProjectile.big):
             self.damage *=4
+
+        if(self.imageState == BusterProjectile.middle):
+            BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"].play(1)
+            BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"].set_volume(BusterProjectile.sounds[BusterProjectile.soundMiddle]["Volume"])
+
+
+        elif(self.imageState == BusterProjectile.big):
+            BusterProjectile.sounds[BusterProjectile.soundBig]["SoundFile"].play(1)
+            BusterProjectile.sounds[BusterProjectile.soundBig]["SoundFile"].set_volume(BusterProjectile.sounds[BusterProjectile.soundMiddle]["Volume"])
+
 
 
     def set_direction(self):
