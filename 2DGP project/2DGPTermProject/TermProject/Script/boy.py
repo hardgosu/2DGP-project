@@ -474,8 +474,22 @@ class DashState:
     level = 0
     dashSpeedModulus = 3
 
+    dashSound = None
+    dashEndSound = None
+
     @staticmethod
     def enter(boy, event):
+
+
+        if(DashState.dashSound == None):
+            DashState.dashSound = load_wav('sound/XE_Dash.wav')
+            DashState.dashSound.set_volume(3)
+        if(DashState.dashEndSound == None):
+            DashState.dashEndSound = load_wav('sound/XE_DashEnd.wav')
+            DashState.dashEndSound.set_volume(3)
+
+        DashState.dashSound.play(1)
+
         boy.velocity = boy.dir * RUN_SPEED_PPS
 
 
@@ -507,7 +521,7 @@ class DashState:
             boy.cur_state = IdleState
             boy.cur_state.enter(boy, event)
 
-
+        print("꼭끝나")
 
 
         pass
@@ -558,12 +572,16 @@ class JumpState:
 
     accum = 0
 
+    jumpSound = None
 
     @staticmethod
     def enter(boy,event):
 
+        if(JumpState.jumpSound == None):
+            JumpState.jumpSound = load_wav('sound/XE_Jump.wav')
+            JumpState.jumpSound.set_volume(3)
 
-
+        JumpState.jumpSound.play(1)
 
         boy.velocityY = JumpState.jumpSpeed
         JumpState.accum = 0

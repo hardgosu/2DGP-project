@@ -75,7 +75,7 @@ class Charging:
             Charging.sounds[Charging.soundCharging]["SoundFile"] = load_wav("sound/XE_Charging3.wav")
             Charging.sounds[Charging.soundCharging]["Volume"] = 5
         if(Charging.sounds[Charging.soundBeginCharge]["SoundFile"] == None):
-            Charging.sounds[Charging.soundBeginCharge]["SoundFile"] = load_wav("sound/XE_Charging4.wav")
+            Charging.sounds[Charging.soundBeginCharge]["SoundFile"] = load_wav("sound/XE_Charging.wav")
             Charging.sounds[Charging.soundBeginCharge]["Volume"] = 5
 
 
@@ -139,7 +139,7 @@ class Charging:
 
     def destroy(self):
         game_world.remove_object(self)
-
+        Charging.sounds[Charging.soundBeginCharge]["SoundFile"] = None
         Charging.sounds[Charging.soundCharging]["SoundFile"] = None
         pass
 
@@ -150,7 +150,12 @@ class Charging:
 
         self.endTimer = get_time() - self.startTimer
 
-        print(self.endTimer)
+        #피코투디..Wav의 구간 반복 재생이 안되는것인가..
+        if(self.endTimer >= 2):
+            if not Charging.sounds[Charging.soundBeginCharge]["SoundFile"] == None:
+                Charging.sounds[Charging.soundBeginCharge]["SoundFile"] = None
+                Charging.sounds[Charging.soundCharging]["SoundFile"].repeat_play()
+                Charging.sounds[Charging.soundCharging]["SoundFile"].set_volume(Charging.sounds[Charging.soundCharging]["Volume"])
 
         self.x ,self.y = self.subject.x + self.chargingPositionX ,self.subject.y + self.chargingPositionY
 
