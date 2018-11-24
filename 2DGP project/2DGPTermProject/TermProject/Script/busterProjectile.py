@@ -62,9 +62,19 @@ class BusterProjectile(ObjectBase):
     Images[big]["XRevision"] = 62
 
 
+    soundKind = 2
+    soundMiddle,soundBig = range(soundKind)
+
     sounds = []
 
-    
+    for i in range(soundKind):
+        sounds.append({"SoundFile": None})
+
+
+   # sounds[soundMiddle] = load_wav("")
+
+
+
 
     def __init__(self,boy,imageState):
 
@@ -76,6 +86,8 @@ class BusterProjectile(ObjectBase):
 
         if(BusterProjectile.Images[BusterProjectile.big]["ImageFile"] == None):
             BusterProjectile.Images[BusterProjectile.big]["ImageFile"] = load_image('X_Big_Buster.png')
+
+
 
 
 
