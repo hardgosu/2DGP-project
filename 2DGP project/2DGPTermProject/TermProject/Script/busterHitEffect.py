@@ -27,6 +27,9 @@ FRAMES_PER_ACTION = 8
 
 
 
+
+
+
 class BusterHitEffect(ObjectBase):
 
     actions = 3
@@ -63,6 +66,18 @@ class BusterHitEffect(ObjectBase):
     spriteSheet = None
 
 
+
+
+    soundKind = 1
+    soundHit = 0
+
+
+    sounds = []
+
+    for i in range(soundKind):
+        sounds.append({"SoundFile": None,"Volume" : None})
+
+
     def __init__(self,x,y,dir,velocityX,imageState):
 
 
@@ -71,7 +86,10 @@ class BusterHitEffect(ObjectBase):
             for i in range(BusterHitEffect.actions):
                 BusterHitEffect.Images[i]["ImageFile"] = BusterHitEffect.spriteSheet
                 pass
-
+        if(BusterHitEffect.sounds[BusterHitEffect.soundHit]["SoundFile"] == None):
+            BusterHitEffect.sounds[BusterHitEffect.soundHit]["SoundFile"] = load_wav("sound/E_BusterHit.wav")
+            BusterHitEffect.sounds[BusterHitEffect.soundHit]["Volume"] = 3
+            BusterHitEffect.sounds[BusterHitEffect.soundHit]["SoundFile"].set_volume(BusterHitEffect.sounds[BusterHitEffect.soundHit]["Volume"])
 
 
         self.kind = game_world.Effect
@@ -113,8 +131,7 @@ class BusterHitEffect(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-
-
+        BusterHitEffect.sounds[BusterHitEffect.soundHit]["SoundFile"].play(1)
 
 
 
