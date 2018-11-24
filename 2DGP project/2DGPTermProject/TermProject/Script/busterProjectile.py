@@ -62,7 +62,9 @@ class BusterProjectile(ObjectBase):
     Images[big]["XRevision"] = 62
 
 
+    sounds = []
 
+    
 
     def __init__(self,boy,imageState):
 
