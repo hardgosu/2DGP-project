@@ -106,7 +106,8 @@ class TowBeast(ObjectBase):
         # self.cur_state = BusterProjectile.small
 
         # self.cur_state.enter(self, None)
-        self.imageState = TowBeast.walking
+        self.imageState = TowBeast.idle
+
 
         self.collisionRelation = [game_world.Feature]
 
@@ -249,6 +250,10 @@ class TowBeast(ObjectBase):
     def wander(self):
         # fill here
 
+        #state change
+        self.imageState = TowBeast.walking
+
+
         self.velocity = RUN_SPEED_PPS
         self.timer -= game_framework.frame_time
         if self.timer < 0:
@@ -262,6 +267,10 @@ class TowBeast(ObjectBase):
 
     def find_player(self):
         # fill here
+        #state change
+        self.imageState = TowBeast.walking
+
+
         boy = main_state.get_boy()
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * 10) ** 2:
@@ -280,8 +289,58 @@ class TowBeast(ObjectBase):
     def move_to_player(self):
         # fill here
         self.velocity = RUN_SPEED_PPS
-        return BehaviorTree.SUCCESS
+
+
+        #state change
+        self.imageState = TowBeast.walking
+
+
+        boy = main_state.get_boy()
+        distance = (boy.x - self.x) ** 2
+        if distance < (PIXEL_PER_METER * 3) ** 2:
+
+            if(boy.x - self.x < 0):
+                self.dir = -1
+            else:
+                self.dir = 1
+
+            return BehaviorTree.SUCCESS
+
+        if distance >=(PIXEL_PER_METER * 10) ** 2:
+
+            if(boy.x - self.x < 0):
+                self.dir = -1
+            else:
+                self.dir = 1
+
+            return BehaviorTree.FAIL
+
+        else:
+            return BehaviorTree.RUNNING
+
+
+
+
+
+
         pass
+
+
+    def SmashAttack(self):
+
+
+        self.velocity = 0
+
+        #state change
+        self.imageState = TowBeast.smashing
+
+        if(int(self.frame) == 3):
+            print("이때 내려친다")
+
+        return BehaviorTree.SUCCESS
+
+        pass
+
 
     def build_behavior_tree(self):
         # fill here
@@ -291,8 +350,11 @@ class TowBeast(ObjectBase):
 
         find_player_node = LeafNode("Find Player", self.find_player)
         move_to_player_node = LeafNode("Move to Player", self.move_to_player)
+        SmashAttckNode = LeafNode("Smash Attck",self.SmashAttack)
+
         chase_node = SequenceNode("Chase")
         chase_node.add_children(find_player_node, move_to_player_node)
+        chase_node.add_child(SmashAttckNode)
 
         wander_chase_node = SelectorNode("WanderChase")
         wander_chase_node.add_children(chase_node, wander_node)
