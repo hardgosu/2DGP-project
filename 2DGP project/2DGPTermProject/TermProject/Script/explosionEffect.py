@@ -53,6 +53,15 @@ class ExplosionEffect(ObjectBase):
     spriteSheet = None
 
 
+    soundKind = 1
+    soundExplosion = 0
+
+
+    sounds = []
+
+    for i in range(soundKind):
+        sounds.append({"SoundFile": None,"Volume" : None})
+
     def __init__(self,x,y,dir,velocityX,imageState):
 
 
@@ -61,6 +70,11 @@ class ExplosionEffect(ObjectBase):
             for i in range(ExplosionEffect.actions):
                 ExplosionEffect.Images[i]["ImageFile"] = ExplosionEffect.spriteSheet
                 pass
+
+        if(ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["SoundFile"] == None):
+            ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["SoundFile"] = load_wav("sound/E_Explosion1.wav")
+            ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["Volume"] = 1
+            ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["SoundFile"].set_volume(ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["Volume"])
 
 
 
@@ -109,8 +123,7 @@ class ExplosionEffect(ObjectBase):
         self.imageRow = 0
         self.imageRowMax = 2
 
-
-
+        ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["SoundFile"].play(1)
 
 
 
