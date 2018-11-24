@@ -593,6 +593,7 @@ class JumpState:
     accum = 0
 
     jumpSound = None
+    jumpVoice = None
 
     @staticmethod
     def enter(boy,event):
@@ -600,8 +601,16 @@ class JumpState:
         if(JumpState.jumpSound == None):
             JumpState.jumpSound = load_wav('sound/XE_Jump.wav')
             JumpState.jumpSound.set_volume(3)
+        if(JumpState.jumpVoice == None):
+            JumpState.jumpVoice = load_wav('sound/XV_Jump.wav')
+            JumpState.jumpVoice.set_volume(3)
+
+
 
         JumpState.jumpSound.play(1)
+        if(random.randint(0,1) == 1):
+            JumpState.jumpVoice.play(1)
+
 
         boy.velocityY = JumpState.jumpSpeed
         JumpState.accum = 0
