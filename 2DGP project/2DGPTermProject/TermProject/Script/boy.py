@@ -521,7 +521,7 @@ class DashState:
             boy.cur_state = IdleState
             boy.cur_state.enter(boy, event)
 
-        print("꼭끝나")
+
 
 
         pass
@@ -534,8 +534,10 @@ class DashState:
         DashState.test +=1
 
         if(DashState.test > 20):
+            DashState.dashEndSound.play(1)
             DashState.exit(boy,None)
             DashState.test = 0
+
         elif DashState.test < 13:
             boy.imageState = Boy.dash
         elif DashState.test < 20:
