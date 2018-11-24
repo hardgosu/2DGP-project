@@ -6,6 +6,7 @@ from charging import Charging
 import game_world
 import game_framework
 import random
+from objectBase import ObjectBase
 
 # Boy Run Speed
 # fill expressions correctly
@@ -428,6 +429,11 @@ class RunState:
         elif (not (LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS)):
             boy.cur_state = IdleState
             boy.cur_state.enter(boy, None)
+        if boy.land == False:
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
+
+
 
 
     @staticmethod
@@ -481,7 +487,11 @@ class DashState:
         #boy.x -= boy.velocity * 10
 
         if(event == SHOT_BUTTON):
-            print("야호")
+            boy.fire_ball(BusterProjectile.middle)
+
+        elif(event == CHARGE_SHOT_BUTTON):
+            boy.fire_ball(BusterProjectile.big)
+        pass
 
 
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
@@ -522,6 +532,10 @@ class DashState:
 
         boy.x += boy.velocity * DashState.dashSpeedModulus * game_framework.frame_time
         #boy.x = clamp(25, boy.x, 1600 - 25)
+
+        if boy.land == False:
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
 
     @staticmethod
     def draw(boy):
@@ -761,7 +775,9 @@ class WalkingShotState:
             boy.cur_state = IdleState
             boy.cur_state.enter(boy, None)
 
-
+        if boy.land == False:
+            boy.cur_state = IdleState
+            boy.cur_state.enter(boy,None)
 
         #boy.x += boy.velocity * game_framework.frame_time
 
@@ -1038,7 +1054,7 @@ next_state_table = {
 
 
 
-class Boy:
+class Boy(ObjectBase):
 
     actions = 13
     idle, walking, dashStart, dash, dashEnd, jump, idleShot, walkingShot, jumpShotBegin, jumpShotFalling, jumpShotBeginFlash, jumpShotFallingFlash, idleChargeShot =range(actions)
@@ -1086,7 +1102,7 @@ class Boy:
 
         self.busterSpeed = 7
 
-        self.boundingBoxOn = False
+        self.boundingBoxOn = True
 
         self.chargeTimeLimit = 0.5
 
@@ -1197,8 +1213,7 @@ class Boy:
 
         self.tempGravity = 3
 
-
-
+        self.collisionCount = False
 
     def GetBusterStartPosition(self):
 
@@ -1259,7 +1274,8 @@ class Boy:
 
         #print(self.land)
 
-        self.SelfGravity()
+
+        #self.SelfGravity()
         self.cur_state.do(self)
 
         if(SHOT_KEY_ON_PRESS):
@@ -1424,7 +1440,7 @@ class Boy:
             self.add_event(key_event)
 
     def get_bb(self):
-        return self.x - 10, self.y - 25, self.x + 10, self.y + 25
+        return self.x - 10, self.y , self.x + 10, self.y + 40
     # fill here
 
     def draw_bb(self):

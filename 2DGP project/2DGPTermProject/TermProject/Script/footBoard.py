@@ -43,8 +43,8 @@ class FootBoard(ObjectBase):
     for i in range(actions):
         Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
 
-    Images[idle]["IntervalX"] = 400
-    Images[idle]["IntervalY"] = 400
+    Images[idle]["IntervalX"] = 180
+    Images[idle]["IntervalY"] = 40
     Images[idle]["Frames"] = 1
     Images[idle]["XRevision"] = 0
 
@@ -71,13 +71,13 @@ class FootBoard(ObjectBase):
     def __init__(self):
 
         if (FootBoard.spriteSheet == None):
-            FootBoard.spriteSheet = load_image('sprite/towBeast.png')
+            FootBoard.spriteSheet = load_image('sprite/brick180x40.png')
 
         self.kind = game_world.FootBoard
 
         self.land = False
 
-        self.x, self.y = main_state.screenX - 400, 250
+        self.x, self.y = main_state.screenX - 400, 100
         self.dir = -1
 
         self.frame = 0
@@ -99,8 +99,8 @@ class FootBoard(ObjectBase):
         self.firePositionX = PIXEL_PER_METER * 0.3
         self.firePositionY = PIXEL_PER_METER * 0.2
 
-        self.x += self.firePositionX
-        self.y += self.firePositionY
+        #self.x += self.firePositionX
+        #self.y += self.firePositionY
 
         #바운딩 박스 출력여부를 결정한다
         self.boundingBoxOn = True
@@ -138,6 +138,9 @@ class FootBoard(ObjectBase):
     def set_direction(self):
 
         pass
+    def SetPosition(self,x,y):
+        self.x = x
+        self.y = y
 
     def DeathAnimation(self):
 
@@ -171,7 +174,7 @@ class FootBoard(ObjectBase):
         if (not self.beingDeath):
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FootBoard.Images[self.imageState]["Frames"]
             #self.bt.run()
-            self.x += self.velocity * self.dir * game_framework.frame_time
+            #self.x += self.velocity * self.dir * game_framework.frame_time
 
         else:
             if (self.deathAnimationNumber == FootBoard.deathImmediately):
@@ -208,7 +211,7 @@ class FootBoard(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 90, self.y - 200, self.x + 50, self.y  -180
+        return self.x - 90, self.y - 20, self.x + 90, self.y  +20
 
     # fill here
 

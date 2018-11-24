@@ -36,7 +36,7 @@ enemyTest = None
 testBack = None
 
 
-
+collisionCount = 0
 
 #예시
 def stage_1():
@@ -53,11 +53,21 @@ def enter():
 
     footBoard = FootBoard()
 
+    footBoard2 = FootBoard()
+    footBoard2.SetPosition(500,300)
+
+    footBoard3 = FootBoard()
+    footBoard3.SetPosition(300,180)
+
+
     game_world.add_object(testBack,0)
 
     game_world.add_object(grass, 0)
 
     game_world.add_object(footBoard, 0)
+    game_world.add_object(footBoard2, 0)
+    game_world.add_object(footBoard3, 0)
+
 
     game_world.add_object(boy, 1)
     game_world.add_object(enemyTest,1)
@@ -91,6 +101,7 @@ def handle_events():
 def update():
 
 
+
     for game_object in game_world.all_objects():
 
         game_object.update()
@@ -109,12 +120,25 @@ def update():
                             if (collide(game_object_b, game_object)):
                                 game_object.land = True
                                 game_object.landingYPosition = game_object_b.get_bb()[3]
+                                if type(game_object) == Boy:
+                                    game_object.collisionCount = True
+
+
 
                         elif (game_object_b.kind == game_world.FootBoard):
-                            if (collide(game_object_b, game_object)):
-                                if(game_object.land == False and game_object.velocityY < 0):
-                                    game_object_b.CollisionHandling(game_object)
+                            if (BottomAndTopCollide(game_object, game_object_b)):
+                                if type(game_object) == Boy:
 
+                                    game_object.land = True
+                                    game_object.landingYPosition = game_object_b.get_bb()[3]
+                                    game_object.collisionCount = True
+
+
+        if type(game_object) == Boy:
+
+            if(not game_object.collisionCount):
+                game_object.land = False
+            game_object.collisionCount = False
 
 
 
@@ -146,18 +170,20 @@ def collide(a, b):
     pass
 
 
-def PushCollide(floating,fixed):
+def BottomAndTopCollide(a,b):
     left_a, bottom_a, right_a, top_a = a.get_bb()
     left_b, bottom_b, right_b, top_b = b.get_bb()
 
-    if left_a < right_b:
+
+
+    if left_a > right_b:
         return False
-    if right_a > left_b:
+    if right_a < left_b:
         return False
-    if top_a > bottom_b:
-        return False
-    if bottom_a < top_b:
-        return False
+    if abs(bottom_a - top_b) < 10:
+        return True
+
+    return False
 
     pass
 

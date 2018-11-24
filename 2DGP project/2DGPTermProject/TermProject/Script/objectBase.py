@@ -52,6 +52,9 @@ class ObjectBase:
         self.shallHandleCollision = False
         self.immortal = True
 
+
+        self.collisionCount = False
+
     def Destroy(self):
         pass
     def DeathAnimation(self):
