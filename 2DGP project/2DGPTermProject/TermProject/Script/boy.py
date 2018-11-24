@@ -100,8 +100,16 @@ class JumpingShotFallingState:
 
     shotTimer = 0
 
+    landSound = None
+
+
     @staticmethod
     def enter(boy,event):
+
+        if JumpingShotFallingState.landSound == None:
+            JumpingShotFallingState.landSound = load_wav('sound/XE_Land.wav')
+            JumpingShotFallingState.landSound.set_volume(3)
+
         if(boy.imageState == boy.jump):
             boy.frame = boy.frame * 0.584
 
@@ -207,6 +215,7 @@ class JumpingShotFallingState:
 
         if( boy.land):
             if(boy.y <= boy.landingYPosition):
+                JumpingShotFallingState.landSound.play(1)
                 boy.y = boy.landingYPosition
                 boy.cur_state = IdleState
                 boy.cur_state.enter(boy,None)
@@ -229,8 +238,16 @@ class FallingState:
 
     decrease = 0.9* PIXEL_PER_METER
 
+
+    landSound = None
+
     @staticmethod
     def enter(boy,event):
+
+        if FallingState.landSound == None:
+            FallingState.landSound = load_wav('sound/XE_Land.wav')
+            FallingState.landSound.set_volume(3)
+
 
         if(boy.imageState != boy.jump):
             boy.frame = 17
@@ -286,6 +303,7 @@ class FallingState:
 
         if( boy.land):
             if(boy.y <= boy.landingYPosition):
+                FallingState.landSound.play(1)
                 boy.y = boy.landingYPosition
                 boy.cur_state = IdleState
                 boy.cur_state.enter(boy,None)
