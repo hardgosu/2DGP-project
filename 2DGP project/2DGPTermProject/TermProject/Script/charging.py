@@ -55,7 +55,13 @@ class Charging:
 
 
 
+    soundKind = 2
+    soundBeginCharge,soundCharging = range(soundKind)
 
+    sounds = []
+
+    for i in range(soundKind):
+        sounds.append({"SoundFile": None,"Volume" : None})
 
     def __init__(self,boy):
 
@@ -64,6 +70,14 @@ class Charging:
 
         if(Charging.Images[Charging.charge2]["ImageFile"] == None):
             Charging.Images[Charging.charge2]["ImageFile"] = load_image('middleBusterMoving.png')
+
+        if(Charging.sounds[Charging.soundCharging]["SoundFile"] == None):
+            Charging.sounds[Charging.soundCharging]["SoundFile"] = load_wav("sound/XE_Charging3.wav")
+            Charging.sounds[Charging.soundCharging]["Volume"] = 5
+        if(Charging.sounds[Charging.soundBeginCharge]["SoundFile"] == None):
+            Charging.sounds[Charging.soundBeginCharge]["SoundFile"] = load_wav("sound/XE_Charging4.wav")
+            Charging.sounds[Charging.soundBeginCharge]["Volume"] = 5
+
 
         self.kind = game_world.Effect
 
@@ -109,6 +123,13 @@ class Charging:
 
         self.subject = boy
 
+
+        Charging.sounds[Charging.soundBeginCharge]["SoundFile"].play(1)
+        Charging.sounds[Charging.soundBeginCharge]["SoundFile"].set_volume(Charging.sounds[Charging.soundBeginCharge]["Volume"])
+
+
+
+
     def set_direction(self):
 
 
@@ -119,6 +140,7 @@ class Charging:
     def destroy(self):
         game_world.remove_object(self)
 
+        Charging.sounds[Charging.soundCharging]["SoundFile"] = None
         pass
 
 
@@ -128,6 +150,7 @@ class Charging:
 
         self.endTimer = get_time() - self.startTimer
 
+        print(self.endTimer)
 
         self.x ,self.y = self.subject.x + self.chargingPositionX ,self.subject.y + self.chargingPositionY
 
