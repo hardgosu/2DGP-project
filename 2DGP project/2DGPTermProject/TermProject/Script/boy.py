@@ -779,7 +779,7 @@ class WalkingShotState:
     @staticmethod
     def exit(boy,event):
 
-        print(event)
+
         if(event == SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.middle)
 
