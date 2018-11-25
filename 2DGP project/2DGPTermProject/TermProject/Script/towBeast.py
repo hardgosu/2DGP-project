@@ -155,6 +155,12 @@ class TowBeast(ObjectBase):
 
         self.build_behavior_tree()
 
+        self.recognizeRange = 100
+        self.smashRange = 20
+
+
+        self.smashDamage = 100
+
         # self.subject = boy
 
     def set_direction(self):
@@ -207,8 +213,8 @@ class TowBeast(ObjectBase):
 
 
 
-        self.x = clamp(50, self.x, 1280 - 50)
-        self.y = clamp(50, self.y, 1024 - 50)
+        self.x = clamp(0, self.x, 1600)
+        self.y = clamp(0, self.y, 1000)
 
 
         pass
@@ -276,7 +282,7 @@ class TowBeast(ObjectBase):
 
         boy = main_state.get_boy()
         distance = (boy.x - self.x) ** 2
-        if distance < (PIXEL_PER_METER * 10) ** 2:
+        if distance < (PIXEL_PER_METER * self.recognizeRange) ** 2:
 
             if(boy.x - self.x < 0):
                 self.dir = -1
@@ -300,7 +306,7 @@ class TowBeast(ObjectBase):
 
         boy = main_state.get_boy()
         distance = (boy.x - self.x) ** 2
-        if distance < (PIXEL_PER_METER * 3) ** 2:
+        if distance < (PIXEL_PER_METER * self.smashRange) ** 2:
 
             if(boy.x - self.x < 0):
                 self.dir = -1
@@ -309,7 +315,7 @@ class TowBeast(ObjectBase):
 
             return BehaviorTree.SUCCESS
 
-        if distance >=(PIXEL_PER_METER * 10) ** 2:
+        if distance >=(PIXEL_PER_METER * self.recognizeRange) ** 2:
 
             if(boy.x - self.x < 0):
                 self.dir = -1
@@ -339,7 +345,7 @@ class TowBeast(ObjectBase):
 
         if(self.frame >= 3):
             if(self.frame - int(self.frame) < 0.1):
-                explosion = IoriExplosion(boy.x ,self.y,-self.dir,100)
+                explosion = IoriExplosion(boy.x ,self.y,-self.dir,self.smashDamage)
                 game_world.add_object(explosion,1)
 
         return BehaviorTree.SUCCESS
