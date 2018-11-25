@@ -21,6 +21,9 @@ from towBeast import TowBeast
 
 from footBoard import FootBoard
 
+
+from ioriExplosion import IoriExplosion
+
 screenX = 1600
 screenY = 600
 
@@ -51,6 +54,7 @@ def enter():
     testBack = TestBack()
     towBeast = TowBeast()
 
+
     footBoard = FootBoard()
 
     footBoard2 = FootBoard()
@@ -58,6 +62,10 @@ def enter():
 
     footBoard3 = FootBoard()
     footBoard3.SetPosition(300,180)
+
+
+    ioriExplosion = IoriExplosion(boy)
+
 
 
     game_world.add_object(testBack,0)
@@ -72,6 +80,8 @@ def enter():
     game_world.add_object(boy, 1)
     game_world.add_object(enemyTest,1)
     game_world.add_object(towBeast,1)
+
+    game_world.add_object(ioriExplosion,1)
 
 def exit():
     global boy, grass
