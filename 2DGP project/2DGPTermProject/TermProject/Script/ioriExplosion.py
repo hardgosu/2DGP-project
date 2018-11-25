@@ -76,10 +76,10 @@ class IoriExplosion(ObjectBase):
                 IoriExplosion.Images[IoriExplosion.explosion2]["ImageFile"] = load_image('sprite/ioriEffect2.png')
 
         if (IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] == None):
-                IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] = load_wav("sound/XE_Charging3.wav")
+                IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] = load_wav("sound/FireExplosion.wav")
                 IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"] = 5
         if (IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] == None):
-                IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = load_wav("sound/XE_Charging.wav")
+                IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = load_wav("sound/FireExplosion2.wav")
                 IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"] = 5
 
         self.kind = game_world.Effect
@@ -117,11 +117,11 @@ class IoriExplosion(ObjectBase):
 
         self.row = IoriExplosion.Images[self.imageState]["Row"] - 1
 
-        """""
-        IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"].play(1)
-        IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"].set_volume(
-            IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"])
-        """""
+
+        IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"].play(1)
+        IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"].set_volume(
+            IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"])
+
 
         self.check = False
         self.damage = damage
@@ -135,8 +135,7 @@ class IoriExplosion(ObjectBase):
 
     def destroy(self):
         game_world.remove_object(self)
-        IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = None
-        IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] = None
+
         pass
 
 

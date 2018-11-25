@@ -73,7 +73,7 @@ class ExplosionEffect(ObjectBase):
 
         if(ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["SoundFile"] == None):
             ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["SoundFile"] = load_wav("sound/E_Explosion1.wav")
-            ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["Volume"] = 1
+            ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["Volume"] = 2
             ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["SoundFile"].set_volume(ExplosionEffect.sounds[ExplosionEffect.soundExplosion]["Volume"])
 
 
