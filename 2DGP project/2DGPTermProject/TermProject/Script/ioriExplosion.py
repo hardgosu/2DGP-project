@@ -67,56 +67,44 @@ class IoriExplosion(ObjectBase):
     for i in range(soundKind):
         sounds.append({"SoundFile": None,"Volume" : None})
 
-    def __init__(self,boy):
+    def __init__(self,x,y,dir,damage):
 
-        if(IoriExplosion.Images[IoriExplosion.explosion1]["ImageFile"] == None):
-            IoriExplosion.Images[IoriExplosion.explosion1]["ImageFile"] = load_image('sprite/ioriEffect1.png')
+        if (IoriExplosion.Images[IoriExplosion.explosion1]["ImageFile"] == None):
+                IoriExplosion.Images[IoriExplosion.explosion1]["ImageFile"] = load_image('sprite/ioriEffect1.png')
 
-        if(IoriExplosion.Images[IoriExplosion.explosion2]["ImageFile"] == None):
-            IoriExplosion.Images[IoriExplosion.explosion2]["ImageFile"] = load_image('sprite/ioriEffect2.png')
+        if (IoriExplosion.Images[IoriExplosion.explosion2]["ImageFile"] == None):
+                IoriExplosion.Images[IoriExplosion.explosion2]["ImageFile"] = load_image('sprite/ioriEffect2.png')
 
-        if(IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] == None):
-            IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] = load_wav("sound/XE_Charging3.wav")
-            IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"] = 5
-        if(IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] == None):
-            IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = load_wav("sound/XE_Charging.wav")
-            IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"] = 5
-
+        if (IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] == None):
+                IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] = load_wav("sound/XE_Charging3.wav")
+                IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"] = 5
+        if (IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] == None):
+                IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = load_wav("sound/XE_Charging.wav")
+                IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"] = 5
 
         self.kind = game_world.Effect
 
-
         self.land = False
 
-        self.x, self.y = boy.x,boy.y
+        self.x, self.y = x,y
 
 
-        self.chargingPositionX = PIXEL_PER_METER * boy.chargingPositionX
-        self.chargingPositionY = PIXEL_PER_METER * boy.chargingPositionY
 
-        self.dir = clamp(-1,boy.dir,1)
-        #self.velocity = velocityX *RUN_SPEED_PPS
+        self.dir = clamp(-1, dir, 1)
+        # self.velocity = velocityX *RUN_SPEED_PPS
         self.frame = 0
         self.event_que = []
 
+        # self.cur_state = BusterProjectile.small
 
-        #self.cur_state = BusterProjectile.small
-
-        #self.cur_state.enter(self, None)
+        # self.cur_state.enter(self, None)
         self.imageState = IoriExplosion.explosion1
 
-        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature]
-
-
+        self.collisionRelation = [game_world.EnemyProjectile, game_world.Feature]
 
         self.selfGravity = False
 
         self.velocityY = 0
-
-
-
-
-
 
         self.boundingBoxOn = False
 
@@ -125,16 +113,18 @@ class IoriExplosion(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.subject = boy
+
 
         self.row = IoriExplosion.Images[self.imageState]["Row"] - 1
 
-
+        """""
         IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"].play(1)
-        IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"].set_volume(IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"])
-
+        IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"].set_volume(
+            IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"])
+        """""
 
         self.check = False
+        self.damage = damage
 
     def set_direction(self):
 
@@ -157,13 +147,14 @@ class IoriExplosion(ObjectBase):
         self.endTimer = get_time() - self.startTimer
 
         #피코투디..Wav의 구간 반복 재생이 안되는것인가..
+        """"
         if(self.endTimer >= 2):
             if not IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] == None:
                 IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = None
                 IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"].repeat_play()
                 IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"].set_volume(IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"])
-
-        self.x ,self.y = self.subject.x + self.chargingPositionX ,self.subject.y + self.chargingPositionY
+        """""
+        #self.x ,self.y = self.subject.x + self.chargingPositionX ,self.subject.y + self.chargingPositionY
 
 
         #self.set_direction()
@@ -192,6 +183,7 @@ class IoriExplosion(ObjectBase):
 
 
     def draw(self):
+        self.boundingBoxOn = True
         if self.boundingBoxOn:
             self.draw_bb()
         if self.dir == 1:
@@ -202,7 +194,7 @@ class IoriExplosion(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 20, self.y - 20, self.x + 20, self.y + 20
+        return self.x - 50, self.y - 200, self.x + 30, self.y + 30
     # fill here
 
     def draw_bb(self):

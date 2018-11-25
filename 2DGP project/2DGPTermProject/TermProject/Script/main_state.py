@@ -64,7 +64,7 @@ def enter():
     footBoard3.SetPosition(300,180)
 
 
-    ioriExplosion = IoriExplosion(boy)
+    ioriExplosion = IoriExplosion(towBeast.x,towBeast.y,towBeast.dir,100)
 
 
 
