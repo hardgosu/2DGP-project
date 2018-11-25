@@ -11,6 +11,9 @@ from explosionEffect import ExplosionEffect
 
 from BehaviorTree import BehaviorTree, SelectorNode, SequenceNode, LeafNode
 
+
+from ioriExplosion import IoriExplosion
+
 # Boy Run Speed
 # fill expressions correctly
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
@@ -328,14 +331,16 @@ class TowBeast(ObjectBase):
 
     def SmashAttack(self):
 
-
+        boy = main_state.get_boy()
         self.velocity = 0
 
         #state change
         self.imageState = TowBeast.smashing
 
-        if(int(self.frame) == 3):
-            print("이때 내려친다")
+        if(self.frame >= 3):
+            if(self.frame - int(self.frame) < 0.1):
+                explosion = IoriExplosion(boy.x ,self.y,-self.dir,100)
+                game_world.add_object(explosion,1)
 
         return BehaviorTree.SUCCESS
 

@@ -173,9 +173,16 @@ class IoriExplosion(ObjectBase):
             self.check = False
 
 
+        if(int(self.frame) >= IoriExplosion.Images[self.imageState]["Frames"] - 1):
+            self.destroy()
+
+
+
+        #self.x += self.velocity * self.dir * game_framework.frame_time
 
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % IoriExplosion.Images[self.imageState]["Frames"]
         #self.x += self.velocity * self.dir * game_framework.frame_time
+
 
 
 
