@@ -159,7 +159,7 @@ class IoriExplosion(ObjectBase):
         #self.set_direction()
 
 
-        print(self.row)
+
         if(int(self.frame) == 0):
             self.row = IoriExplosion.Images[self.imageState]["Row"] - 1
 

@@ -14,6 +14,9 @@ from BehaviorTree import BehaviorTree, SelectorNode, SequenceNode, LeafNode
 
 from ioriExplosion import IoriExplosion
 
+
+
+
 # Boy Run Speed
 # fill expressions correctly
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
@@ -163,6 +166,9 @@ class TowBeast(ObjectBase):
 
         # self.subject = boy
 
+
+        self.curStage = game_framework.stack[-1]
+
     def set_direction(self):
 
         pass
@@ -280,7 +286,7 @@ class TowBeast(ObjectBase):
         self.imageState = TowBeast.walking
 
 
-        boy = main_state.get_boy()
+        boy = self.curStage.get_boy()
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.recognizeRange) ** 2:
 
@@ -304,7 +310,7 @@ class TowBeast(ObjectBase):
         self.imageState = TowBeast.walking
 
 
-        boy = main_state.get_boy()
+        boy = self.curStage.get_boy()
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.smashRange) ** 2:
 
@@ -337,7 +343,7 @@ class TowBeast(ObjectBase):
 
     def SmashAttack(self):
 
-        boy = main_state.get_boy()
+        boy = self.curStage.get_boy()
         self.velocity = 0
 
         #state change

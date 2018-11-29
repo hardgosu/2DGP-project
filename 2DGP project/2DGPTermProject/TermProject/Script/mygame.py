@@ -2,12 +2,12 @@ import game_framework
 import pico2d
 
 import main_state
-
+import stage1
 
 
 
 pico2d.open_canvas(main_state.screenX, main_state.screenY, sync= 60)
-game_framework.run(main_state)
+game_framework.run(stage1)
 pico2d.close_canvas()
 
 #print(최종)

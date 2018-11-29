@@ -456,6 +456,10 @@ class RunState:
 
     @staticmethod
     def draw(boy):
+
+
+        #cx, cy = 800,300
+
         if boy.dir == 1:
             boy.Images[boy.imageState]["ImageFile"].clip_composite_draw(int(boy.frame) * Boy.Images[boy.imageState]["IntervalX"] + Boy.Images[boy.imageState]["XRevision"], 0, Boy.Images[boy.imageState]["IntervalX"], Boy.Images[boy.imageState]["IntervalY"], 0, '', boy.x , boy.y + (0.5 - boy.GetNormalizedPivotY()) * Boy.Images[boy.imageState]["IntervalY"] , int(Boy.Images[boy.imageState]["IntervalX"] * boy.scale), int(Boy.Images[boy.imageState]["IntervalY"] * boy.scale))
         else:
@@ -1160,7 +1164,7 @@ class Boy(ObjectBase):
         self.chargeBlocked = False
         self.beginCharge = False
 
-
+        self.curState = game_framework.stack[-1]
 
         # 차지 효과 이펙트를 보관한다
         self.charging = None
@@ -1262,6 +1266,8 @@ class Boy(ObjectBase):
 
         self.collisionCount = False
 
+
+
     def GetBusterStartPosition(self):
 
 
@@ -1301,6 +1307,10 @@ class Boy(ObjectBase):
         game_world.add_object(projectile, 1)
 
         pass
+
+
+    def SetBackground(self,background):
+        self.background = background
 
     def SelfGravity(self):
         if(self.selfGravity == False):

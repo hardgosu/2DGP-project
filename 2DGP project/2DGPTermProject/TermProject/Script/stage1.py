@@ -24,6 +24,8 @@ from footBoard import FootBoard
 
 from ioriExplosion import IoriExplosion
 
+from background1 import Background1
+
 screenX = 1600
 screenY = 600
 
@@ -36,7 +38,7 @@ grass = None
 
 enemyTest = None
 
-backGround = None
+background1 = None
 
 
 collisionCount = 0
@@ -45,11 +47,11 @@ collisionCount = 0
 
 #기본 스테이지
 def enter():
-    global boy, grass , enemyTest , testBack
+    global boy, grass , enemyTest , background1
     boy = Boy()
     grass = Grass()
     enemyTest = EnemyTest()
-    testBack = TestBack()
+
     towBeast = TowBeast()
 
 
@@ -62,13 +64,21 @@ def enter():
     footBoard3.SetPosition(300,180)
 
 
-    ioriExplosion = IoriExplosion(towBeast.x,towBeast.y,towBeast.dir,100)
 
 
 
-    game_world.add_object(testBack,0)
+    background1 = Background1()
+
+    background1.SetCenterObject(boy)
+    boy.SetBackground(background1)
+
+    #순서 중요
+    game_world.add_object(background1, 0)
+
 
     game_world.add_object(grass, 0)
+
+
 
     game_world.add_object(footBoard, 0)
     game_world.add_object(footBoard2, 0)
@@ -79,12 +89,13 @@ def enter():
     game_world.add_object(enemyTest,1)
     game_world.add_object(towBeast,1)
 
-    game_world.add_object(ioriExplosion,1)
+
 
 def exit():
-    global boy, grass
+    global boy, grass,background1
     del boy
     del grass
+    del background1
     game_world.clear()
 
 def pause():
