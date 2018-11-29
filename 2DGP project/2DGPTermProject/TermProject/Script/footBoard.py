@@ -96,8 +96,8 @@ class FootBoard(ObjectBase):
         self.velocity = 0
         self.velocityY = 0
 
-        self.firePositionX = PIXEL_PER_METER * 0.3
-        self.firePositionY = PIXEL_PER_METER * 0.2
+        #self.firePositionX = PIXEL_PER_METER * 0.3
+        #self.firePositionY = PIXEL_PER_METER * 0.2
 
         #self.x += self.firePositionX
         #self.y += self.firePositionY
@@ -137,11 +137,11 @@ class FootBoard(ObjectBase):
         # self.subject = boy
 
 
-        self.windowLeft = 0
-        self.windowBottom = 0
 
-        self.canvasWidth = self.curState.screenX
-        self.canvasHeight = self.curState.screenY
+
+        self.curState = game_framework.stack[-1]
+
+
 
 
 
@@ -198,8 +198,6 @@ class FootBoard(ObjectBase):
 
 
 
-        self.x = clamp(50, self.x, 1280 - 50)
-        self.y = clamp(50, self.y, 1024 - 50)
 
 
         pass
@@ -211,17 +209,17 @@ class FootBoard(ObjectBase):
 
         if self.dir == 1:
             FootBoard.spriteSheet.clip_composite_draw(int(self.frame) * FootBoard.Images[self.imageState]["IntervalX"] + FootBoard.Images[self.imageState]["XRevision"], FootBoard.Images[self.imageState]["IntervalY"] * self.imageState, FootBoard.Images[self.imageState]["IntervalX"],
-                                                      FootBoard.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y, FootBoard.Images[self.imageState]["IntervalX"], FootBoard.Images[self.imageState]["IntervalY"])
+                                                      FootBoard.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, FootBoard.Images[self.imageState]["IntervalX"], FootBoard.Images[self.imageState]["IntervalY"])
         else:
             FootBoard.spriteSheet.clip_composite_draw(int(self.frame) * FootBoard.Images[self.imageState]["IntervalX"] + FootBoard.Images[self.imageState]["XRevision"], FootBoard.Images[self.imageState]["IntervalY"] * self.imageState, FootBoard.Images[self.imageState]["IntervalX"],
-                                                      FootBoard.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, FootBoard.Images[self.imageState]["IntervalX"], FootBoard.Images[self.imageState]["IntervalY"])
+                                                      FootBoard.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, FootBoard.Images[self.imageState]["IntervalX"], FootBoard.Images[self.imageState]["IntervalY"])
 
         if self.beingDeath:
             pass
 
 
     def get_bb(self):
-        return self.x - 90, self.y - 20, self.x + 90, self.y  +20
+        return self.x - 90- self.curState.GetBackground().windowLeft, self.y - 20- self.curState.GetBackground().windowBottom, self.x + 90- self.curState.GetBackground().windowLeft, self.y  +20- self.curState.GetBackground().windowBottom
 
     # fill here
 

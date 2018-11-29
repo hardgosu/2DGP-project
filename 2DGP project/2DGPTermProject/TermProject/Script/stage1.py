@@ -58,13 +58,13 @@ def enter():
     footBoard = FootBoard()
 
     footBoard2 = FootBoard()
-    footBoard2.SetPosition(500,300)
+    footBoard2.SetPosition(500,250)
 
     footBoard3 = FootBoard()
     footBoard3.SetPosition(300,180)
 
-
-
+    footBoard4 = FootBoard()
+    footBoard4.SetPosition(1700,180)
 
 
     background1 = Background1()
@@ -83,6 +83,7 @@ def enter():
     game_world.add_object(footBoard, 0)
     game_world.add_object(footBoard2, 0)
     game_world.add_object(footBoard3, 0)
+    game_world.add_object(footBoard4,0)
 
 
     game_world.add_object(boy, 1)
@@ -209,3 +210,5 @@ def BottomAndTopCollide(a,b):
 
 def get_boy():
     return boy
+def GetBackground():
+    return background1
