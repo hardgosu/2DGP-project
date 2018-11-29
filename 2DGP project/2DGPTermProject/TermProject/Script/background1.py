@@ -129,7 +129,7 @@ class Background1:
 
         self.endTimer = get_time() - self.startTimer
 
-        self.windowLeft = clamp(50,
+        self.windowLeft = clamp(0,
                                  int(self.centerObject.x) - self.canvasWidth // 2,
                                 1867  - self.canvasWidth)
         self.windowBottom = clamp(0,
