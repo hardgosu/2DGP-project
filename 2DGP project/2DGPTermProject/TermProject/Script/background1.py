@@ -136,7 +136,7 @@ class Background1:
                                 #218)
         self.windowBottom = clamp(0,
                                    int(self.centerObject.y) - self.canvasHeight // 2,
-                                  Background1.Images[self.imageState]["IntervalY"] - self.canvasHeight)
+                                  ((Background1.Images[self.imageState]["IntervalY"] - 76) * self.scaleY - self.curState.screenY) // self.scaleY)
 
         #self.set_direction()
 

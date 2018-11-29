@@ -133,7 +133,17 @@ class FootBoard(ObjectBase):
         self.immortal = True
 
 
+
         # self.subject = boy
+
+
+        self.windowLeft = 0
+        self.windowBottom = 0
+
+        self.canvasWidth = self.curState.screenX
+        self.canvasHeight = self.curState.screenY
+
+
 
     def set_direction(self):
 
