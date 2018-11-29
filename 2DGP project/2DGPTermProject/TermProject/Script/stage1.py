@@ -67,6 +67,9 @@ def enter():
     footBoard4.SetPosition(1700,180)
 
 
+    footBoard5 = FootBoard()
+    footBoard5.SetPosition(200,350)
+
     background1 = Background1()
 
     background1.SetCenterObject(boy)
@@ -84,7 +87,7 @@ def enter():
     game_world.add_object(footBoard2, 0)
     game_world.add_object(footBoard3, 0)
     game_world.add_object(footBoard4,0)
-
+    game_world.add_object(footBoard5,0)
 
     game_world.add_object(boy, 1)
     game_world.add_object(enemyTest,1)

@@ -135,8 +135,8 @@ class Background1:
 
                                 #218)
         self.windowBottom = clamp(0,
-                                   int(self.centerObject.y) - self.canvasHeight // 2,
-                                  ((Background1.Images[self.imageState]["IntervalY"] - 76) * self.scaleY - self.curState.screenY) // self.scaleY)
+                                   int(self.centerObject.y) - self.canvasHeight // 2,0)
+                                  #((Background1.Images[self.imageState]["IntervalY"] - 76) * self.scaleY - self.curState.screenY) // self.scaleY)
 
         #self.set_direction()
 
@@ -145,7 +145,7 @@ class Background1:
         #self.x += self.velocity * self.dir * game_framework.frame_time
 
 
-
+        print(self.windowBottom)
 
         pass
 
