@@ -131,7 +131,9 @@ class Background1:
 
         self.windowLeft = clamp(0,
                                  int(self.centerObject.x) - self.canvasWidth // 2,
-                                1867  - self.canvasWidth)
+                                ((Background1.Images[self.imageState]["IntervalX"] - 48) * self.scaleX - self.curState.screenX) // self.scaleX)
+
+                                #218)
         self.windowBottom = clamp(0,
                                    int(self.centerObject.y) - self.canvasHeight // 2,
                                   Background1.Images[self.imageState]["IntervalY"] - self.canvasHeight)
@@ -158,7 +160,7 @@ class Background1:
 
         #if self.dir == 1:
 
-        Background1.Images[self.imageState]["ImageFile"].clip_draw_to_origin( self.windowLeft+  int(self.frame) * Background1.Images[self.imageState]["IntervalX"] + Background1.Images[self.imageState]["XRevision"], self.windowBottom, Background1.Images[self.imageState]["IntervalX"], Background1.Images[self.imageState]["IntervalY"],0,0,Background1.Images[self.imageState]["IntervalX"] * self.scaleX, Background1.Images[self.imageState]["IntervalY"] * self.scaleY)
+        Background1.Images[self.imageState]["ImageFile"].clip_draw_to_origin( self.windowLeft + int(self.frame) * Background1.Images[self.imageState]["IntervalX"] , self.windowBottom, Background1.Images[self.imageState]["IntervalX"], Background1.Images[self.imageState]["IntervalY"],0,0,Background1.Images[self.imageState]["IntervalX"] * self.scaleX, Background1.Images[self.imageState]["IntervalY"] * self.scaleY)
             #Background1.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * Background1.Images[self.imageState]["IntervalX"] + Background1.Images[self.imageState]["XRevision"], 0, Background1.Images[self.imageState]["IntervalX"], Background1.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y, Background1.Images[self.imageState]["IntervalX"] * self.scaleX, Background1.Images[self.imageState]["IntervalY"] * self.scaleY)
         #else:
             #Background1.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * Background1.Images[self.imageState]["IntervalX"] + Background1.Images[self.imageState]["XRevision"], 0, Background1.Images[self.imageState]["IntervalX"], Background1.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, Background1.Images[self.imageState]["IntervalX"] * self.scaleX, Background1.Images[self.imageState]["IntervalY"] * self.scaleY)
