@@ -246,5 +246,7 @@ class EnemyTest(ObjectBase):
         self.curHP -= object.damage
         if(self.curHP <= 0):
             self.DeathAnimation()
+            if(object != None):
+                object.subject.money += self.moneyToGive
 
 
