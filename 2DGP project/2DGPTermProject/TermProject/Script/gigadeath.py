@@ -187,7 +187,7 @@ class Gigadeath(ObjectBase):
 
         if (not self.beingDeath):
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Gigadeath.Images[self.imageState]["Frames"]
-            #self.bt.run()
+            self.bt.run()
             self.x += self.velocity * self.dir * game_framework.frame_time
 
         else:
@@ -217,10 +217,10 @@ class Gigadeath(ObjectBase):
 
         if self.dir == 1:
             Gigadeath.spriteSheet.clip_composite_draw(int(self.frame) * Gigadeath.Images[self.imageState]["IntervalX"] + Gigadeath.Images[self.imageState]["XRevision"], Gigadeath.Images[self.imageState]["IntervalY"] * self.imageState, Gigadeath.Images[self.imageState]["IntervalX"],
-                                                      Gigadeath.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Gigadeath.Images[self.imageState]["IntervalX"], Gigadeath.Images[self.imageState]["IntervalY"])
+                                                      Gigadeath.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Gigadeath.Images[self.imageState]["IntervalX"], Gigadeath.Images[self.imageState]["IntervalY"])
         else:
             Gigadeath.spriteSheet.clip_composite_draw(int(self.frame) * Gigadeath.Images[self.imageState]["IntervalX"] + Gigadeath.Images[self.imageState]["XRevision"], Gigadeath.Images[self.imageState]["IntervalY"] * self.imageState, Gigadeath.Images[self.imageState]["IntervalX"],
-                                                      Gigadeath.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Gigadeath.Images[self.imageState]["IntervalX"], Gigadeath.Images[self.imageState]["IntervalY"])
+                                                      Gigadeath.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Gigadeath.Images[self.imageState]["IntervalX"], Gigadeath.Images[self.imageState]["IntervalY"])
 
         if self.beingDeath:
             pass
@@ -265,28 +265,12 @@ class Gigadeath(ObjectBase):
 
 #인공지능 추가
 
-    def wander(self):
-        # fill here
 
-        #state change
-        self.imageState = Gigadeath.walking
-
-
-        self.velocity = RUN_SPEED_PPS
-        self.timer -= game_framework.frame_time
-        if self.timer < 0:
-            self.timer += 1.0
-            self.dir = random.randint(-1,0)
-            if(self.dir == 0):
-                self.dir = 1
-        return BehaviorTree.SUCCESS
-
-        pass
 
     def find_player(self):
         # fill here
         #state change
-        self.imageState = Gigadeath.walking
+        self.imageState = Gigadeath.idle
 
 
         boy = self.curState.get_boy()
@@ -304,37 +288,6 @@ class Gigadeath(ObjectBase):
             return BehaviorTree.FAIL
         pass
 
-    def move_to_player(self):
-        # fill here
-        self.velocity = RUN_SPEED_PPS
-
-
-        #state change
-        self.imageState = Gigadeath.walking
-
-
-        boy = self.curState.get_boy()
-        distance = (boy.x - self.x) ** 2
-        if distance < (PIXEL_PER_METER * self.smashRange) ** 2:
-
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
-
-            return BehaviorTree.SUCCESS
-
-        if distance >=(PIXEL_PER_METER * self.recognizeRange) ** 2:
-
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
-
-            return BehaviorTree.FAIL
-
-        else:
-            return BehaviorTree.RUNNING
 
 
 
@@ -344,18 +297,15 @@ class Gigadeath(ObjectBase):
         pass
 
 
-    def SmashAttack(self):
+    def FireBullet(self):
 
         boy = self.curState.get_boy()
         self.velocity = 0
 
         #state change
-        self.imageState = Gigadeath.smashing
+        self.imageState = Gigadeath.idle
 
-        if(self.frame >= 3):
-            if(self.frame - int(self.frame) < 0.1):
-                explosion = IoriExplosion(boy.x ,self.y,-self.dir,self.smashDamage)
-                game_world.add_object(explosion,1)
+
 
         return BehaviorTree.SUCCESS
 
@@ -365,22 +315,22 @@ class Gigadeath(ObjectBase):
     def build_behavior_tree(self):
         # fill here
 
-        wander_node = LeafNode("Wander", self.wander)
+
 
 
         find_player_node = LeafNode("Find Player", self.find_player)
-        move_to_player_node = LeafNode("Move to Player", self.move_to_player)
-        SmashAttckNode = LeafNode("Smash Attck",self.SmashAttack)
-
-        chase_node = SequenceNode("Chase")
-        chase_node.add_children(find_player_node, move_to_player_node)
-        chase_node.add_child(SmashAttckNode)
-
-        wander_chase_node = SelectorNode("WanderChase")
-        wander_chase_node.add_children(chase_node, wander_node)
 
 
-        self.bt = BehaviorTree(wander_chase_node)
+        fireBulletNode = LeafNode("Fire Bullet", self.FireBullet)
+
+        findAndFireNode = SequenceNode("Fire")
+        findAndFireNode.add_children(find_player_node, fireBulletNode)
+
+
+
+
+
+        self.bt = BehaviorTree(findAndFireNode)
 
         #wander_node = LeafNode("Wander", self.wander)
         #self.bt = BehaviorTree(wander_node)

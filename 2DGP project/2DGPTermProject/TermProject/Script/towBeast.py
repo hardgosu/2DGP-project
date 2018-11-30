@@ -99,6 +99,8 @@ class TowBeast(ObjectBase):
         if (TowBeast.spriteSheet == None):
             TowBeast.spriteSheet = load_image('sprite/towBeast.png')
 
+        TowBeast.spriteSheet.opacify(1)
+
         self.kind = game_world.Monster
 
         self.land = False
@@ -159,7 +161,7 @@ class TowBeast(ObjectBase):
         self.build_behavior_tree()
 
         self.recognizeRange = 100
-        self.smashRange = 20
+        self.smashRange = 15
 
 
         self.smashDamage = 100
@@ -170,6 +172,10 @@ class TowBeast(ObjectBase):
         self.curState = game_framework.stack[-1]
 
         self.moneyToGive = 5000
+
+
+        self.smashBegin = False
+
 
     def set_direction(self):
 
@@ -198,6 +204,7 @@ class TowBeast(ObjectBase):
 
     def update(self):
 
+
         self.endTimer = get_time() - self.startTimer
 
 
@@ -223,6 +230,8 @@ class TowBeast(ObjectBase):
 
         self.x = clamp(0, self.x, 1600)
         self.y = clamp(0, self.y, 1000)
+
+
 
 
         pass
@@ -335,7 +344,7 @@ class TowBeast(ObjectBase):
 
         boy = self.curState.get_boy()
         distance = (boy.x - self.x) ** 2
-        if distance < (PIXEL_PER_METER * self.smashRange) ** 2:
+        if distance < (PIXEL_PER_METER * (self.smashRange)) ** 2:
 
             if(boy.x - self.x < 0):
                 self.dir = -1
@@ -351,9 +360,11 @@ class TowBeast(ObjectBase):
             else:
                 self.dir = 1
 
+
             return BehaviorTree.FAIL
 
         else:
+
             return BehaviorTree.RUNNING
 
 
@@ -368,14 +379,23 @@ class TowBeast(ObjectBase):
 
         boy = self.curState.get_boy()
         self.velocity = 0
-
-        #state change
         self.imageState = TowBeast.smashing
+        #state change
+
+        if(not self.smashBegin):
+            self.smashBegin = True
+            self.frame = 0
+
 
         if(self.frame >= 3):
             if(self.frame - int(self.frame) < 0.1):
                 explosion = IoriExplosion(boy.x ,self.y,-self.dir,self.smashDamage)
                 game_world.add_object(explosion,1)
+
+                if(int(self.frame) >= TowBeast.Images[self.imageState]["Frames"] - 1):
+                    self.smashBegin = False
+                    print("??f")
+
 
         return BehaviorTree.SUCCESS
 

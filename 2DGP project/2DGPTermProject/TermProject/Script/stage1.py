@@ -67,7 +67,7 @@ footBoard5 = None
 
 #기본 스테이지
 def enter():
-    global boy, grass , enemyTest , background1 , gigadeath
+    global boy, grass , enemyTest , background1
 
     global footBoard,footBoard2,footBoard3,footBoard4,footBoard5
 
@@ -113,8 +113,7 @@ def enter():
     boy.SetBackground(background1)
 
 
-    gigadeath = Gigadeath()
-    gigadeath.SetPosition(400,90)
+
 
     #순서 중요
     game_world.add_object(background1, 0)
@@ -133,7 +132,6 @@ def enter():
     game_world.add_object(boy, 1)
     game_world.add_object(enemyTest,1)
     game_world.add_object(towBeast,1)
-    game_world.add_object(gigadeath,1)
 
     bgm = load_music("sound/music/Dungeon Fighter (KR) Luke Battle Theme.mp3")
 
@@ -164,7 +162,7 @@ def GenMonster():
 
     for o in game_world.all_objects():
         if type(o) == Gigadeath:
-            gigadeathCount +=1
+            gigadeathCount += 1
     if gigadeathCount < gigadeathLimit:
         if not gigadeathTimerSwitch :
             gigadeathTimer = get_time()
@@ -177,7 +175,7 @@ def GenMonster():
                 gigadeath = Gigadeath()
                 gigadeath.SetPosition(random.randint(footBoard3.get_bb()[0],footBoard3.get_bb()[2]),footBoard3.get_bb()[3] + 50)
                 game_world.add_object(gigadeath, 1)
-                gigadeathCount +=1
+                gigadeathCount += 1
 
 
 

@@ -144,6 +144,8 @@ class EnemyTest(ObjectBase):
 
         self.moneyToGive = 2000
 
+
+        EnemyTest.Images[self.imageState]["ImageFile"].opacify(1)
         #self.subject = boy
 
     def set_direction(self):
