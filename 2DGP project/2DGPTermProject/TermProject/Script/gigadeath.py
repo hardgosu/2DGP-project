@@ -149,7 +149,7 @@ class Gigadeath(ObjectBase):
 
         self.curState = game_framework.stack[-1]
 
-        self.moneyToGive = 5000
+        self.moneyToGive = 200
 
     def set_direction(self):
 
@@ -208,7 +208,9 @@ class Gigadeath(ObjectBase):
         pass
 
     def draw(self):
-        if self.boundingBoxOn:
+        if self.curState.showBoundingBox:
+            self.draw_bb()
+        elif self.boundingBoxOn:
             self.draw_bb()
 
 
@@ -224,7 +226,7 @@ class Gigadeath(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 90, self.y - 200, self.x + 50, self.y + 60
+        return self.x - 50, self.y - 50, self.x + 40, self.y + 20
 
     # fill here
 

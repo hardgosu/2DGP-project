@@ -228,7 +228,9 @@ class TowBeast(ObjectBase):
         pass
 
     def draw(self):
-        if self.boundingBoxOn:
+        if self.curState.showBoundingBox:
+            self.draw_bb()
+        elif self.boundingBoxOn:
             self.draw_bb()
 
 

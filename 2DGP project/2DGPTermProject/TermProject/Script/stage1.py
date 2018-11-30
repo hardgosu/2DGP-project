@@ -26,6 +26,8 @@ from ioriExplosion import IoriExplosion
 
 from background1 import Background1
 
+from gigadeath import Gigadeath
+
 screenX = 1600
 screenY = 600
 
@@ -43,11 +45,21 @@ background1 = None
 
 collisionCount = 0
 
+bgm = None
+
+gigadeath = None
+
+showBoundingBox = True
+
+
+
 
 
 #기본 스테이지
 def enter():
-    global boy, grass , enemyTest , background1
+    global boy, grass , enemyTest , background1 , gigadeath
+
+    global  bgm
     boy = Boy()
 
     boy.SetPosition(140,600)
@@ -78,6 +90,10 @@ def enter():
     background1.SetCenterObject(boy)
     boy.SetBackground(background1)
 
+
+    gigadeath = Gigadeath()
+    gigadeath.SetPosition(400,90)
+
     #순서 중요
     game_world.add_object(background1, 0)
 
@@ -95,8 +111,12 @@ def enter():
     game_world.add_object(boy, 1)
     game_world.add_object(enemyTest,1)
     game_world.add_object(towBeast,1)
+    game_world.add_object(gigadeath,1)
 
+    bgm = load_music("sound/music/Dungeon Fighter (KR) Luke Battle Theme.mp3")
 
+    bgm.repeat_play()
+    bgm.set_volume(15)
 
 def exit():
     global boy, grass,background1
@@ -110,6 +130,20 @@ def pause():
 
 
 def resume():
+    pass
+
+
+
+def GenMonster():
+
+
+
+
+    gigadeath = Gigadeath()
+    gigadeath.SetPosition(400,90)
+    game_world.add_object(gigadeath,1)
+
+
     pass
 
 
