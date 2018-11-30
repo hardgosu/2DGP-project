@@ -33,7 +33,7 @@ ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
 
-class TowBeast(ObjectBase):
+class Gigadeath(ObjectBase):
     actions = 6
     death,shouting,smashing,headButt,walking,idle = range(6)
 
@@ -96,8 +96,8 @@ class TowBeast(ObjectBase):
 
     def __init__(self):
 
-        if (TowBeast.spriteSheet == None):
-            TowBeast.spriteSheet = load_image('sprite/towBeast.png')
+        if (Gigadeath.spriteSheet == None):
+            Gigadeath.spriteSheet = load_image('sprite/towBeast.png')
 
         self.kind = game_world.Monster
 
@@ -112,7 +112,7 @@ class TowBeast(ObjectBase):
         # self.cur_state = BusterProjectile.small
 
         # self.cur_state.enter(self, None)
-        self.imageState = TowBeast.idle
+        self.imageState = Gigadeath.idle
 
 
         self.collisionRelation = [game_world.Feature]
@@ -143,7 +143,7 @@ class TowBeast(ObjectBase):
 
         self.shallHandleCollision = True
 
-        self.deathAnimationNumber = TowBeast.deathImmediately
+        self.deathAnimationNumber = Gigadeath.deathImmediately
 
         self.beingDeath = False
         self.deathAnimationFrame = 0
@@ -180,9 +180,9 @@ class TowBeast(ObjectBase):
         self.beingDeath = True
         self.shallHandleCollision = False
 
-        if (self.deathAnimationNumber == TowBeast.deathImmediately):
+        if (self.deathAnimationNumber == Gigadeath.deathImmediately):
             self.clearness = (self.clearness + 0.3) % 1
-            TowBeast.spriteSheet.opacify(self.clearness)
+            Gigadeath.spriteSheet.opacify(self.clearness)
             if (int(self.deathAnimationFrame) % 3 == 0):
                 explosion = ExplosionEffect(random.randint(int(self.get_bb()[0]), int(self.get_bb()[2])),
                                             random.randint(int(self.get_bb()[1]), int(self.get_bb()[3])), self.dir, 0,
@@ -205,18 +205,18 @@ class TowBeast(ObjectBase):
         # self.set_direction()
 
         if (not self.beingDeath):
-            self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % TowBeast.Images[self.imageState]["Frames"]
+            self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Gigadeath.Images[self.imageState]["Frames"]
             self.bt.run()
             self.x += self.velocity * self.dir * game_framework.frame_time
 
         else:
-            if (self.deathAnimationNumber == TowBeast.deathImmediately):
+            if (self.deathAnimationNumber == Gigadeath.deathImmediately):
                 self.DeathAnimation()
                 self.deathAnimationFrame = (
                                                        self.deathAnimationFrame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % \
-                                           TowBeast.deathAnimations[self.deathAnimationNumber]["Frames"]
+                                           Gigadeath.deathAnimations[self.deathAnimationNumber]["Frames"]
 
-                if (self.deathAnimationFrame >= TowBeast.deathAnimations[self.deathAnimationNumber]["Frames"] - 1):
+                if (self.deathAnimationFrame >= Gigadeath.deathAnimations[self.deathAnimationNumber]["Frames"] - 1):
                     self.destroy()
 
 
@@ -233,11 +233,11 @@ class TowBeast(ObjectBase):
 
 
         if self.dir == 1:
-            TowBeast.spriteSheet.clip_composite_draw(int(self.frame) * TowBeast.Images[self.imageState]["IntervalX"] + TowBeast.Images[self.imageState]["XRevision"], TowBeast.Images[self.imageState]["IntervalY"] * self.imageState, TowBeast.Images[self.imageState]["IntervalX"],
-                TowBeast.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom,TowBeast.Images[self.imageState]["IntervalX"], TowBeast.Images[self.imageState]["IntervalY"])
+            Gigadeath.spriteSheet.clip_composite_draw(int(self.frame) * Gigadeath.Images[self.imageState]["IntervalX"] + Gigadeath.Images[self.imageState]["XRevision"], Gigadeath.Images[self.imageState]["IntervalY"] * self.imageState, Gigadeath.Images[self.imageState]["IntervalX"],
+                                                      Gigadeath.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Gigadeath.Images[self.imageState]["IntervalX"], Gigadeath.Images[self.imageState]["IntervalY"])
         else:
-            TowBeast.spriteSheet.clip_composite_draw(int(self.frame) * TowBeast.Images[self.imageState]["IntervalX"] + TowBeast.Images[self.imageState]["XRevision"], TowBeast.Images[self.imageState]["IntervalY"] * self.imageState, TowBeast.Images[self.imageState]["IntervalX"],
-                TowBeast.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom,TowBeast.Images[self.imageState]["IntervalX"], TowBeast.Images[self.imageState]["IntervalY"])
+            Gigadeath.spriteSheet.clip_composite_draw(int(self.frame) * Gigadeath.Images[self.imageState]["IntervalX"] + Gigadeath.Images[self.imageState]["XRevision"], Gigadeath.Images[self.imageState]["IntervalY"] * self.imageState, Gigadeath.Images[self.imageState]["IntervalX"],
+                                                      Gigadeath.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Gigadeath.Images[self.imageState]["IntervalX"], Gigadeath.Images[self.imageState]["IntervalY"])
 
         if self.beingDeath:
             pass
@@ -277,7 +277,7 @@ class TowBeast(ObjectBase):
         # fill here
 
         #state change
-        self.imageState = TowBeast.walking
+        self.imageState = Gigadeath.walking
 
 
         self.velocity = RUN_SPEED_PPS
@@ -294,7 +294,7 @@ class TowBeast(ObjectBase):
     def find_player(self):
         # fill here
         #state change
-        self.imageState = TowBeast.walking
+        self.imageState = Gigadeath.walking
 
 
         boy = self.curState.get_boy()
@@ -318,7 +318,7 @@ class TowBeast(ObjectBase):
 
 
         #state change
-        self.imageState = TowBeast.walking
+        self.imageState = Gigadeath.walking
 
 
         boy = self.curState.get_boy()
@@ -358,7 +358,7 @@ class TowBeast(ObjectBase):
         self.velocity = 0
 
         #state change
-        self.imageState = TowBeast.smashing
+        self.imageState = Gigadeath.smashing
 
         if(self.frame >= 3):
             if(self.frame - int(self.frame) < 0.1):

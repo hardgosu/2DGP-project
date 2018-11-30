@@ -1290,7 +1290,7 @@ class Boy(ObjectBase):
         self.collisionCount = False
 
         self.money = 0
-
+        self.immortal = False
 
     def GetBusterStartPosition(self):
 
@@ -1515,5 +1515,8 @@ class Boy(ObjectBase):
         self.x = x
         self.y = y
 
-    def GetDamage(self):
+    def GetDamage(self,damage):
+        pass
+
+    def ActivateBarrier(self):
         pass
