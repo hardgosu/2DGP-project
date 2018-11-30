@@ -126,6 +126,9 @@ class IoriExplosion(ObjectBase):
         self.check = False
         self.damage = damage
 
+
+        self.curState = game_framework.stack[-1]
+
     def set_direction(self):
 
 
@@ -193,9 +196,9 @@ class IoriExplosion(ObjectBase):
         if self.boundingBoxOn:
             self.draw_bb()
         if self.dir == 1:
-            IoriExplosion.Images[self.imageState]["ImageFile"].clip_composite_draw( ( int(self.frame) % IoriExplosion.Images[self.imageState]["Column"] ) * IoriExplosion.Images[self.imageState]["IntervalX"] + IoriExplosion.Images[self.imageState]["XRevision"], IoriExplosion.Images[self.imageState]["IntervalY"] * self.row, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"])
+            IoriExplosion.Images[self.imageState]["ImageFile"].clip_composite_draw( ( int(self.frame) % IoriExplosion.Images[self.imageState]["Column"] ) * IoriExplosion.Images[self.imageState]["IntervalX"] + IoriExplosion.Images[self.imageState]["XRevision"], IoriExplosion.Images[self.imageState]["IntervalY"] * self.row, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"], 0, '', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"])
         else:
-            IoriExplosion.Images[self.imageState]["ImageFile"].clip_composite_draw(( int(self.frame) % IoriExplosion.Images[self.imageState]["Column"] )  * IoriExplosion.Images[self.imageState]["IntervalX"] + IoriExplosion.Images[self.imageState]["XRevision"], IoriExplosion.Images[self.imageState]["IntervalY"] * self.row, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"])
+            IoriExplosion.Images[self.imageState]["ImageFile"].clip_composite_draw(( int(self.frame) % IoriExplosion.Images[self.imageState]["Column"] )  * IoriExplosion.Images[self.imageState]["IntervalX"] + IoriExplosion.Images[self.imageState]["XRevision"], IoriExplosion.Images[self.imageState]["IntervalY"] * self.row, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"], 0, 'h', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, IoriExplosion.Images[self.imageState]["IntervalX"], IoriExplosion.Images[self.imageState]["IntervalY"])
 
 
 
@@ -204,5 +207,14 @@ class IoriExplosion(ObjectBase):
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
 

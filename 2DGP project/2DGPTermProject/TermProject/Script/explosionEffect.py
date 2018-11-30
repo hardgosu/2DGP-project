@@ -127,6 +127,8 @@ class ExplosionEffect(ObjectBase):
 
 
 
+        self.curState = game_framework.stack[-1]
+
     def update(self):
 
 
@@ -159,9 +161,9 @@ class ExplosionEffect(ObjectBase):
 
         if self.dir == 1:
 
-            ExplosionEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * ExplosionEffect.Images[self.imageState]["IntervalX"] + ExplosionEffect.Images[self.imageState]["XRevision"], self.imageRow * 100, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"])
+            ExplosionEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * ExplosionEffect.Images[self.imageState]["IntervalX"] + ExplosionEffect.Images[self.imageState]["XRevision"], self.imageRow * 100, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"], 0, '', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"])
         else:
-            ExplosionEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * ExplosionEffect.Images[self.imageState]["IntervalX"] + ExplosionEffect.Images[self.imageState]["XRevision"], self.imageRow * 100, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"])
+            ExplosionEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * ExplosionEffect.Images[self.imageState]["IntervalX"] + ExplosionEffect.Images[self.imageState]["XRevision"], self.imageRow * 100, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"], 0, 'h', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, ExplosionEffect.Images[self.imageState]["IntervalX"], ExplosionEffect.Images[self.imageState]["IntervalY"])
 
         if self.boundingBoxOn:
             self.draw_bb()
@@ -172,7 +174,16 @@ class ExplosionEffect(ObjectBase):
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
 
     def CollisionHandling(self,object):
         pass

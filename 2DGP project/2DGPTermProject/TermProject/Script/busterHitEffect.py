@@ -135,7 +135,7 @@ class BusterHitEffect(ObjectBase):
 
 
 
-
+        self.curState = game_framework.stack[-1]
 
 
     def update(self):
@@ -167,9 +167,9 @@ class BusterHitEffect(ObjectBase):
 
         if self.dir == 1:
 
-            BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
+            BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, '', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
         else:
-            BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
+            BusterHitEffect.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterHitEffect.Images[self.imageState]["IntervalX"] + BusterHitEffect.Images[self.imageState]["XRevision"], self.imageState * 100, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"], 0, 'h', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, BusterHitEffect.Images[self.imageState]["IntervalX"], BusterHitEffect.Images[self.imageState]["IntervalY"])
 
         if self.boundingBoxOn:
             self.draw_bb()
@@ -180,7 +180,16 @@ class BusterHitEffect(ObjectBase):
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
 
     def CollisionHandling(self,object):
         pass

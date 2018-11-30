@@ -127,7 +127,7 @@ class Charging:
         Charging.sounds[Charging.soundBeginCharge]["SoundFile"].play(1)
         Charging.sounds[Charging.soundBeginCharge]["SoundFile"].set_volume(Charging.sounds[Charging.soundBeginCharge]["Volume"])
 
-
+        self.curState = game_framework.stack[-1]
 
 
     def set_direction(self):
@@ -175,9 +175,9 @@ class Charging:
         if self.boundingBoxOn:
             self.draw_bb()
         if self.dir == 1:
-            Charging.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * Charging.Images[self.imageState]["IntervalX"] + Charging.Images[self.imageState]["XRevision"], 0, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"], 0, '', self.x , self.y, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"])
+            Charging.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * Charging.Images[self.imageState]["IntervalX"] + Charging.Images[self.imageState]["XRevision"], 0, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft , self.y- self.curState.GetBackground().windowBottom, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"])
         else:
-            Charging.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * Charging.Images[self.imageState]["IntervalX"] + Charging.Images[self.imageState]["XRevision"], 0, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"], 0, 'h', self.x , self.y, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"])
+            Charging.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * Charging.Images[self.imageState]["IntervalX"] + Charging.Images[self.imageState]["XRevision"], 0, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, Charging.Images[self.imageState]["IntervalX"], Charging.Images[self.imageState]["IntervalY"])
 
 
 
@@ -186,5 +186,13 @@ class Charging:
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
 
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)

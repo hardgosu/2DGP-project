@@ -153,7 +153,7 @@ class BusterProjectile(ObjectBase):
             BusterProjectile.sounds[BusterProjectile.soundBig]["SoundFile"].set_volume(BusterProjectile.sounds[BusterProjectile.soundMiddle]["Volume"])
 
 
-
+        self.curState = game_framework.stack[-1]
 
     def set_direction(self):
 
@@ -191,9 +191,9 @@ class BusterProjectile(ObjectBase):
         if self.boundingBoxOn:
             self.draw_bb()
         if self.dir == 1:
-            BusterProjectile.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterProjectile.Images[self.imageState]["IntervalX"] + BusterProjectile.Images[self.imageState]["XRevision"], 0, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"], 0, '', self.x , self.y, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"])
+            BusterProjectile.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterProjectile.Images[self.imageState]["IntervalX"] + BusterProjectile.Images[self.imageState]["XRevision"], 0, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"], 0, '', self.x  - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"])
         else:
-            BusterProjectile.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterProjectile.Images[self.imageState]["IntervalX"] + BusterProjectile.Images[self.imageState]["XRevision"], 0, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"], 0, 'h', self.x , self.y, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"])
+            BusterProjectile.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * BusterProjectile.Images[self.imageState]["IntervalX"] + BusterProjectile.Images[self.imageState]["XRevision"], 0, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"], 0, 'h', self.x  - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, BusterProjectile.Images[self.imageState]["IntervalX"], BusterProjectile.Images[self.imageState]["IntervalY"])
 
 
 
@@ -202,7 +202,18 @@ class BusterProjectile(ObjectBase):
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
+
+
 
     def CollisionHandling(self,object):
 

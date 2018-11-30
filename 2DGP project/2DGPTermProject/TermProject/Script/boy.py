@@ -1435,31 +1435,6 @@ class Boy(ObjectBase):
                 print(self.charging.Images[Charging.charge1]["XRevision"])
         """""
 
-        if Boy.Test:
-
-
-            if event.type == SDL_KEYDOWN and event.key == SDLK_r:
-                Boy.TestIndex += 1
-            if event.type == SDL_KEYDOWN and event.key == SDLK_t:
-                Boy.TestIndex -= 1
-
-
-
-            if event.type == SDL_KEYDOWN and event.key == SDLK_q:
-                Boy.Images[Boy.TestIndex]["IntervalX"] += 1
-                print(Boy.Images[Boy.TestIndex]["IntervalX"])
-
-            if event.type == SDL_KEYDOWN and event.key == SDLK_e:
-                Boy.Images[Boy.TestIndex]["IntervalX"] -= 1
-                print(Boy.Images[Boy.TestIndex]["IntervalX"])
-
-            if event.type == SDL_KEYDOWN and event.key == SDLK_w:
-                Boy.Images[Boy.TestIndex]["XRevision"] -= 1
-                print(Boy.Images[Boy.TestIndex]["XRevision"])
-            if event.type == SDL_KEYDOWN and event.key == SDLK_s:
-                Boy.Images[Boy.TestIndex]["XRevision"] += 1
-                print(Boy.Images[Boy.TestIndex]["XRevision"])
-            clamp(0,Boy.TestIndex,Boy.actions)
 
 
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
