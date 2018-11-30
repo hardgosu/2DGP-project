@@ -48,18 +48,30 @@ collisionCount = 0
 bgm = None
 
 gigadeath = None
+gigadeathLimit = 2
+gigadeathTimer = 0
+gigadeathTimerSwitch = False
+
+
+
 
 showBoundingBox = True
 
 
-
+footBoard = None
+footBoard2 = None
+footBoard3 = None
+footBoard4 = None
+footBoard5 = None
 
 
 #기본 스테이지
 def enter():
     global boy, grass , enemyTest , background1 , gigadeath
 
-    global  bgm
+    global footBoard,footBoard2,footBoard3,footBoard4,footBoard5
+
+    global bgm
     boy = Boy()
 
     boy.SetPosition(140,600)
@@ -72,11 +84,14 @@ def enter():
 
     footBoard = FootBoard()
 
+
     footBoard2 = FootBoard()
     footBoard2.SetPosition(500,250)
 
+
     footBoard3 = FootBoard()
     footBoard3.SetPosition(300,180)
+
 
     footBoard4 = FootBoard()
     footBoard4.SetPosition(1700,180)
@@ -84,6 +99,13 @@ def enter():
 
     footBoard5 = FootBoard()
     footBoard5.SetPosition(200,350)
+
+
+
+
+
+
+
 
     background1 = Background1()
 
@@ -136,12 +158,31 @@ def resume():
 
 def GenMonster():
 
+    global gigadeathTimer,gigadeathTimerSwitch,gigadeathLimit
+
+    gigadeathCount = 0
+
+    for o in game_world.all_objects():
+        if type(o) == Gigadeath:
+            gigadeathCount +=1
+    if gigadeathCount < gigadeathLimit:
+        if not gigadeathTimerSwitch :
+            gigadeathTimer = get_time()
+            gigadeathTimerSwitch = True
+
+        if  get_time() - gigadeathTimer  >= 2:
+            gigadeathTimerSwitch = False
+            global footBoard3
+            while gigadeathCount < gigadeathLimit:
+                gigadeath = Gigadeath()
+                gigadeath.SetPosition(random.randint(footBoard3.get_bb()[0],footBoard3.get_bb()[2]),footBoard3.get_bb()[3] + 50)
+                game_world.add_object(gigadeath, 1)
+                gigadeathCount +=1
 
 
 
-    gigadeath = Gigadeath()
-    gigadeath.SetPosition(400,90)
-    game_world.add_object(gigadeath,1)
+
+
 
 
     pass
@@ -160,7 +201,7 @@ def handle_events():
 
 def update():
 
-
+    GenMonster()
 
     for game_object in game_world.all_objects():
 

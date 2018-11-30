@@ -151,6 +151,8 @@ class Gigadeath(ObjectBase):
 
         self.moneyToGive = 200
 
+        print(self.clearness)
+
     def set_direction(self):
 
         pass
@@ -161,8 +163,7 @@ class Gigadeath(ObjectBase):
         self.shallHandleCollision = False
 
         if (self.deathAnimationNumber == Gigadeath.deathImmediately):
-            self.clearness = (self.clearness + 0.3) % 1
-            Gigadeath.spriteSheet.opacify(self.clearness)
+
             if (int(self.deathAnimationFrame) % 3 == 0):
                 explosion = ExplosionEffect(random.randint(int(self.get_bb()[0]), int(self.get_bb()[2])),
                                             random.randint(int(self.get_bb()[1]), int(self.get_bb()[3])), self.dir, 0,
