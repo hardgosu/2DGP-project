@@ -34,8 +34,8 @@ FRAMES_PER_ACTION = 8
 
 
 class Gigadeath(ObjectBase):
-    actions = 6
-    death,shouting,smashing,headButt,walking,idle = range(6)
+    actions = 1
+    idle = 0
 
     # test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
@@ -47,34 +47,14 @@ class Gigadeath(ObjectBase):
     Test = True
 
     for i in range(actions):
-        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
+        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"YRevision": None})
 
-    Images[idle]["IntervalX"] = 400
-    Images[idle]["IntervalY"] = 400
-    Images[idle]["Frames"] = 1
+    Images[idle]["IntervalX"] = 100
+    Images[idle]["IntervalY"] = 100
+    Images[idle]["Frames"] = 4
     Images[idle]["XRevision"] = 0
+    Images[idle]["YRevision"] = 0
 
-    Images[walking]["IntervalX"] = 400
-    Images[walking]["IntervalY"] = 400
-    Images[walking]["Frames"] = 8
-    Images[walking]["XRevision"] = 0
-
-    Images[headButt]["IntervalX"] = 400
-    Images[headButt]["IntervalY"] = 400
-    Images[headButt]["Frames"] = 6
-    Images[headButt]["XRevision"] = 0
-
-
-    Images[smashing]["IntervalX"] = 400
-    Images[smashing]["IntervalY"] = 400
-    Images[smashing]["Frames"] = 6
-    Images[smashing]["XRevision"] = 0
-
-
-    Images[shouting]["IntervalX"] = 400
-    Images[shouting]["IntervalY"] = 400
-    Images[shouting]["Frames"] = 4
-    Images[shouting]["XRevision"] = 0
 
 
 
@@ -87,17 +67,17 @@ class Gigadeath(ObjectBase):
 
     for i in range(deathAnimationActions):
         deathAnimations.append(
-            {"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
+            {"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"YRevision": None})
 
     deathAnimations[deathImmediately]["IntervalX"] = 100
     deathAnimations[deathImmediately]["IntervalY"] = 100
-    deathAnimations[deathImmediately]["Frames"] = 20
+    deathAnimations[deathImmediately]["Frames"] = 1
     deathAnimations[deathImmediately]["XRevision"] = 0
 
     def __init__(self):
 
         if (Gigadeath.spriteSheet == None):
-            Gigadeath.spriteSheet = load_image('sprite/towBeast.png')
+            Gigadeath.spriteSheet = load_image('sprite/GigadeathIdle.png')
 
         self.kind = game_world.Monster
 
@@ -206,7 +186,7 @@ class Gigadeath(ObjectBase):
 
         if (not self.beingDeath):
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Gigadeath.Images[self.imageState]["Frames"]
-            self.bt.run()
+            #self.bt.run()
             self.x += self.velocity * self.dir * game_framework.frame_time
 
         else:
@@ -269,6 +249,15 @@ class Gigadeath(ObjectBase):
             self.DeathAnimation()
             if(object != None):
                 object.subject.money += self.moneyToGive
+
+    def SetPosition(self,x,y):
+
+
+        self.x = x
+        self.y = y
+
+        pass
+
 
 
 #인공지능 추가

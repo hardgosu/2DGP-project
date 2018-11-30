@@ -271,6 +271,16 @@ class TowBeast(ObjectBase):
                 object.subject.money += self.moneyToGive
 
 
+
+    def SetPosition(self,x,y):
+
+
+        self.x = x
+        self.y = y
+
+        pass
+
+
 #인공지능 추가
 
     def wander(self):
