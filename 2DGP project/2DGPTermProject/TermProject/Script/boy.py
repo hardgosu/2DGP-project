@@ -1289,6 +1289,7 @@ class Boy(ObjectBase):
 
         self.collisionCount = False
 
+        self.money = 0
 
 
     def GetBusterStartPosition(self):
@@ -1407,7 +1408,7 @@ class Boy(ObjectBase):
 
         if(self.boundingBoxOn):
             self.draw_bb()
-        self.font.draw(self.x - 60 - self.background.windowLeft, self.y + 50 - self.background.windowBottom, '(Time: %3.2f)' % get_time(), (255, 255, 0))
+        self.font.draw(self.x - 60 - self.background.windowLeft, self.y + 50 - self.background.windowBottom, '(money : %d)' % self.money, (0, 255, 255))
 
     def handle_event(self, event):
         global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS,DASH_KEY_ON_PRESS, SHOT_KEY_ON_PRESS

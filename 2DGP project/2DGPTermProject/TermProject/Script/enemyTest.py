@@ -141,6 +141,9 @@ class EnemyTest(ObjectBase):
 
 
         self.curState = game_framework.stack[-1]
+
+        self.moneyToGive = 2000
+
         #self.subject = boy
 
     def set_direction(self):
