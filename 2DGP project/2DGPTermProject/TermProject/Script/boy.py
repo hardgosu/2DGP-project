@@ -1520,10 +1520,21 @@ class Boy(ObjectBase):
             self.add_event(key_event)
 
     def get_bb(self):
-        return self.x - self.background.windowLeft - 10,self.y - self.background.windowBottom,self.x - self.background.windowLeft + 10,self.y - self.background.windowBottom + 40
+        return self.x - 10,self.y ,self.x  + 10,self.y  + 40
 
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+        left,bottom,right,top = self.get_bb()
 
+        left -= self.background.windowLeft
+        bottom -= self.background.windowBottom
+        right -= self.background.windowLeft
+        top -= self.background.windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
+
+    def SetPosition(self,x,y):
+        self.x = x
+        self.y = y

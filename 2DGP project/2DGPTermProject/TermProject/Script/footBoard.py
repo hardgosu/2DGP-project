@@ -219,12 +219,22 @@ class FootBoard(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 90- self.curState.GetBackground().windowLeft, self.y - 20- self.curState.GetBackground().windowBottom, self.x + 90- self.curState.GetBackground().windowLeft, self.y  +20- self.curState.GetBackground().windowBottom
-
+        #이건 아닌가
+        #return self.x - 90- self.curState.GetBackground().windowLeft, self.y - 20- self.curState.GetBackground().windowBottom, self.x + 90- self.curState.GetBackground().windowLeft, self.y  +20- self.curState.GetBackground().windowBottom
+        return self.x - 90, self.y - 20, self.x + 90, self.y + 20
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
 
     def CollisionHandling(self, object):
 

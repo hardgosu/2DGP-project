@@ -167,7 +167,7 @@ class TowBeast(ObjectBase):
         # self.subject = boy
 
 
-        self.curStage = game_framework.stack[-1]
+        self.curState = game_framework.stack[-1]
 
     def set_direction(self):
 
@@ -232,10 +232,10 @@ class TowBeast(ObjectBase):
 
         if self.dir == 1:
             TowBeast.spriteSheet.clip_composite_draw(int(self.frame) * TowBeast.Images[self.imageState]["IntervalX"] + TowBeast.Images[self.imageState]["XRevision"], TowBeast.Images[self.imageState]["IntervalY"] * self.imageState, TowBeast.Images[self.imageState]["IntervalX"],
-                TowBeast.Images[self.imageState]["IntervalY"], 0, '', self.x, self.y,TowBeast.Images[self.imageState]["IntervalX"], TowBeast.Images[self.imageState]["IntervalY"])
+                TowBeast.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom,TowBeast.Images[self.imageState]["IntervalX"], TowBeast.Images[self.imageState]["IntervalY"])
         else:
             TowBeast.spriteSheet.clip_composite_draw(int(self.frame) * TowBeast.Images[self.imageState]["IntervalX"] + TowBeast.Images[self.imageState]["XRevision"], TowBeast.Images[self.imageState]["IntervalY"] * self.imageState, TowBeast.Images[self.imageState]["IntervalX"],
-                TowBeast.Images[self.imageState]["IntervalY"], 0, 'h', self.x, self.y,TowBeast.Images[self.imageState]["IntervalX"], TowBeast.Images[self.imageState]["IntervalY"])
+                TowBeast.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom,TowBeast.Images[self.imageState]["IntervalX"], TowBeast.Images[self.imageState]["IntervalY"])
 
         if self.beingDeath:
             pass
@@ -247,7 +247,15 @@ class TowBeast(ObjectBase):
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
 
     def CollisionHandling(self, object):
 
@@ -286,7 +294,7 @@ class TowBeast(ObjectBase):
         self.imageState = TowBeast.walking
 
 
-        boy = self.curStage.get_boy()
+        boy = self.curState.get_boy()
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.recognizeRange) ** 2:
 
@@ -310,7 +318,7 @@ class TowBeast(ObjectBase):
         self.imageState = TowBeast.walking
 
 
-        boy = self.curStage.get_boy()
+        boy = self.curState.get_boy()
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.smashRange) ** 2:
 
@@ -343,7 +351,7 @@ class TowBeast(ObjectBase):
 
     def SmashAttack(self):
 
-        boy = self.curStage.get_boy()
+        boy = self.curState.get_boy()
         self.velocity = 0
 
         #state change

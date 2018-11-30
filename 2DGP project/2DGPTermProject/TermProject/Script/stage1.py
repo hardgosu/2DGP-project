@@ -49,6 +49,9 @@ collisionCount = 0
 def enter():
     global boy, grass , enemyTest , background1
     boy = Boy()
+
+    boy.SetPosition(140,600)
+
     grass = Grass()
     enemyTest = EnemyTest()
 
@@ -203,7 +206,8 @@ def BottomAndTopCollide(a,b):
         return False
     if right_a < left_b:
         return False
-    if abs(bottom_a - top_b) < 10:
+    if abs(bottom_a - top_b) <  10:
+
         return True
 
     return False

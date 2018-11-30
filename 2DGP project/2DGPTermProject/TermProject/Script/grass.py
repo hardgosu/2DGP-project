@@ -1,6 +1,7 @@
 from pico2d import *
 import main_state
 import game_world
+import game_framework
 
 class Grass:
 
@@ -35,12 +36,14 @@ class Grass:
 
         self.boundingBoxOn = True
 
+        self.curState = game_framework.stack[-1]
+
     def update(self):
         pass
 
     def draw(self):
-        self.image.draw(1200, 30)
-        self.image.draw(400, 30)
+        self.image.draw(1200- self.curState.GetBackground().windowLeft, 30- self.curState.GetBackground().windowBottom)
+        self.image.draw(400- self.curState.GetBackground().windowLeft, 30- self.curState.GetBackground().windowBottom)
 
 
         if(self.boundingBoxOn):
@@ -48,8 +51,16 @@ class Grass:
 
     def get_bb(self):
 
-        return self.x - 800, self.y, self.x + 800, self.y + self.image.h - 10
+        return self.x - 800, self.y, self.x + 940, self.y + self.image.h - 10
     # fill here
 
     def draw_bb(self):
-        draw_rectangle(*self.get_bb())
+        left,bottom,right,top = self.get_bb()
+
+        left -= self.curState.GetBackground().windowLeft
+        bottom -= self.curState.GetBackground().windowBottom
+        right -= self.curState.GetBackground().windowLeft
+        top -= self.curState.GetBackground().windowBottom
+
+
+        draw_rectangle(left,bottom,right,top)
