@@ -1514,3 +1514,6 @@ class Boy(ObjectBase):
     def SetPosition(self,x,y):
         self.x = x
         self.y = y
+
+    def GetDamage(self):
+        pass
