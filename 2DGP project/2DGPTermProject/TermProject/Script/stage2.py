@@ -98,7 +98,7 @@ def enter():
     grass = Grass()
 
 
-    towBeast = TowBeast()
+
 
     luke = Luke()
     luke.SetPosition(screenX//2,210)
@@ -157,7 +157,7 @@ def enter():
 
     game_world.add_object(boy, 1)
 
-    game_world.add_object(towBeast,1)
+
 
     game_world.add_object(luke,1)
 

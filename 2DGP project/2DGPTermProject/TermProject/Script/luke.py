@@ -169,7 +169,7 @@ class Luke(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 200
+        self.hPMax = 400
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 
@@ -463,7 +463,6 @@ class Luke(ObjectBase):
 
         if random.randint(0,1) == 0:
             if(not self.attack1Begin):
-                print("실패")
                 return BehaviorTree.FAIL
 
         boy = self.curState.get_boy()
@@ -510,7 +509,6 @@ class Luke(ObjectBase):
 
         if random.randint(0,1) == 0:
             if(not self.attack2Begin):
-                print("실패")
                 return BehaviorTree.FAIL
 
         boy = self.curState.get_boy()

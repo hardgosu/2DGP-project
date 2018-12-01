@@ -310,7 +310,7 @@ class TowBeast(ObjectBase):
 
     def wander(self):
         # fill here
-        print("원더")
+
 
         #state change
         self.imageState = TowBeast.walking
@@ -329,7 +329,7 @@ class TowBeast(ObjectBase):
 
     def find_player(self):
         # fill here
-        print("파인드")
+
         
         #state change
         self.imageState = TowBeast.walking
@@ -380,7 +380,7 @@ class TowBeast(ObjectBase):
 
 
         distance = (boy.x - self.x) ** 2
-        print(distance)
+
         if distance < (PIXEL_PER_METER * (self.smashRange)) ** 2:
 
 

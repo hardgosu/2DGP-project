@@ -2,7 +2,6 @@ from pico2d import *
 
 import game_world
 import game_framework
-import main_state
 import random
 
 from objectBase import ObjectBase
@@ -13,7 +12,7 @@ from BehaviorTree import BehaviorTree, SelectorNode, SequenceNode, LeafNode
 
 
 from ioriExplosion import IoriExplosion
-
+from gigadeathBullet import GigadeathBullet
 
 
 
@@ -34,7 +33,7 @@ FRAMES_PER_ACTION = 8
 
 
 class Gigadeath(ObjectBase):
-    actions = 1
+    actions = 2
     idle = 0
 
     # test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
@@ -47,14 +46,14 @@ class Gigadeath(ObjectBase):
     Test = True
 
     for i in range(actions):
-        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"YRevision": None})
+        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"Row" : None,"Column" : None})
 
     Images[idle]["IntervalX"] = 100
     Images[idle]["IntervalY"] = 100
     Images[idle]["Frames"] = 4
     Images[idle]["XRevision"] = 0
-    Images[idle]["YRevision"] = 0
-
+    Images[idle]["Row"] = 1
+    Images[idle]["Column"] = 10
 
 
 
@@ -83,7 +82,9 @@ class Gigadeath(ObjectBase):
 
         self.land = False
 
-        self.x, self.y = main_state.screenX - 400, 250
+        self.curState = game_framework.stack[-1]
+
+        self.x, self.y = self.curState.screenX//2, 250
         self.dir = -1
 
         self.frame = 0
@@ -117,7 +118,7 @@ class Gigadeath(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 200
+        self.hPMax = 10
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 
@@ -146,10 +147,15 @@ class Gigadeath(ObjectBase):
 
         # self.subject = boy
 
+        #GigadeathBullet관련
+        self.busterSpeed = 5
+        self.firePositionX = 0.8
+        self.firePositionY = 0.45
+        self.busterDelay = 1.0
 
-        self.curState = game_framework.stack[-1]
 
         self.moneyToGive = 200
+        self.attackBegin1 = False
 
         print(self.clearness)
 
@@ -181,6 +187,10 @@ class Gigadeath(ObjectBase):
 
         self.endTimer = get_time() - self.startTimer
 
+        if self.endTimer > self.busterDelay:
+            if self.attackBegin1:
+                self.startTimer = get_time()
+                self.attackBegin1 = False
 
 
         # self.set_direction()
@@ -274,13 +284,15 @@ class Gigadeath(ObjectBase):
 
 
         boy = self.curState.get_boy()
+
+        if (boy.x - self.x < 0):
+            self.dir = -1
+        else:
+            self.dir = 1
+
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.recognizeRange) ** 2:
 
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
 
             return BehaviorTree.SUCCESS
         else:
@@ -305,6 +317,11 @@ class Gigadeath(ObjectBase):
         #state change
         self.imageState = Gigadeath.idle
 
+        if not self.attackBegin1:
+
+            bullet = GigadeathBullet(self)
+            game_world.add_object(bullet,1)
+            self.attackBegin1 = True
 
 
         return BehaviorTree.SUCCESS

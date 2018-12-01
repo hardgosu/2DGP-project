@@ -30,7 +30,7 @@ FRAMES_PER_ACTION = 8
 class GigadeathBullet(ObjectBase):
 
     actions = 1
-    run = 0
+    idle = 0
 
     #test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
@@ -44,16 +44,17 @@ class GigadeathBullet(ObjectBase):
         Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"YRevision": None})
 
 
-    Images[run]["IntervalX"] = 100
-    Images[run]["IntervalY"] = 100
-    Images[run]["Frames"] = 4
-    Images[run]["XRevision"] = 0
-    Images[run]["YRevision"] = 0
+    Images[idle]["IntervalX"] = 100
+    Images[idle]["IntervalY"] = 100
+    Images[idle]["Frames"] = 4
+    Images[idle]["XRevision"] = 0
+    Images[idle]["YRevision"] = 0
 
 
 
     soundKind = 1
-    soundRun = range(soundKind)
+    soundRun = 0
+    #soundRun = range(soundKind)
 
     sounds = []
 
@@ -67,10 +68,10 @@ class GigadeathBullet(ObjectBase):
 
 
 
-    def __init__(self, subject, imageState):
+    def __init__(self, subject):
 
-        if(GigadeathBullet.Images[GigadeathBullet.run]["ImageFile"] == None):
-            GigadeathBullet.Images[GigadeathBullet.run]["ImageFile"] = load_image('middleBuster.png')
+        if(GigadeathBullet.Images[GigadeathBullet.idle]["ImageFile"] == None):
+            GigadeathBullet.Images[GigadeathBullet.idle]["ImageFile"] = load_image('sprite/GigadeathBullet.png')
 
 
         if(GigadeathBullet.sounds[GigadeathBullet.soundRun]["SoundFile"] == None):
@@ -94,7 +95,7 @@ class GigadeathBullet(ObjectBase):
         #self.cur_state = BusterProjectile.small
 
         #self.cur_state.enter(self, None)
-        self.imageState = imageState
+        self.imageState = GigadeathBullet.idle
 
         self.collisionRelation = [game_world.Player]
 
@@ -121,10 +122,10 @@ class GigadeathBullet(ObjectBase):
 
         #버스터 충돌효과 이펙트
         self.hitEffect = None
-        self.damage = 20
+        self.damage = 8
 
 
-        if(self.imageState == GigadeathBullet.run):
+        if(self.imageState == GigadeathBullet.idle):
             GigadeathBullet.sounds[GigadeathBullet.soundRun]["SoundFile"].play(1)
             GigadeathBullet.sounds[GigadeathBullet.soundRun]["SoundFile"].set_volume(GigadeathBullet.sounds[GigadeathBullet.soundRun]["Volume"])
 
@@ -133,7 +134,7 @@ class GigadeathBullet(ObjectBase):
         self.curState = game_framework.stack[-1]
         self.subject = subject
 
-
+        self.collisionHandlingOn = True
 
     def set_direction(self):
 
@@ -171,14 +172,14 @@ class GigadeathBullet(ObjectBase):
         if self.boundingBoxOn:
             self.draw_bb()
         if self.dir == 1:
-            GigadeathBullet.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * GigadeathBullet.Images[self.imageState]["IntervalX"] + GigadeathBullet.Images[self.imageState]["XRevision"], 0, GigadeathBullet.Images[self.imageState]["IntervalX"], GigadeathBullet.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, GigadeathBullet.Images[self.imageState]["IntervalX"], GigadeathBullet.Images[self.imageState]["IntervalY"])
-        else:
             GigadeathBullet.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * GigadeathBullet.Images[self.imageState]["IntervalX"] + GigadeathBullet.Images[self.imageState]["XRevision"], 0, GigadeathBullet.Images[self.imageState]["IntervalX"], GigadeathBullet.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, GigadeathBullet.Images[self.imageState]["IntervalX"], GigadeathBullet.Images[self.imageState]["IntervalY"])
+        else:
+            GigadeathBullet.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * GigadeathBullet.Images[self.imageState]["IntervalX"] + GigadeathBullet.Images[self.imageState]["XRevision"], 0, GigadeathBullet.Images[self.imageState]["IntervalX"], GigadeathBullet.Images[self.imageState]["IntervalY"], 0, '0', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, GigadeathBullet.Images[self.imageState]["IntervalX"], GigadeathBullet.Images[self.imageState]["IntervalY"])
 
 
 
     def get_bb(self):
-        return self.x - 12, self.y - 12, self.x + 12, self.y + 12
+        return self.x - 12, self.y - 50, self.x + 12, self.y -30
     # fill here
 
     def draw_bb(self):
@@ -197,6 +198,4 @@ class GigadeathBullet(ObjectBase):
 
     def CollisionHandling(self,object):
 
-        busterHitEffect = BusterHitEffect(self.x,self.y,self.dir,self.velocity,2)
-        game_world.add_object(busterHitEffect, 1)
-        game_world.remove_object(self)
+        pass
