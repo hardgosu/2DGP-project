@@ -207,8 +207,7 @@ class TowBeast(ObjectBase):
     def destroy(self):
 
         if self.curState.name == "Stage1":
-            portalBlue = PortalBlue(self)
-            game_world.add_object(portalBlue,1)
+            self.curState.genPortalSwitch = True
 
 
 

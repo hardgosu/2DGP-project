@@ -29,7 +29,7 @@ FRAMES_PER_ACTION = 8
 class PortalBlue:
 
     actions = 1
-    charge1 = 0
+    idle = 0
 
     #test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
@@ -43,11 +43,11 @@ class PortalBlue:
         Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"YRevision": None})
 
 
-    Images[charge1]["IntervalX"] = 200
-    Images[charge1]["IntervalY"] = 200
-    Images[charge1]["Frames"] = 7
-    Images[charge1]["XRevision"] = 0
-    Images[charge1]["YRevision"] = 0
+    Images[idle]["IntervalX"] = 200
+    Images[idle]["IntervalY"] = 200
+    Images[idle]["Frames"] = 7
+    Images[idle]["XRevision"] = 0
+    Images[idle]["YRevision"] = 0
 
 
 
@@ -62,8 +62,8 @@ class PortalBlue:
 
     def __init__(self,boy):
 
-        if(PortalBlue.Images[PortalBlue.charge1]["ImageFile"] == None):
-            PortalBlue.Images[PortalBlue.charge1]["ImageFile"] = load_image('sprite/PortalBlue.png')
+        if(PortalBlue.Images[PortalBlue.idle]["ImageFile"] == None):
+            PortalBlue.Images[PortalBlue.idle]["ImageFile"] = load_image('sprite/PortalBlue.png')
 
         if(PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"] == None):
             PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"] = load_wav("sound/Diablo2PortalEnter.wav")
@@ -74,16 +74,21 @@ class PortalBlue:
 
 
 
-        self.kind = game_world.Effect
+        self.kind = game_world.Portal
 
 
         self.land = False
 
-        self.x, self.y = boy.x,boy.y
+
+        if boy != None:
+
+            self.x, self.y = boy.x,boy.y
+            self.dir = clamp(-1, boy.dir, 1)
+        else:
+            self.x,self.y = 800,90
+            self.dir = clamp(-1,1,1)
 
 
-
-        self.dir = clamp(-1,boy.dir,1)
         #self.velocity = velocityX *RUN_SPEED_PPS
         self.frame = 0
         self.event_que = []
@@ -92,9 +97,9 @@ class PortalBlue:
         #self.cur_state = BusterProjectile.small
 
         #self.cur_state.enter(self, None)
-        self.imageState = PortalBlue.charge1
+        self.imageState = PortalBlue.idle
 
-        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature]
+        self.collisionRelation = [game_world.Player]
 
 
 
@@ -107,21 +112,26 @@ class PortalBlue:
 
 
 
-        self.boundingBoxOn = False
+        self.boundingBoxOn = True
 
         self.tempGravity = 3
 
         self.startTimer = get_time()
         self.endTimer = 0
 
+
         self.subject = boy
 
 
 
-        self.soundPlayOnce = False
+
 
 
         self.curState = game_framework.stack[-1]
+
+        PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].play(1)
+        PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].set_volume(PortalBlue.sounds[PortalBlue.soundOpen]["Volume"])
+
 
 
     def set_direction(self):
@@ -140,10 +150,7 @@ class PortalBlue:
 
     def update(self):
 
-        if(not self.soundPlayOnce):
-            PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].play(1)
-            PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].set_volume( PortalBlue.sounds[PortalBlue.soundOpen]["Volume"])
-            self.soundPlayOnce = True
+
 
 
         self.endTimer = get_time() - self.startTimer
@@ -171,7 +178,7 @@ class PortalBlue:
 
 
     def get_bb(self):
-        return self.x - 20, self.y - 20, self.x + 20, self.y + 20
+        return self.x - 50, self.y - 90, self.x + 50, self.y + 40
     # fill here
 
     def draw_bb(self):
@@ -192,5 +199,13 @@ class PortalBlue:
 
         self.x = x
         self.y = y
+
+        pass
+
+    def CollisionHandling(self,object):
+
+        PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"].play(1)
+        PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"].set_volume(PortalBlue.sounds[PortalBlue.soundEnter]["Volume"])
+
 
         pass

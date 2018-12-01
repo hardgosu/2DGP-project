@@ -28,6 +28,8 @@ from background1 import Background1
 
 from gigadeath import Gigadeath
 
+from portalBlue import PortalBlue
+
 screenX = 1600
 screenY = 600
 
@@ -42,6 +44,7 @@ enemyTest = None
 
 background1 = None
 
+towBeast = None
 
 collisionCount = 0
 
@@ -65,9 +68,14 @@ footBoard4 = None
 footBoard5 = None
 
 
+
+genPortalTimer = 0
+genPortalTimerLimit = 0.5
+genPortalSwitch = False
+
 #기본 스테이지
 def enter():
-    global boy, grass , enemyTest , background1
+    global boy, grass , enemyTest , background1 , towBeast
 
     global footBoard,footBoard2,footBoard3,footBoard4,footBoard5
 
@@ -200,6 +208,12 @@ def handle_events():
 def update():
 
     GenMonster()
+    for i in GenPortal():
+        if i :
+            portalBlue = PortalBlue(None)
+            game_world.add_object(portalBlue,1)
+            break
+
 
     for game_object in game_world.all_objects():
 
@@ -233,7 +247,9 @@ def update():
                             if (collide(game_object, game_object_b)):
                                 if type(game_object_b) == Boy:
                                     game_object_b.CollisionHandling(game_object)
-                                    
+                        elif (game_object_b.kind == game_world.Portal):
+                            if (collide(game_object, game_object_b)):
+                                game_object_b.CollisionHandling(game_object)
 
 
 
@@ -298,4 +314,17 @@ def GetBackground():
     return background1
 
 
+def GenPortal():
+    global genPortalSwitch,genPortalTimer,genPortalTimerLimit
 
+    if not genPortalSwitch:
+        return False
+
+    genPortalTimer = get_time()
+
+    while get_time() - genPortalTimer < 0.1:
+        yield False
+
+    else:
+        genPortalSwitch = False
+        yield True

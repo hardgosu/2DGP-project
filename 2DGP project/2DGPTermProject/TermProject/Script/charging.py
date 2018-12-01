@@ -203,6 +203,8 @@ class Charging:
         draw_rectangle(left,bottom,right,top)
 
 
+    def CollisionHandling(self,object):
+        pass
 
     def SetPosition(self,x,y):
 
