@@ -33,6 +33,9 @@ from portalBlue import PortalBlue
 from luke import Luke
 
 
+
+
+
 screenX = 1600
 screenY = 600
 
@@ -129,6 +132,8 @@ def enter():
 
     background1.SetCenterObject(boy)
     boy.SetBackground(background1)
+
+
 
 
 

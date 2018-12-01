@@ -45,7 +45,7 @@ class Thunder(ObjectBase):
 
 
     Images[explosion1]["IntervalX"] = 100
-    Images[explosion1]["IntervalY"] = 200
+    Images[explosion1]["IntervalY"] = 300
     Images[explosion1]["Frames"] = 9
     Images[explosion1]["XRevision"] = 0
     Images[explosion1]["Row"] = 1
@@ -57,7 +57,7 @@ class Thunder(ObjectBase):
 
 
     soundKind = 1
-    soundIceRise = 0
+    soundThunder = 0
 
     sounds = []
 
@@ -67,12 +67,12 @@ class Thunder(ObjectBase):
     def __init__(self,x,y,dir,damage):
 
         if (Thunder.Images[Thunder.explosion1]["ImageFile"] == None):
-                Thunder.Images[Thunder.explosion1]["ImageFile"] = load_image('sprite/IcePick.png')
+                Thunder.Images[Thunder.explosion1]["ImageFile"] = load_image('sprite/thunder.png')
 
 
-        if (Thunder.sounds[Thunder.soundIceRise]["SoundFile"] == None):
-                Thunder.sounds[Thunder.soundIceRise]["SoundFile"] = load_wav("sound/IcePickRise.wav")
-                Thunder.sounds[Thunder.soundIceRise]["Volume"] = 5
+        if (Thunder.sounds[Thunder.soundThunder]["SoundFile"] == None):
+                Thunder.sounds[Thunder.soundThunder]["SoundFile"] = load_wav("sound/Thunder.wav")
+                Thunder.sounds[Thunder.soundThunder]["Volume"] = 8
 
         self.kind = game_world.EffectAttack
 
@@ -110,8 +110,8 @@ class Thunder(ObjectBase):
 
 
 
-        Thunder.sounds[Thunder.soundIceRise]["SoundFile"].play(1)
-        Thunder.sounds[Thunder.soundIceRise]["SoundFile"].set_volume(Thunder.sounds[Thunder.soundIceRise]["Volume"])
+        Thunder.sounds[Thunder.soundThunder]["SoundFile"].play(1)
+        Thunder.sounds[Thunder.soundThunder]["SoundFile"].set_volume(Thunder.sounds[Thunder.soundThunder]["Volume"])
 
 
 
@@ -150,7 +150,7 @@ class Thunder(ObjectBase):
 
         self.endTimer = get_time() - self.startTimer
 
-        if(self.endTimer > 0.1):
+        if(self.endTimer > 0.05):
             if(not self.collisionHandlingOn):
                 self.collisionHandlingOn = True
 
@@ -210,7 +210,7 @@ class Thunder(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 20, self.y - 50, self.x + 30, self.y + 30
+        return self.x - 20, self.y - 150, self.x + 30, self.y + 60
     # fill here
 
     def draw_bb(self):

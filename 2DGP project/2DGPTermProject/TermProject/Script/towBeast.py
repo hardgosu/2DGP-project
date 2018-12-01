@@ -310,6 +310,7 @@ class TowBeast(ObjectBase):
 
     def wander(self):
         # fill here
+        print("원더")
 
         #state change
         self.imageState = TowBeast.walking
@@ -328,19 +329,23 @@ class TowBeast(ObjectBase):
 
     def find_player(self):
         # fill here
+        print("파인드")
+        
         #state change
         self.imageState = TowBeast.walking
 
 
         boy = self.curState.get_boy()
 
+        if (boy.x - self.x < 0):
+            self.dir = -1
+        else:
+            self.dir = 1
+
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.recognizeRange) ** 2:
 
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
+
 
             return BehaviorTree.SUCCESS
         else:
@@ -350,6 +355,7 @@ class TowBeast(ObjectBase):
 
     def move_to_player(self):
         # fill here
+
 
         boy = self.curState.get_boy()
 
@@ -366,31 +372,31 @@ class TowBeast(ObjectBase):
 
 
 
-
+        if(boy.x - self.x < 0):
+            self.dir = -1
+        else:
+            self.dir = 1
 
 
 
         distance = (boy.x - self.x) ** 2
+        print(distance)
         if distance < (PIXEL_PER_METER * (self.smashRange)) ** 2:
 
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
+
 
             return BehaviorTree.SUCCESS
 
         if distance >=(PIXEL_PER_METER * self.recognizeRange) ** 2:
 
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
+
+
 
 
             return BehaviorTree.FAIL
 
         else:
+
 
             return BehaviorTree.RUNNING
 

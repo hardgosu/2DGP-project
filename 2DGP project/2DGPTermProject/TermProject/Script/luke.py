@@ -18,7 +18,7 @@ from portalBlue import PortalBlue
 
 
 from icePick import IcePick
-
+from thunder import Thunder
 
 # Boy Run Speed
 # fill expressions correctly
@@ -94,7 +94,7 @@ class Luke(ObjectBase):
 
     Images[attack2]["IntervalX"] = 300
     Images[attack2]["IntervalY"] = 300
-    Images[attack2]["Frames"] = 4
+    Images[attack2]["Frames"] = 3
     Images[attack2]["XRevision"] = 0
     Images[attack2]["Row"] = 5
     Images[attack2]["Column"] = 10
@@ -128,7 +128,7 @@ class Luke(ObjectBase):
     def __init__(self):
 
         if (Luke.spriteSheet == None):
-            Luke.spriteSheet = load_image('sprite/luke2.png')
+            Luke.spriteSheet = load_image('sprite/luke3.png')
 
         Luke.spriteSheet.opacify(1)
 
@@ -191,7 +191,7 @@ class Luke(ObjectBase):
 
         self.recognizeRange = 100
         self.smashRecognizeTime = 0.5
-        self.smashRange = 15
+        self.smashRange = 20
         self.smashRecognizeTimer = 0
 
 
@@ -325,7 +325,7 @@ class Luke(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 60, self.y - 150, self.x + 60, self.y + 60
+        return self.x - 40, self.y - 150, self.x + 80, self.y + 60
 
     # fill here
 
@@ -390,13 +390,15 @@ class Luke(ObjectBase):
 
         boy = self.curState.get_boy()
 
+        if (boy.x - self.x < 0):
+            self.dir = -1
+        else:
+            self.dir = 1
+
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.recognizeRange) ** 2:
 
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
+
 
             return BehaviorTree.SUCCESS
         else:
@@ -423,26 +425,22 @@ class Luke(ObjectBase):
 
 
 
-
+        if(boy.x - self.x < 0):
+            self.dir = -1
+        else:
+            self.dir = 1
 
 
 
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * (self.smashRange)) ** 2:
 
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
+
 
             return BehaviorTree.SUCCESS
 
         if distance >=(PIXEL_PER_METER * self.recognizeRange) ** 2:
 
-            if(boy.x - self.x < 0):
-                self.dir = -1
-            else:
-                self.dir = 1
 
 
             return BehaviorTree.FAIL
@@ -454,6 +452,12 @@ class Luke(ObjectBase):
 
 
     def Attack1(self):
+
+
+        if random.randint(0,1) == 0:
+            if(not self.attack1Begin):
+                print("실패")
+                return BehaviorTree.FAIL
 
         boy = self.curState.get_boy()
         self.velocity = 0
@@ -486,6 +490,7 @@ class Luke(ObjectBase):
 
         if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
             self.attack1Begin = False
+            self.frame = 0
             return BehaviorTree.SUCCESS
 
         else:
@@ -505,36 +510,74 @@ class Luke(ObjectBase):
             self.attack2Begin = True
             self.frame = 0
             self.targetXPosition = boy.x
-            self.targetYPosition = boy.landingYPosition
+            self.targetYPosition = boy.landingYPosition + 100
 
-        if(self.frame >= 3):
+        if(self.frame >= 2):
 
             if self.curHP > self.hPMax // 2:
-                if(self.frame - int(self.frame) < 0.1):
-                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
-                    game_world.add_object(ice,1)
-                    self.targetXPosition = boy.x
-                    self.targetYPosition = boy.landingYPosition
+                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                game_world.add_object(thunder,1)
+                self.targetXPosition = boy.x
+                self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
 
             else:
-                if(self.frame - int(self.frame) < 0.2):
-                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
-                    game_world.add_object(ice,1)
-                    self.targetXPosition = boy.x
-                    self.targetYPosition = boy.landingYPosition
-                    print("우우아악악")
+
+                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                game_world.add_object(thunder,1)
+                self.targetXPosition = boy.x
+                self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
+                print("우우아악악")
 
 
         if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
             self.attack2Begin = False
+            self.frame = 0
             return BehaviorTree.SUCCESS
 
         else:
             return BehaviorTree.RUNNING
 
         pass
+#폭발
+    def Attack3(self):
+
+        boy = self.curState.get_boy()
+        self.velocity = 0
+        self.imageState = Luke.attack3
+        #state change
+
+        if(not self.attack3Begin):
+            self.attack3Begin = True
+            self.frame = 0
+            self.targetXPosition = boy.x
+            self.targetYPosition = boy.landingYPosition + 100
+
+        if(self.frame >= 2):
+
+            if self.curHP > self.hPMax // 2:
+                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                game_world.add_object(thunder,1)
+                self.targetXPosition = boy.x
+                self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
+
+            else:
+
+                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                game_world.add_object(thunder,1)
+                self.targetXPosition = boy.x
+                self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
+                print("우우아악악")
 
 
+        if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
+            self.attack3Begin = False
+            self.frame = 0
+            return BehaviorTree.SUCCESS
+
+        else:
+            return BehaviorTree.RUNNING
+
+        pass
 
 
 
@@ -549,10 +592,17 @@ class Luke(ObjectBase):
         find_player_node = LeafNode("Find Player", self.find_player)
         move_to_player_node = LeafNode("Move to Player", self.move_to_player)
         attack1Node = LeafNode("Attack1", self.Attack1)
+        attack2Node = LeafNode("Attack2", self.Attack2)
+
+
+        randomPatternNode = SelectorNode("IceThunderExplosion")
+
 
         chase_node = SequenceNode("Chase")
         chase_node.add_children(find_player_node, move_to_player_node)
-        chase_node.add_child(attack1Node)
+        chase_node.add_child(randomPatternNode)
+
+        randomPatternNode.add_children(attack1Node,attack2Node)
 
         wander_chase_node = SelectorNode("WanderChase")
         wander_chase_node.add_children(chase_node, wander_node)
