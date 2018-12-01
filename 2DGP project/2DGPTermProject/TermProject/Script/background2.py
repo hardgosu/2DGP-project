@@ -54,7 +54,7 @@ class Background2:
     def __init__(self):
 
         if(Background2.Images[Background2.idle]["ImageFile"] == None):
-            Background2.Images[Background2.idle]["ImageFile"] = load_image('sprite/background1.png')
+            Background2.Images[Background2.idle]["ImageFile"] = load_image('sprite/background2.png')
 
 
 

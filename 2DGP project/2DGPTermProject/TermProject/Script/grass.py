@@ -1,5 +1,5 @@
 from pico2d import *
-import main_state
+
 import game_world
 import game_framework
 
@@ -21,7 +21,7 @@ class Grass:
 
 
 
-        self.x, self.y = main_state.screenX // 2, 0
+
 
 
         self.dir = 1
@@ -37,6 +37,8 @@ class Grass:
         self.boundingBoxOn = True
 
         self.curState = game_framework.stack[-1]
+
+        self.x, self.y = self.curState.screenX // 2, 0
 
     def update(self):
         pass
