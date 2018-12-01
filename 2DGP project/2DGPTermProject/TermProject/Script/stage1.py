@@ -222,8 +222,6 @@ def update():
                                 if type(game_object) == Boy:
                                     game_object.collisionCount = True
 
-
-
                         elif (game_object_b.kind == game_world.FootBoard):
                             if (BottomAndTopCollide(game_object, game_object_b)):
                                 if type(game_object) == Boy:
@@ -231,6 +229,12 @@ def update():
                                     game_object.land = True
                                     game_object.landingYPosition = game_object_b.get_bb()[3]
                                     game_object.collisionCount = True
+                        elif (game_object.kind == game_world.EffectAttack):
+                            if (collide(game_object, game_object_b)):
+                                if type(game_object_b) == Boy:
+                                    print("아파")
+                                    
+
 
 
         if type(game_object) == Boy:

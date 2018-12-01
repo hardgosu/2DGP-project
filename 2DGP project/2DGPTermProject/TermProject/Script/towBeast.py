@@ -400,7 +400,6 @@ class TowBeast(ObjectBase):
         self.imageState = TowBeast.smashing
         #state change
 
-        print(boy.x)
         if(not self.smashBegin):
             self.smashBegin = True
             self.frame = 0

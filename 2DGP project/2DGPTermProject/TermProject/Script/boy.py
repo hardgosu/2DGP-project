@@ -11,7 +11,7 @@ from objectBase import ObjectBase
 # Boy Run Speed
 # fill expressions correctly
 PIXEL_PER_METER = (10.0 / 0.3) # 10 pixel 30 cm
-RUN_SPEED_KMPH = 40.0 # Km / Hour
+RUN_SPEED_KMPH = 20.0 # Km / Hour
 RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
 RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
 RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
@@ -1157,7 +1157,7 @@ class Boy(ObjectBase):
         self.cur_state.enter(self, None)
         self.imageState = Boy.idle
 
-        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature,game_world.FootBoard]
+        self.collisionRelation = [game_world.EnemyProjectile,game_world.Feature,game_world.FootBoard,game_world.EffectAttack]
 
         self.font = load_font('ENCR10B.TTF', 16)
 

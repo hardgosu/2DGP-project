@@ -82,7 +82,7 @@ class IoriExplosion(ObjectBase):
                 IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = load_wav("sound/FireExplosion2.wav")
                 IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"] = 5
 
-        self.kind = game_world.Effect
+        self.kind = game_world.EffectAttack
 
         self.land = False
 
@@ -203,7 +203,7 @@ class IoriExplosion(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 50, self.y - 200, self.x + 30, self.y + 30
+        return self.x - 20, self.y - 200, self.x + 30, self.y + 30
     # fill here
 
     def draw_bb(self):
