@@ -1138,6 +1138,12 @@ class Boy(ObjectBase):
     Test = False
     TestIndex = idleChargeShot
 
+
+    hPBarImage = None
+    hPBarImageX = 100
+    hPBarImageY = 20
+
+
     def __init__(self):
         self.kind = game_world.Player
 
@@ -1294,12 +1300,16 @@ class Boy(ObjectBase):
 
 
         self.hPMax = 200
-        self.curHP = 200
+        self.curHP = clamp(0,self.hPMax,self.hPMax)
 
 
         #배리어 관련
         self.barrierContinuousTime = 0.5
         self.barrierTimer = 0
+
+
+
+        self.showHPBar = True
 
     def GetBusterStartPosition(self):
 
@@ -1413,7 +1423,8 @@ class Boy(ObjectBase):
                 self.cur_state.enter(self, event)
 
 
-
+        if Boy.hPBarImage == None:
+            Boy.hPBarImage = load_image('sprite/UI/HPBar.png')
 
 
 
@@ -1424,6 +1435,9 @@ class Boy(ObjectBase):
 
         if(self.boundingBoxOn):
             self.draw_bb()
+
+        self.DisplayHPBar()
+
         self.font.draw(self.x - 60 - self.background.windowLeft, self.y + 50 - self.background.windowBottom, '(money : %d)' % self.money, (0, 255, 255))
 
     def handle_event(self, event):
@@ -1584,6 +1598,10 @@ class Boy(ObjectBase):
 
     def DisplayHPBar(self):
 
+        if(not self.showHPBar):
+            return
+
+        Boy.hPBarImage.draw(self.x - self.background.windowLeft ,self.y  + 70- self.background.windowBottom,int(Boy.hPBarImageX *(self.curHP/self.hPMax)),Boy.hPBarImageY)
 
 
         pass

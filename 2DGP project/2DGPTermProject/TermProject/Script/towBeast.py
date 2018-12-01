@@ -138,7 +138,7 @@ class TowBeast(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 200
+        self.hPMax = 300
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 

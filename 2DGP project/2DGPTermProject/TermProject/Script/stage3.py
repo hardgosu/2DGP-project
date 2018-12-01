@@ -40,7 +40,7 @@ screenX = 1600
 screenY = 600
 
 
-name = "Stage2"
+name = "Stage3"
 
 boy = None
 grass = None

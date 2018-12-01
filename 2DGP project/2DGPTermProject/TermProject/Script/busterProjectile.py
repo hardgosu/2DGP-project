@@ -138,7 +138,7 @@ class BusterProjectile(ObjectBase):
 
         #버스터 충돌효과 이펙트
         self.hitEffect = None
-        self.damage = 2
+        self.damage = 30
 
         if(self.imageState == BusterProjectile.big):
             self.damage *=4
