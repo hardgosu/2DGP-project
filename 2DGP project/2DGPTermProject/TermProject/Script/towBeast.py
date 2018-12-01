@@ -176,6 +176,8 @@ class TowBeast(ObjectBase):
 
         self.smashBegin = False
 
+        self.targetXPosition = 0
+        self.targetYPosition = 0
 
     def set_direction(self):
 
@@ -335,12 +337,15 @@ class TowBeast(ObjectBase):
 
     def move_to_player(self):
         # fill here
+
+        boy = self.curState.get_boy()
+
         self.velocity = RUN_SPEED_PPS
 
 
         #state change
         self.imageState = TowBeast.walking
-
+        self.targetXPosition = boy.x
 
         boy = self.curState.get_boy()
         distance = (boy.x - self.x) ** 2
@@ -382,19 +387,23 @@ class TowBeast(ObjectBase):
         self.imageState = TowBeast.smashing
         #state change
 
+        print(boy.x)
         if(not self.smashBegin):
             self.smashBegin = True
             self.frame = 0
+            self.targetXPosition = boy.x
 
 
         if(self.frame >= 3):
-            if(self.frame - int(self.frame) < 0.1):
-                explosion = IoriExplosion(boy.x ,self.y,-self.dir,self.smashDamage)
+
+            if(self.frame - int(self.frame) < 0.2):
+                explosion = IoriExplosion(self.targetXPosition ,self.y,-self.dir,self.smashDamage)
                 game_world.add_object(explosion,1)
+                self.targetXPosition = boy.x
 
                 if(int(self.frame) >= TowBeast.Images[self.imageState]["Frames"] - 1):
                     self.smashBegin = False
-                    print("??f")
+
 
 
         return BehaviorTree.SUCCESS
