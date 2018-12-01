@@ -78,6 +78,8 @@ genPortalSwitch = False
 
 
 lowestLandingPositionY = 180
+deadLineBottom = -1500
+
 
 #기본 스테이지
 def enter():
@@ -226,7 +228,7 @@ def handle_events():
 def update():
 
     GenMonster()
-
+    PlayerFallingDeathCheck()
 
 
 
@@ -343,3 +345,10 @@ def GenPortal():
     else:
         genPortalSwitch = False
         yield True
+
+
+
+def PlayerFallingDeathCheck():
+    global deadLineBottom
+    if(boy.y < deadLineBottom):
+        boy.SetPosition(screenX//2,screenY + 100)

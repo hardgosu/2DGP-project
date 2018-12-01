@@ -132,7 +132,7 @@ class IoriExplosion(ObjectBase):
         self.curState = game_framework.stack[-1]
 
 
-
+        self.collisionHandlingOn = True
 
     def set_direction(self):
 

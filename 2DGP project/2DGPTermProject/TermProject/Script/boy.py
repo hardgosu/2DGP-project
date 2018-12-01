@@ -1573,6 +1573,9 @@ class Boy(ObjectBase):
 
     def CollisionHandling(self,object):
 
+        if(not object.collisionHandlingOn):
+            return
+
         self.GetDamage(object.damage)
 
 

@@ -138,7 +138,7 @@ class BusterProjectile(ObjectBase):
 
         #버스터 충돌효과 이펙트
         self.hitEffect = None
-        self.damage = 50
+        self.damage = 2
 
         if(self.imageState == BusterProjectile.big):
             self.damage *=4
@@ -155,6 +155,8 @@ class BusterProjectile(ObjectBase):
 
         self.curState = game_framework.stack[-1]
         self.subject = boy
+
+        self.collisionHandlingOn = True
 
     def set_direction(self):
 

@@ -17,6 +17,8 @@ from ioriExplosion import IoriExplosion
 from portalBlue import PortalBlue
 
 
+from icePick import IcePick
+
 
 # Boy Run Speed
 # fill expressions correctly
@@ -416,6 +418,7 @@ class Luke(ObjectBase):
 
         if get_time() - self.smashRecognizeTimer > self.smashRecognizeTime:
             self.targetXPosition = boy.x
+            self.targetYPosition = boy.landingYPosition
             self.smashRecognizeTimer = get_time()
 
 
@@ -461,21 +464,23 @@ class Luke(ObjectBase):
             self.attack1Begin = True
             self.frame = 0
             self.targetXPosition = boy.x
-
+            self.targetYPosition = boy.landingYPosition
 
         if(self.frame >= 3):
 
             if self.curHP > self.hPMax // 2:
                 if(self.frame - int(self.frame) < 0.1):
-                    explosion = IoriExplosion(self.targetXPosition ,self.y + 50,-self.dir,self.smashDamage)
-                    game_world.add_object(explosion,1)
+                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                    game_world.add_object(ice,1)
                     self.targetXPosition = boy.x
+                    self.targetYPosition = boy.landingYPosition
 
             else:
                 if(self.frame - int(self.frame) < 0.2):
-                    explosion = IoriExplosion(self.targetXPosition ,self.y + 50,-self.dir,self.smashDamage)
-                    game_world.add_object(explosion,1)
+                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                    game_world.add_object(ice,1)
                     self.targetXPosition = boy.x
+                    self.targetYPosition = boy.landingYPosition
                     print("우우아악악")
 
 

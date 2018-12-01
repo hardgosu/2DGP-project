@@ -44,11 +44,11 @@ class IcePick(ObjectBase):
         Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"Row" : None,"Column" : None})
 
 
-    Images[explosion1]["IntervalX"] = 200
-    Images[explosion1]["IntervalY"] = 400
-    Images[explosion1]["Frames"] = 18
+    Images[explosion1]["IntervalX"] = 100
+    Images[explosion1]["IntervalY"] = 200
+    Images[explosion1]["Frames"] = 9
     Images[explosion1]["XRevision"] = 0
-    Images[explosion1]["Row"] = 2
+    Images[explosion1]["Row"] = 1
     Images[explosion1]["Column"] = 10
 
 
@@ -56,8 +56,8 @@ class IcePick(ObjectBase):
 
 
 
-    soundKind = 2
-    soundExplosion1, soundExplosion2 = range(soundKind)
+    soundKind = 1
+    soundIceRise = 0
 
     sounds = []
 
@@ -67,15 +67,12 @@ class IcePick(ObjectBase):
     def __init__(self,x,y,dir,damage):
 
         if (IcePick.Images[IcePick.explosion1]["ImageFile"] == None):
-                IcePick.Images[IcePick.explosion1]["ImageFile"] = load_image('sprite/ioriEffect1.png')
+                IcePick.Images[IcePick.explosion1]["ImageFile"] = load_image('sprite/IcePick.png')
 
 
-        if (IcePick.sounds[IcePick.soundExplosion2]["SoundFile"] == None):
-                IcePick.sounds[IcePick.soundExplosion2]["SoundFile"] = load_wav("sound/FireExplosion.wav")
-                IcePick.sounds[IcePick.soundExplosion2]["Volume"] = 5
-        if (IcePick.sounds[IcePick.soundExplosion1]["SoundFile"] == None):
-                IcePick.sounds[IcePick.soundExplosion1]["SoundFile"] = load_wav("sound/FireExplosion2.wav")
-                IcePick.sounds[IcePick.soundExplosion1]["Volume"] = 5
+        if (IcePick.sounds[IcePick.soundIceRise]["SoundFile"] == None):
+                IcePick.sounds[IcePick.soundIceRise]["SoundFile"] = load_wav("sound/IcePickRise.wav")
+                IcePick.sounds[IcePick.soundIceRise]["Volume"] = 5
 
         self.kind = game_world.EffectAttack
 
@@ -113,8 +110,8 @@ class IcePick(ObjectBase):
 
 
 
-        IcePick.sounds[IcePick.soundExplosion2]["SoundFile"].play(1)
-        IcePick.sounds[IcePick.soundExplosion2]["SoundFile"].set_volume(IcePick.sounds[IcePick.soundExplosion2]["Volume"])
+        IcePick.sounds[IcePick.soundIceRise]["SoundFile"].play(1)
+        IcePick.sounds[IcePick.soundIceRise]["SoundFile"].set_volume(IcePick.sounds[IcePick.soundIceRise]["Volume"])
 
 
 
@@ -131,7 +128,7 @@ class IcePick(ObjectBase):
 
         self.curState = game_framework.stack[-1]
 
-
+        self.collisionHandlingOn = False
 
 
     def set_direction(self):
@@ -152,6 +149,11 @@ class IcePick(ObjectBase):
 
 
         self.endTimer = get_time() - self.startTimer
+
+        if(self.endTimer > 0.1):
+            if(not self.collisionHandlingOn):
+                self.collisionHandlingOn = True
+
 
         #피코투디..Wav의 구간 반복 재생이 안되는것인가..
         """"
@@ -208,7 +210,7 @@ class IcePick(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 20, self.y - 200, self.x + 30, self.y + 30
+        return self.x - 20, self.y - 50, self.x + 30, self.y + 30
     # fill here
 
     def draw_bb(self):
@@ -223,3 +225,8 @@ class IcePick(ObjectBase):
 
         draw_rectangle(left,bottom,right,top)
 
+    def CollisionHandling(self,object):
+
+
+
+        pass
