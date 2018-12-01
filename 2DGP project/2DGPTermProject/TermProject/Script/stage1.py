@@ -133,7 +133,7 @@ def enter():
     game_world.add_object(enemyTest,1)
     game_world.add_object(towBeast,1)
 
-    bgm = load_music("sound/music/Dungeon Fighter (KR) Luke Battle Theme.mp3")
+    bgm = load_music("sound/music/Dungeon Fighter (KR) Luke - Hard Boss Theme.mp3")
 
     bgm.repeat_play()
     bgm.set_volume(15)
@@ -296,3 +296,6 @@ def get_boy():
     return boy
 def GetBackground():
     return background1
+
+
+

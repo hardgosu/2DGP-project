@@ -40,18 +40,23 @@ class Charging:
 
 
     for i in range(actions):
-        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
+        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"YRevision": None})
 
 
     Images[charge1]["IntervalX"] = 92
     Images[charge1]["IntervalY"] = 90
     Images[charge1]["Frames"] = 10
     Images[charge1]["XRevision"] = 88
+    Images[charge1]["YRevision"] = 0
+
+
 
     Images[charge2]["IntervalX"] = 24
     Images[charge2]["IntervalY"] = 24
     Images[charge2]["Frames"] = 4
     Images[charge2]["XRevision"] = 19
+    Images[charge2]["YRevision"] = 0
+
 
 
 

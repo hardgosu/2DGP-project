@@ -52,10 +52,7 @@ class IoriExplosion(ObjectBase):
     Images[explosion1]["Column"] = 10
 
 
-    Images[explosion2]["IntervalX"] = 24
-    Images[explosion2]["IntervalY"] = 24
-    Images[explosion2]["Frames"] = 4
-    Images[explosion2]["XRevision"] = 19
+
 
 
 
@@ -72,8 +69,6 @@ class IoriExplosion(ObjectBase):
         if (IoriExplosion.Images[IoriExplosion.explosion1]["ImageFile"] == None):
                 IoriExplosion.Images[IoriExplosion.explosion1]["ImageFile"] = load_image('sprite/ioriEffect1.png')
 
-        if (IoriExplosion.Images[IoriExplosion.explosion2]["ImageFile"] == None):
-                IoriExplosion.Images[IoriExplosion.explosion2]["ImageFile"] = load_image('sprite/ioriEffect2.png')
 
         if (IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] == None):
                 IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] = load_wav("sound/FireExplosion.wav")

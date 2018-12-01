@@ -1578,3 +1578,9 @@ class Boy(ObjectBase):
 
 
         pass
+
+    def DisplayHPBar(self):
+
+
+
+        pass
