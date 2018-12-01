@@ -232,7 +232,7 @@ def update():
                         elif (game_object.kind == game_world.EffectAttack):
                             if (collide(game_object, game_object_b)):
                                 if type(game_object_b) == Boy:
-                                    print("아파")
+                                    game_object_b.CollisionHandling(game_object)
                                     
 
 

@@ -1292,6 +1292,15 @@ class Boy(ObjectBase):
         self.money = 0
         self.immortal = False
 
+
+        self.hPMax = 200
+        self.curHP = 200
+
+
+        #배리어 관련
+        self.barrierContinuousTime = 0.5
+        self.barrierTimer = 0
+
     def GetBusterStartPosition(self):
 
 
@@ -1357,7 +1366,14 @@ class Boy(ObjectBase):
 
 
         #self.SelfGravity()
+
+
+
         self.cur_state.do(self)
+
+        if(self.immortal):
+            if get_time() - self.barrierTimer > self.barrierContinuousTime:
+                self.InActivateBarrier()
 
         if(SHOT_KEY_ON_PRESS):
             if(self.beginCharge):
@@ -1516,7 +1532,49 @@ class Boy(ObjectBase):
         self.y = y
 
     def GetDamage(self,damage):
+
+        if(self.immortal):
+            return
+
+        self.curHP -= damage
+
+        if(self.curHP < 0):
+            self.curHP = 0
+        self.ActivateBarrier()
+        print(self.curHP)
+
         pass
 
     def ActivateBarrier(self):
+
+        if(self.immortal):
+            return
+
+        self.immortal = True
+        self.barrierTimer = get_time()
+
+
+        pass
+
+    def InActivateBarrier(self):
+
+        if(not self.immortal):
+            return
+
+        self.immortal = False
+        self.barrierTimer = 0
+
+        pass
+
+
+    def HPReGen(self):
+
+        pass
+
+    def CollisionHandling(self,object):
+
+        self.GetDamage(object.damage)
+
+
+
         pass

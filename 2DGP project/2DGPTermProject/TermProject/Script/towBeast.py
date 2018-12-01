@@ -166,8 +166,8 @@ class TowBeast(ObjectBase):
         self.smashRecognizeTimer = 0
 
 
-
-        self.smashDamage = 100
+        #damage 필드
+        self.smashDamage = 10
 
         # self.subject = boy
 
