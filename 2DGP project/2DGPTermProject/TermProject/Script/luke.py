@@ -493,6 +493,47 @@ class Luke(ObjectBase):
 
         pass
 
+#낙뢰
+    def Attack2(self):
+
+        boy = self.curState.get_boy()
+        self.velocity = 0
+        self.imageState = Luke.attack2
+        #state change
+
+        if(not self.attack2Begin):
+            self.attack2Begin = True
+            self.frame = 0
+            self.targetXPosition = boy.x
+            self.targetYPosition = boy.landingYPosition
+
+        if(self.frame >= 3):
+
+            if self.curHP > self.hPMax // 2:
+                if(self.frame - int(self.frame) < 0.1):
+                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                    game_world.add_object(ice,1)
+                    self.targetXPosition = boy.x
+                    self.targetYPosition = boy.landingYPosition
+
+            else:
+                if(self.frame - int(self.frame) < 0.2):
+                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                    game_world.add_object(ice,1)
+                    self.targetXPosition = boy.x
+                    self.targetYPosition = boy.landingYPosition
+                    print("우우아악악")
+
+
+        if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
+            self.attack2Begin = False
+            return BehaviorTree.SUCCESS
+
+        else:
+            return BehaviorTree.RUNNING
+
+        pass
+
 
 
 
