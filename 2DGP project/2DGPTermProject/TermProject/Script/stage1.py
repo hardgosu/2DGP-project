@@ -32,7 +32,7 @@ screenX = 1600
 screenY = 600
 
 
-name = "MainState"
+name = "Stage1"
 
 boy = None
 grass = None

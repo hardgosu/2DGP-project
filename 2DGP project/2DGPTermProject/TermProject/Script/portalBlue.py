@@ -43,8 +43,8 @@ class PortalBlue:
         Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"YRevision": None})
 
 
-    Images[charge1]["IntervalX"] = 100
-    Images[charge1]["IntervalY"] = 100
+    Images[charge1]["IntervalX"] = 200
+    Images[charge1]["IntervalY"] = 200
     Images[charge1]["Frames"] = 7
     Images[charge1]["XRevision"] = 0
     Images[charge1]["YRevision"] = 0
@@ -66,11 +66,11 @@ class PortalBlue:
             PortalBlue.Images[PortalBlue.charge1]["ImageFile"] = load_image('sprite/PortalBlue.png')
 
         if(PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"] == None):
-            PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"] = load_wav("sound/Diablo2PortalOpen.wav")
-            PortalBlue.sounds[PortalBlue.soundEnter]["Volume"] = 10
+            PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"] = load_wav("sound/Diablo2PortalEnter.wav")
+            PortalBlue.sounds[PortalBlue.soundEnter]["Volume"] = 8
         if(PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"] == None):
-            PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"] = load_wav("sound/Diablo2PortalIn.wav")
-            PortalBlue.sounds[PortalBlue.soundOpen]["Volume"] = 10
+            PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"] = load_wav("sound/Diablo2PortalOpen.wav")
+            PortalBlue.sounds[PortalBlue.soundOpen]["Volume"] = 8
 
 
 
@@ -82,8 +82,6 @@ class PortalBlue:
         self.x, self.y = boy.x,boy.y
 
 
-        self.chargingPositionX = PIXEL_PER_METER * boy.chargingPositionX
-        self.chargingPositionY = PIXEL_PER_METER * boy.chargingPositionY
 
         self.dir = clamp(-1,boy.dir,1)
         #self.velocity = velocityX *RUN_SPEED_PPS
@@ -119,8 +117,9 @@ class PortalBlue:
         self.subject = boy
 
 
-        PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].play(1)
-        PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].set_volume(PortalBlue.sounds[PortalBlue.soundOpen]["Volume"])
+
+        self.soundPlayOnce = False
+
 
         self.curState = game_framework.stack[-1]
 
@@ -140,6 +139,11 @@ class PortalBlue:
 
 
     def update(self):
+
+        if(not self.soundPlayOnce):
+            PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].play(1)
+            PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].set_volume( PortalBlue.sounds[PortalBlue.soundOpen]["Volume"])
+            self.soundPlayOnce = True
 
 
         self.endTimer = get_time() - self.startTimer
@@ -181,3 +185,12 @@ class PortalBlue:
 
 
         draw_rectangle(left,bottom,right,top)
+
+
+    def SetPosition(self,x,y):
+
+
+        self.x = x
+        self.y = y
+
+        pass

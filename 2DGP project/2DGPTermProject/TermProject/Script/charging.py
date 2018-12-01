@@ -201,3 +201,13 @@ class Charging:
 
 
         draw_rectangle(left,bottom,right,top)
+
+
+
+    def SetPosition(self,x,y):
+
+
+        self.x = x
+        self.y = y
+
+        pass

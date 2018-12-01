@@ -5,6 +5,7 @@ import game_framework
 import main_state
 import random
 
+
 from objectBase import ObjectBase
 from busterProjectile import BusterProjectile
 from explosionEffect import ExplosionEffect
@@ -14,6 +15,7 @@ from BehaviorTree import BehaviorTree, SelectorNode, SequenceNode, LeafNode
 
 from ioriExplosion import IoriExplosion
 
+from portalBlue import PortalBlue
 
 
 
@@ -203,6 +205,13 @@ class TowBeast(ObjectBase):
         pass
 
     def destroy(self):
+
+        if self.curState.name == "Stage1":
+            portalBlue = PortalBlue(self)
+            game_world.add_object(portalBlue,1)
+
+
+
         game_world.remove_object(self)
 
         pass
