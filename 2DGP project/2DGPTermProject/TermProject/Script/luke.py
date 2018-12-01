@@ -36,7 +36,7 @@ FRAMES_PER_ACTION = 8
 
 class Luke(ObjectBase):
     actions = 6
-    idle,appear,walking,attack1,attack2,attack3 = range(6)
+    idle,appear,walking,attack1,attack2,attack3 = range(actions)
 
     # test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
@@ -143,7 +143,7 @@ class Luke(ObjectBase):
         # self.cur_state = BusterProjectile.small
 
         # self.cur_state.enter(self, None)
-        self.imageState = Luke.walking
+        self.imageState = Luke.appear
 
 
         self.collisionRelation = [game_world.Feature]
@@ -260,7 +260,7 @@ class Luke(ObjectBase):
         if (not self.beingDeath):
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Luke.Images[self.imageState]["Frames"]
             #self.bt.run()
-            self.x += self.velocity * self.dir * game_framework.frame_time
+            #self.x += self.velocity * self.dir * game_framework.frame_time
 
             if (int(self.frame) == 0):
                 self.row = Luke.Images[self.imageState]["Row"] - 1
@@ -274,8 +274,8 @@ class Luke(ObjectBase):
                 self.check = False
 
             if (int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
+                self.imageState = Luke.walking
                 self.row = Luke.Images[self.imageState]["Row"] - 1
-
 
 
 
@@ -307,12 +307,12 @@ class Luke(ObjectBase):
             self.draw_bb()
 
 
+
         if self.dir == 1:
-            Luke.spriteSheet.clip_composite_draw(int(self.frame) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"],
-                                                 Luke.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
+            Luke.spriteSheet.clip_composite_draw( ( int(self.frame) % Luke.Images[self.imageState]["Column"] ) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"], 0, '', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
         else:
-            Luke.spriteSheet.clip_composite_draw(int(self.frame) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"],
-                                                 Luke.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
+            Luke.spriteSheet.clip_composite_draw(( int(self.frame) % Luke.Images[self.imageState]["Column"] )  * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"], 0, 'h', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
+
 
         if self.beingDeath:
             pass
