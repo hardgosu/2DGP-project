@@ -36,7 +36,7 @@ FRAMES_PER_ACTION = 8
 
 class Luke(ObjectBase):
     actions = 6
-    death,shouting,smashing,headButt,walking,idle = range(6)
+    idle,appear,walking,attack1,attack2,attack3 = range(6)
 
     # test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
@@ -48,35 +48,63 @@ class Luke(ObjectBase):
     Test = True
 
     for i in range(actions):
-        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None})
+        Images.append({"ImageFile": None, "IntervalX": None, "IntervalY": None, "Frames": None, "XRevision": None,"Row" : None,"Column" : None})
 
-    Images[idle]["IntervalX"] = 400
-    Images[idle]["IntervalY"] = 400
+
+
+
+
+    Images[idle]["IntervalX"] = 300
+    Images[idle]["IntervalY"] = 300
     Images[idle]["Frames"] = 1
     Images[idle]["XRevision"] = 0
+    Images[idle]["Row"] = 10
+    Images[idle]["Column"] = 10
 
-    Images[walking]["IntervalX"] = 400
-    Images[walking]["IntervalY"] = 400
+
+
+    Images[appear]["IntervalX"] = 300
+    Images[appear]["IntervalY"] = 300
+    Images[appear]["Frames"] = 54
+    Images[appear]["XRevision"] = 0
+    Images[appear]["Row"] = 13
+    Images[appear]["Column"] = 10
+
+
+    Images[walking]["IntervalX"] = 300
+    Images[walking]["IntervalY"] = 300
     Images[walking]["Frames"] = 8
     Images[walking]["XRevision"] = 0
-
-    Images[headButt]["IntervalX"] = 400
-    Images[headButt]["IntervalY"] = 400
-    Images[headButt]["Frames"] = 6
-    Images[headButt]["XRevision"] = 0
+    Images[walking]["Row"] = 3
+    Images[walking]["Column"] = 10
 
 
-    Images[smashing]["IntervalX"] = 400
-    Images[smashing]["IntervalY"] = 400
-    Images[smashing]["Frames"] = 6
-    Images[smashing]["XRevision"] = 0
 
 
-    Images[shouting]["IntervalX"] = 400
-    Images[shouting]["IntervalY"] = 400
-    Images[shouting]["Frames"] = 4
-    Images[shouting]["XRevision"] = 0
+    Images[attack1]["IntervalX"] = 300
+    Images[attack1]["IntervalY"] = 300
+    Images[attack1]["Frames"] = 17
+    Images[attack1]["XRevision"] = 0
+    Images[attack1]["Row"] = 7
+    Images[attack1]["Column"] = 10
 
+
+
+    Images[attack2]["IntervalX"] = 300
+    Images[attack2]["IntervalY"] = 300
+    Images[attack2]["Frames"] = 4
+    Images[attack2]["XRevision"] = 0
+    Images[attack2]["Row"] = 5
+    Images[attack2]["Column"] = 10
+
+
+
+    Images[attack3]["IntervalX"] = 300
+    Images[attack3]["IntervalY"] = 300
+    Images[attack3]["Frames"] = 8
+    Images[attack3]["XRevision"] = 0
+    Images[attack2]["Row"] = 4
+    Images[attack2]["Column"] = 10
 
 
 
@@ -98,7 +126,7 @@ class Luke(ObjectBase):
     def __init__(self):
 
         if (Luke.spriteSheet == None):
-            Luke.spriteSheet = load_image('sprite/towBeast.png')
+            Luke.spriteSheet = load_image('sprite/luke2.png')
 
         Luke.spriteSheet.opacify(1)
 
@@ -115,7 +143,7 @@ class Luke(ObjectBase):
         # self.cur_state = BusterProjectile.small
 
         # self.cur_state.enter(self, None)
-        self.imageState = Luke.idle
+        self.imageState = Luke.walking
 
 
         self.collisionRelation = [game_world.Feature]
@@ -184,6 +212,10 @@ class Luke(ObjectBase):
 
         self.x, self.y = self.curState.screenX - 400, 250
 
+
+        self.row = Luke.Images[self.imageState]["Row"] - 1
+        self.check = False
+
     def set_direction(self):
 
         pass
@@ -227,8 +259,26 @@ class Luke(ObjectBase):
 
         if (not self.beingDeath):
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Luke.Images[self.imageState]["Frames"]
-            self.bt.run()
+            #self.bt.run()
             self.x += self.velocity * self.dir * game_framework.frame_time
+
+            if (int(self.frame) == 0):
+                self.row = Luke.Images[self.imageState]["Row"] - 1
+
+
+            elif int(self.frame) % Luke.Images[self.imageState]["Column"] == 0:
+                if (not self.check):
+                    self.row -= 1
+                    self.check = True
+            else:
+                self.check = False
+
+            if (int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
+                self.row = Luke.Images[self.imageState]["Row"] - 1
+
+
+
+
 
         else:
             if (self.deathAnimationNumber == Luke.deathImmediately):
@@ -258,10 +308,10 @@ class Luke(ObjectBase):
 
 
         if self.dir == 1:
-            Luke.spriteSheet.clip_composite_draw(int(self.frame) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.imageState, Luke.Images[self.imageState]["IntervalX"],
+            Luke.spriteSheet.clip_composite_draw(int(self.frame) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"],
                                                  Luke.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
         else:
-            Luke.spriteSheet.clip_composite_draw(int(self.frame) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.imageState, Luke.Images[self.imageState]["IntervalX"],
+            Luke.spriteSheet.clip_composite_draw(int(self.frame) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"],
                                                  Luke.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
 
         if self.beingDeath:

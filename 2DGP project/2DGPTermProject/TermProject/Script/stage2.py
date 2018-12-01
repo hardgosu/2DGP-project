@@ -30,6 +30,9 @@ from gigadeath import Gigadeath
 
 from portalBlue import PortalBlue
 
+from luke import Luke
+
+
 screenX = 1600
 screenY = 600
 
@@ -91,7 +94,7 @@ def enter():
 
 
     towBeast = TowBeast()
-
+    luke = Luke()
 
     footBoard = FootBoard()
 
@@ -140,9 +143,18 @@ def enter():
     game_world.add_object(footBoard4,0)
     game_world.add_object(footBoard5,0)
 
+
+
+
     game_world.add_object(boy, 1)
 
     game_world.add_object(towBeast,1)
+
+    game_world.add_object(luke,1)
+
+
+
+
 
     bgm = load_music("sound/music/Dungeon Fighter (KR) Luke Battle Theme.mp3")
 

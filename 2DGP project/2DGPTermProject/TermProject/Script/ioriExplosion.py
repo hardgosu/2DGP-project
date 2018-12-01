@@ -110,19 +110,29 @@ class IoriExplosion(ObjectBase):
 
 
 
-        self.row = IoriExplosion.Images[self.imageState]["Row"] - 1
+
 
 
         IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"].play(1)
-        IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"].set_volume(
-            IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"])
+        IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"].set_volume(IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"])
 
 
+
+
+
+        self.row = IoriExplosion.Images[self.imageState]["Row"] - 1
         self.check = False
+
+
+
+
         self.damage = damage
 
 
         self.curState = game_framework.stack[-1]
+
+
+
 
     def set_direction(self):
 
