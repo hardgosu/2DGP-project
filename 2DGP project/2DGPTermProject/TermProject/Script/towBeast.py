@@ -95,6 +95,13 @@ class TowBeast(ObjectBase):
     deathAnimations[deathImmediately]["Frames"] = 20
     deathAnimations[deathImmediately]["XRevision"] = 0
 
+
+
+    hPBarImage = None
+    hPBarImageX = 100
+    hPBarImageY = 20
+
+
     def __init__(self):
 
         if (TowBeast.spriteSheet == None):
@@ -184,6 +191,13 @@ class TowBeast(ObjectBase):
 
         self.x, self.y = self.curState.screenX - 400, 250
 
+
+
+        self.showHPBar = True
+        if TowBeast.hPBarImage == None:
+            TowBeast.hPBarImage = load_image('sprite/UI/HPBar.png')
+
+
     def set_direction(self):
 
         pass
@@ -255,7 +269,7 @@ class TowBeast(ObjectBase):
             self.draw_bb()
         elif self.boundingBoxOn:
             self.draw_bb()
-
+        self.DisplayHPBar()
 
         if self.dir == 1:
             TowBeast.spriteSheet.clip_composite_draw(int(self.frame) * TowBeast.Images[self.imageState]["IntervalX"] + TowBeast.Images[self.imageState]["XRevision"], TowBeast.Images[self.imageState]["IntervalY"] * self.imageState, TowBeast.Images[self.imageState]["IntervalX"],
@@ -304,6 +318,20 @@ class TowBeast(ObjectBase):
         self.y = y
 
         pass
+
+    def DisplayHPBar(self):
+
+        if(not self.showHPBar):
+            return
+
+        TowBeast.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft  - 20,self.y  + 80- self.curState.GetBackground().windowBottom,int(TowBeast.hPBarImageX *(self.curHP/self.hPMax)),TowBeast.hPBarImageY)
+
+
+        pass
+
+
+
+
 
 
 #인공지능 추가

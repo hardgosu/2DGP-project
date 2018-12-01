@@ -73,6 +73,14 @@ class Gigadeath(ObjectBase):
     deathAnimations[deathImmediately]["Frames"] = 1
     deathAnimations[deathImmediately]["XRevision"] = 0
 
+
+
+
+    hPBarImage = None
+    hPBarImageX = 100
+    hPBarImageY = 20
+
+
     def __init__(self):
 
         if (Gigadeath.spriteSheet == None):
@@ -157,7 +165,10 @@ class Gigadeath(ObjectBase):
         self.moneyToGive = 200
         self.attackBegin1 = False
 
-        print(self.clearness)
+        self.showHPBar = True
+        if Gigadeath.hPBarImage == None:
+            Gigadeath.hPBarImage = load_image('sprite/UI/HPBar.png')
+
 
     def set_direction(self):
 
@@ -223,6 +234,7 @@ class Gigadeath(ObjectBase):
             self.draw_bb()
         elif self.boundingBoxOn:
             self.draw_bb()
+
 
 
         if self.dir == 1:
@@ -351,4 +363,15 @@ class Gigadeath(ObjectBase):
 
         #wander_node = LeafNode("Wander", self.wander)
         #self.bt = BehaviorTree(wander_node)
+        pass
+
+
+    def DisplayHPBar(self):
+
+        if(not self.showHPBar):
+            return
+
+        Gigadeath.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft ,self.y  + 30- self.curState.GetBackground().windowBottom,int(Gigadeath.hPBarImageX *(self.curHP/self.hPMax)),Gigadeath.hPBarImageY)
+
+
         pass

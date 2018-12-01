@@ -126,6 +126,12 @@ class Luke(ObjectBase):
     deathAnimations[deathImmediately]["Frames"] = 20
     deathAnimations[deathImmediately]["XRevision"] = 0
 
+
+
+    hPBarImage = None
+    hPBarImageX = 100
+    hPBarImageY = 20
+
     def __init__(self):
 
         if (Luke.spriteSheet == None):
@@ -227,6 +233,14 @@ class Luke(ObjectBase):
         self.row = Luke.Images[self.imageState]["Row"] - 1
         self.check = False
 
+
+        self.showHPBar = True
+        if Luke.hPBarImage == None:
+            Luke.hPBarImage = load_image('sprite/UI/HPBar.png')
+
+
+
+
     def set_direction(self):
 
         pass
@@ -319,6 +333,7 @@ class Luke(ObjectBase):
         elif self.boundingBoxOn:
             self.draw_bb()
 
+        self.DisplayHPBar()
 
 
         if self.dir == 1:
@@ -367,6 +382,21 @@ class Luke(ObjectBase):
         self.y = y
 
         pass
+
+
+    def DisplayHPBar(self):
+
+        if(not self.showHPBar):
+            return
+
+        Luke.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft  + 30,self.y  + 80- self.curState.GetBackground().windowBottom,int(Luke.hPBarImageX *(self.curHP/self.hPMax)),Luke.hPBarImageY)
+
+
+        pass
+
+
+
+
 
 
 #인공지능 추가

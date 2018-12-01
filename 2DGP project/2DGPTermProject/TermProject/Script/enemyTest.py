@@ -76,7 +76,9 @@ class EnemyTest(ObjectBase):
 
 
 
-
+    hPBarImage = None
+    hPBarImageX = 100
+    hPBarImageY = 20
 
 
 
@@ -148,6 +150,12 @@ class EnemyTest(ObjectBase):
         EnemyTest.Images[self.imageState]["ImageFile"].opacify(1)
         #self.subject = boy
 
+
+        self.showHPBar = True
+        if EnemyTest.hPBarImage == None:
+            EnemyTest.hPBarImage = load_image('sprite/UI/HPBar.png')
+
+
     def set_direction(self):
 
 
@@ -214,6 +222,9 @@ class EnemyTest(ObjectBase):
         if self.boundingBoxOn:
             self.draw_bb()
 
+
+        self.DisplayHPBar()
+
         if self.dir == 1:
             EnemyTest.Images[self.imageState]["ImageFile"].clip_composite_draw(int(self.frame) * EnemyTest.Images[self.imageState]["IntervalX"] + EnemyTest.Images[self.imageState]["XRevision"], 0, EnemyTest.Images[self.imageState]["IntervalX"], EnemyTest.Images[self.imageState]["IntervalY"], 0, '', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, EnemyTest.Images[self.imageState]["IntervalX"], EnemyTest.Images[self.imageState]["IntervalY"])
         else:
@@ -252,3 +263,13 @@ class EnemyTest(ObjectBase):
                 object.subject.money += self.moneyToGive
 
 
+
+    def DisplayHPBar(self):
+
+        if(not self.showHPBar):
+            return
+
+        EnemyTest.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft  + 20,self.y  + 90- self.curState.GetBackground().windowBottom,int(EnemyTest.hPBarImageX *(self.curHP/self.hPMax)),EnemyTest.hPBarImageY)
+
+
+        pass

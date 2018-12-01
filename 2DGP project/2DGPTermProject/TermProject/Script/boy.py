@@ -1310,6 +1310,11 @@ class Boy(ObjectBase):
 
 
         self.showHPBar = True
+        if Boy.hPBarImage == None:
+            Boy.hPBarImage = load_image('sprite/UI/HPBar.png')
+
+
+
 
     def GetBusterStartPosition(self):
 
@@ -1423,8 +1428,7 @@ class Boy(ObjectBase):
                 self.cur_state.enter(self, event)
 
 
-        if Boy.hPBarImage == None:
-            Boy.hPBarImage = load_image('sprite/UI/HPBar.png')
+
 
 
 
