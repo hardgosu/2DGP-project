@@ -150,10 +150,12 @@ def enter():
     bgm.set_volume(25)
 
 def exit():
-    global boy, grass,background1
+    global boy, grass,background1,bgm
 
 
     game_world.clear()
+
+    bgm = None
 
 def pause():
     pass
