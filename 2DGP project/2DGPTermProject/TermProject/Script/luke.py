@@ -19,6 +19,7 @@ from portalBlue import PortalBlue
 
 from icePick import IcePick
 from thunder import Thunder
+from kaiserWave import KaiserWave
 
 # Boy Run Speed
 # fill expressions correctly
@@ -197,6 +198,12 @@ class Luke(ObjectBase):
 
         #damage 필드
         self.smashDamage = 10
+
+        #KaiserWave 관련
+        self.busterSpeed = 10
+        self.firePositionX = 0.4
+        self.firePositionY = 0.9
+
 
         # self.subject = boy
 
@@ -501,6 +508,11 @@ class Luke(ObjectBase):
 #낙뢰
     def Attack2(self):
 
+        if random.randint(0,1) == 0:
+            if(not self.attack2Begin):
+                print("실패")
+                return BehaviorTree.FAIL
+
         boy = self.curState.get_boy()
         self.velocity = 0
         self.imageState = Luke.attack2
@@ -552,20 +564,18 @@ class Luke(ObjectBase):
             self.targetXPosition = boy.x
             self.targetYPosition = boy.landingYPosition + 100
 
-        if(self.frame >= 2):
+        if(self.frame >= 7):
 
             if self.curHP > self.hPMax // 2:
-                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
-                game_world.add_object(thunder,1)
-                self.targetXPosition = boy.x
-                self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
+                kaiser = KaiserWave(self)
+                game_world.add_object(kaiser,1)
+                self.attack3Begin = False
+                return BehaviorTree.SUCCESS
 
-            else:
-
-                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
-                game_world.add_object(thunder,1)
-                self.targetXPosition = boy.x
-                self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
+        elif (self.frame >= 3):
+            if self.curHP <= self.hPMax // 2:
+                kaiser = KaiserWave(self)
+                game_world.add_object(kaiser,1)
                 print("우우아악악")
 
 
@@ -593,7 +603,7 @@ class Luke(ObjectBase):
         move_to_player_node = LeafNode("Move to Player", self.move_to_player)
         attack1Node = LeafNode("Attack1", self.Attack1)
         attack2Node = LeafNode("Attack2", self.Attack2)
-
+        attack3Node = LeafNode("Attack3", self.Attack3)
 
         randomPatternNode = SelectorNode("IceThunderExplosion")
 
@@ -603,6 +613,7 @@ class Luke(ObjectBase):
         chase_node.add_child(randomPatternNode)
 
         randomPatternNode.add_children(attack1Node,attack2Node)
+        randomPatternNode.add_child(attack3Node)
 
         wander_chase_node = SelectorNode("WanderChase")
         wander_chase_node.add_children(chase_node, wander_node)

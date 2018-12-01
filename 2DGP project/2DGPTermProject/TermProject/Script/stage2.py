@@ -272,6 +272,10 @@ def update():
                         elif (game_object_b.kind == game_world.Portal):
                             if (collide(game_object, game_object_b)):
                                 game_object_b.CollisionHandling(game_object)
+                        elif (game_object_b.kind == game_world.EnemyProjectile):
+                            if (collide(game_object,game_object_b)):
+                                game_object.CollisionHandling(game_object_b)
+
 
 
 
