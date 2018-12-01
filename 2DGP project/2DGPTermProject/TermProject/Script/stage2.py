@@ -94,7 +94,9 @@ def enter():
 
 
     towBeast = TowBeast()
+
     luke = Luke()
+    luke.SetPosition(screenX//2,210)
 
     footBoard = FootBoard()
 

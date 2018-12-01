@@ -56,7 +56,7 @@ class Luke(ObjectBase):
 
     Images[idle]["IntervalX"] = 300
     Images[idle]["IntervalY"] = 300
-    Images[idle]["Frames"] = 1
+    Images[idle]["Frames"] = 6
     Images[idle]["XRevision"] = 0
     Images[idle]["Row"] = 10
     Images[idle]["Column"] = 10
@@ -103,8 +103,8 @@ class Luke(ObjectBase):
     Images[attack3]["IntervalY"] = 300
     Images[attack3]["Frames"] = 8
     Images[attack3]["XRevision"] = 0
-    Images[attack2]["Row"] = 4
-    Images[attack2]["Column"] = 10
+    Images[attack3]["Row"] = 4
+    Images[attack3]["Column"] = 10
 
 
 
@@ -204,7 +204,9 @@ class Luke(ObjectBase):
         self.moneyToGive = 5000
 
 
-        self.smashBegin = False
+        self.attack1Begin = False
+        self.attack2Begin = False
+        self.attack3Begin = False
 
         self.targetXPosition = 0
         self.targetYPosition = 0
@@ -259,8 +261,9 @@ class Luke(ObjectBase):
 
         if (not self.beingDeath):
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Luke.Images[self.imageState]["Frames"]
-            #self.bt.run()
-            #self.x += self.velocity * self.dir * game_framework.frame_time
+            if(self.imageState != Luke.appear):
+                self.bt.run()
+            self.x += self.velocity * self.dir * game_framework.frame_time
 
             if (int(self.frame) == 0):
                 self.row = Luke.Images[self.imageState]["Row"] - 1
@@ -274,7 +277,8 @@ class Luke(ObjectBase):
                 self.check = False
 
             if (int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
-                self.imageState = Luke.walking
+                if(self.imageState == Luke.appear):
+                    self.imageState = Luke.walking
                 self.row = Luke.Images[self.imageState]["Row"] - 1
 
 
@@ -319,7 +323,7 @@ class Luke(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 90, self.y - 200, self.x + 50, self.y + 60
+        return self.x - 60, self.y - 150, self.x + 60, self.y + 60
 
     # fill here
 
@@ -446,21 +450,15 @@ class Luke(ObjectBase):
 
 
 
-
-
-
-        pass
-
-
-    def SmashAttack(self):
+    def Attack1(self):
 
         boy = self.curState.get_boy()
         self.velocity = 0
-        self.imageState = Luke.smashing
+        self.imageState = Luke.attack1
         #state change
 
-        if(not self.smashBegin):
-            self.smashBegin = True
+        if(not self.attack1Begin):
+            self.attack1Begin = True
             self.frame = 0
             self.targetXPosition = boy.x
 
@@ -469,26 +467,31 @@ class Luke(ObjectBase):
 
             if self.curHP > self.hPMax // 2:
                 if(self.frame - int(self.frame) < 0.1):
-                    explosion = IoriExplosion(self.targetXPosition ,self.y,-self.dir,self.smashDamage)
+                    explosion = IoriExplosion(self.targetXPosition ,self.y + 50,-self.dir,self.smashDamage)
                     game_world.add_object(explosion,1)
                     self.targetXPosition = boy.x
 
             else:
                 if(self.frame - int(self.frame) < 0.2):
-                    explosion = IoriExplosion(self.targetXPosition ,self.y,-self.dir,self.smashDamage)
+                    explosion = IoriExplosion(self.targetXPosition ,self.y + 50,-self.dir,self.smashDamage)
                     game_world.add_object(explosion,1)
                     self.targetXPosition = boy.x
-                    print("우우아악")
+                    print("우우아악악")
 
 
         if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
-            self.smashBegin = False
+            self.attack1Begin = False
             return BehaviorTree.SUCCESS
 
         else:
             return BehaviorTree.RUNNING
 
         pass
+
+
+
+
+
 
 
     def build_behavior_tree(self):
@@ -499,11 +502,11 @@ class Luke(ObjectBase):
 
         find_player_node = LeafNode("Find Player", self.find_player)
         move_to_player_node = LeafNode("Move to Player", self.move_to_player)
-        SmashAttckNode = LeafNode("Smash Attck",self.SmashAttack)
+        attack1Node = LeafNode("Attack1", self.Attack1)
 
         chase_node = SequenceNode("Chase")
         chase_node.add_children(find_player_node, move_to_player_node)
-        chase_node.add_child(SmashAttckNode)
+        chase_node.add_child(attack1Node)
 
         wander_chase_node = SelectorNode("WanderChase")
         wander_chase_node.add_children(chase_node, wander_node)
