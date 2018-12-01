@@ -161,7 +161,10 @@ class TowBeast(ObjectBase):
         self.build_behavior_tree()
 
         self.recognizeRange = 100
+        self.smashRecognizeTime = 0.5
         self.smashRange = 15
+        self.smashRecognizeTimer = 0
+
 
 
         self.smashDamage = 100
@@ -321,6 +324,7 @@ class TowBeast(ObjectBase):
 
 
         boy = self.curState.get_boy()
+
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * self.recognizeRange) ** 2:
 
@@ -345,9 +349,18 @@ class TowBeast(ObjectBase):
 
         #state change
         self.imageState = TowBeast.walking
-        self.targetXPosition = boy.x
 
-        boy = self.curState.get_boy()
+
+        if get_time() - self.smashRecognizeTimer > self.smashRecognizeTime:
+            self.targetXPosition = boy.x
+            self.smashRecognizeTimer = get_time()
+
+
+
+
+
+
+
         distance = (boy.x - self.x) ** 2
         if distance < (PIXEL_PER_METER * (self.smashRange)) ** 2:
 
