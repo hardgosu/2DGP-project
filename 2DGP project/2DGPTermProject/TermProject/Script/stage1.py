@@ -1,6 +1,7 @@
 import random
 import json
 import os
+import stage2
 
 from pico2d import *
 import game_framework
@@ -73,6 +74,9 @@ genPortalTimer = 0
 genPortalTimerLimit = 0.5
 genPortalSwitch = False
 
+
+lowestLandingPositionY = 180
+
 #기본 스테이지
 def enter():
     global boy, grass , enemyTest , background1 , towBeast
@@ -144,13 +148,13 @@ def enter():
     bgm = load_music("sound/music/Dungeon Fighter (KR) Luke - Hard Boss Theme.mp3")
 
     bgm.repeat_play()
-    bgm.set_volume(15)
+    bgm.set_volume(25)
 
 def exit():
     global boy, grass,background1
-    del boy
-    del grass
-    del background1
+
+
+
     game_world.clear()
 
 def pause():
@@ -208,11 +212,8 @@ def handle_events():
 def update():
 
     GenMonster()
-    for i in GenPortal():
-        if i :
-            portalBlue = PortalBlue(None)
-            game_world.add_object(portalBlue,1)
-            break
+
+
 
 
     for game_object in game_world.all_objects():
@@ -322,9 +323,12 @@ def GenPortal():
 
     genPortalTimer = get_time()
 
-    while get_time() - genPortalTimer < 0.1:
+    while get_time() - genPortalTimer < 1.0:
         yield False
 
     else:
         genPortalSwitch = False
         yield True
+
+def ChangeState():
+    game_framework.change_state(stage2)

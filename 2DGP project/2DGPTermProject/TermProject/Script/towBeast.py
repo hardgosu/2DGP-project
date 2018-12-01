@@ -2,7 +2,6 @@ from pico2d import *
 
 import game_world
 import game_framework
-import main_state
 import random
 
 
@@ -107,7 +106,7 @@ class TowBeast(ObjectBase):
 
         self.land = False
 
-        self.x, self.y = main_state.screenX - 400, 250
+
         self.dir = -1
 
         self.frame = 0
@@ -127,11 +126,9 @@ class TowBeast(ObjectBase):
         self.velocity = 0
         self.velocityY = 0
 
-        self.firePositionX = PIXEL_PER_METER * 0.3
-        self.firePositionY = PIXEL_PER_METER * 0.2
 
-        self.x += self.firePositionX
-        self.y += self.firePositionY
+
+
 
         #바운딩 박스 출력여부를 결정한다
         self.boundingBoxOn = False
@@ -184,6 +181,9 @@ class TowBeast(ObjectBase):
         self.targetXPosition = 0
         self.targetYPosition = 0
 
+
+        self.x, self.y = self.curState.screenX - 400, 250
+
     def set_direction(self):
 
         pass
@@ -207,7 +207,8 @@ class TowBeast(ObjectBase):
     def destroy(self):
 
         if self.curState.name == "Stage1":
-            self.curState.genPortalSwitch = True
+            portal = PortalBlue(self)
+            game_world.add_object(portal,1)
 
 
 

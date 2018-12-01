@@ -80,13 +80,6 @@ class PortalBlue:
         self.land = False
 
 
-        if boy != None:
-
-            self.x, self.y = boy.x,boy.y
-            self.dir = clamp(-1, boy.dir, 1)
-        else:
-            self.x,self.y = 800,90
-            self.dir = clamp(-1,1,1)
 
 
         #self.velocity = velocityX *RUN_SPEED_PPS
@@ -129,8 +122,21 @@ class PortalBlue:
 
         self.curState = game_framework.stack[-1]
 
+        if boy != None:
+
+            self.x, self.y = boy.x,boy.y
+            self.dir = clamp(-1, boy.dir, 1)
+        else:
+            self.x,self.y = 800,180
+            self.dir = clamp(-1,1,1)
+
+
+
         PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].play(1)
         PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"].set_volume(PortalBlue.sounds[PortalBlue.soundOpen]["Volume"])
+
+
+
 
 
 
@@ -207,5 +213,6 @@ class PortalBlue:
         PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"].play(1)
         PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"].set_volume(PortalBlue.sounds[PortalBlue.soundEnter]["Volume"])
 
+        self.curState.ChangeState()
 
         pass
