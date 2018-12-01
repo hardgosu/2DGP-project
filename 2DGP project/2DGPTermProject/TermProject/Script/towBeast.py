@@ -408,17 +408,26 @@ class TowBeast(ObjectBase):
 
         if(self.frame >= 3):
 
-            if(self.frame - int(self.frame) < 0.2):
-                explosion = IoriExplosion(self.targetXPosition ,self.y,-self.dir,self.smashDamage)
-                game_world.add_object(explosion,1)
-                self.targetXPosition = boy.x
+            if self.curHP > self.hPMax // 2:
+                if(self.frame - int(self.frame) < 0.1):
+                    explosion = IoriExplosion(self.targetXPosition ,self.y,-self.dir,self.smashDamage)
+                    game_world.add_object(explosion,1)
+                    self.targetXPosition = boy.x
 
-                if(int(self.frame) >= TowBeast.Images[self.imageState]["Frames"] - 1):
-                    self.smashBegin = False
+            else:
+                if(self.frame - int(self.frame) < 0.2):
+                    explosion = IoriExplosion(self.targetXPosition ,self.y,-self.dir,self.smashDamage)
+                    game_world.add_object(explosion,1)
+                    self.targetXPosition = boy.x
+                    print("우우아악")
 
 
+        if(int(self.frame) >= TowBeast.Images[self.imageState]["Frames"] - 1):
+            self.smashBegin = False
+            return BehaviorTree.SUCCESS
 
-        return BehaviorTree.SUCCESS
+        else:
+            return BehaviorTree.RUNNING
 
         pass
 

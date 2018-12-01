@@ -78,7 +78,7 @@ class ExplosionEffect(ObjectBase):
 
 
 
-        self.kind = game_world.EffectAttack
+        self.kind = game_world.Effect
 
         self.land = False
 
