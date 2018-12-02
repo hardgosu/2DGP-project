@@ -141,7 +141,7 @@ class BusterProjectile(ObjectBase):
         self.damage = 3
 
         if(self.imageState == BusterProjectile.big):
-            self.damage *=4
+            self.damage *=5
 
         if(self.imageState == BusterProjectile.middle):
             BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"].play(1)
@@ -205,6 +205,8 @@ class BusterProjectile(ObjectBase):
     # fill here
 
     def draw_bb(self):
+        if not self.curState.showBoundingBox:
+            return
 
         left,bottom,right,top = self.get_bb()
 

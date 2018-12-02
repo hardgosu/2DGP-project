@@ -43,7 +43,7 @@ SHOT_KEY_ON_PRESS = False
 # Boy Event
 
 
-RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, LSHIFT, RSHIFT, LSHIFTUP, RSHIFTUP, JUMP_DOWN, JUMP_UP, SHOT_BUTTON,CHARGE_SHOT_BUTTON = range(14)
+RIGHT_DOWN, LEFT_DOWN, RIGHT_UP, LEFT_UP, SLEEP_TIMER, SPACE, DASHDOWN, DASHUP, JUMP_DOWN, JUMP_UP, SHOT_BUTTON, CHARGE_SHOT_BUTTON = range(12)
 
 
 # fill here
@@ -54,12 +54,10 @@ key_event_table = {
     (SDL_KEYUP, SDLK_RIGHT): RIGHT_UP,
     (SDL_KEYUP, SDLK_LEFT): LEFT_UP,
     (SDL_KEYDOWN,SDLK_SPACE) : SPACE,
-    (SDL_KEYDOWN, SDLK_LSHIFT): LSHIFT,
-    (SDL_KEYDOWN, SDLK_RSHIFT): RSHIFT,
-    (SDL_KEYUP, SDLK_LSHIFT): LSHIFTUP,
-    (SDL_KEYUP, SDLK_RSHIFT): RSHIFTUP,
-    (SDL_KEYDOWN, SDLK_d) : JUMP_DOWN,
-    (SDL_KEYUP, SDLK_d): JUMP_UP,
+    (SDL_KEYDOWN, SDLK_d): DASHDOWN,
+    (SDL_KEYUP, SDLK_d): DASHUP,
+    (SDL_KEYDOWN, SDLK_s) : JUMP_DOWN,
+    (SDL_KEYUP, SDLK_s): JUMP_UP,
     (SDL_KEYDOWN, SDLK_a): SHOT_BUTTON
 
 }
@@ -351,8 +349,6 @@ class IdleState:
     @staticmethod
     def exit(boy,event):
 
-        if(event == RSHIFT):
-            pass
         if(event == SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.middle)
 
@@ -1101,17 +1097,17 @@ next_state_table = {
 next_state_table = {
 # fill here
     IdleState: {RIGHT_UP : RunState, LEFT_UP : RunState, RIGHT_DOWN : RunState, LEFT_DOWN: RunState, SLEEP_TIMER: SleepState,
-                SPACE: IdleState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : IdleShotState , CHARGE_SHOT_BUTTON : IdleChargeShotState},
+                SPACE: IdleState, DASHDOWN : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : IdleShotState , CHARGE_SHOT_BUTTON : IdleChargeShotState},
     RunState: {RIGHT_UP : IdleState, LEFT_UP: IdleState, LEFT_DOWN: RunState, RIGHT_DOWN : RunState,
-               SPACE: RunState, LSHIFT : DashState, RSHIFT : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : WalkingShotState , CHARGE_SHOT_BUTTON : WalkingShotState},
+               SPACE: RunState, DASHDOWN : DashState, JUMP_DOWN : JumpState , SHOT_BUTTON : WalkingShotState , CHARGE_SHOT_BUTTON : WalkingShotState},
 
-    DashState: { LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState,LSHIFT : IdleState, RSHIFT : IdleState,LSHIFTUP : IdleState,RSHIFTUP : IdleState},
+    DashState: {LEFT_DOWN: IdleState, RIGHT_DOWN :IdleState, LEFT_UP: IdleState, RIGHT_UP: IdleState, DASHDOWN : IdleState, DASHUP : IdleState},
 
     JumpState: { JUMP_UP : FallingState , SHOT_BUTTON : JumpingShotState,CHARGE_SHOT_BUTTON : JumpingShotState},
 
     IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState ,  JUMP_DOWN : JumpState},
 
-    WalkingShotState : {SHOT_BUTTON : WalkingShotState,LSHIFT : DashState, RSHIFT : DashState , JUMP_DOWN : JumpState},
+    WalkingShotState : {SHOT_BUTTON : WalkingShotState, DASHDOWN : DashState , JUMP_DOWN : JumpState},
 
     JumpingShotState : {},
 
@@ -1298,7 +1294,7 @@ class Boy(ObjectBase):
         self.immortal = False
 
 
-        self.hPMax = 200
+        self.hPMax = 160
         self.curHP = clamp(0,self.hPMax,self.hPMax)
 
 
@@ -1371,21 +1367,13 @@ class Boy(ObjectBase):
         self.event_que.insert(0, event)
 
     def update(self):
-        #print(LeftRightKeylist.count(LEFT_KEY_ON_PRESS))
-        #print(self.cur_state)
-        #print(LeftRightKeylist)
-        #print(game_world.objects)
-
-        #print(self.land)
-
-
-        #self.SelfGravity()
 
 
 
         self.cur_state.do(self)
 
         if(self.immortal):
+            self.OpacifyControl()
             if get_time() - self.barrierTimer > self.barrierContinuousTime:
                 self.InActivateBarrier()
 
@@ -1395,9 +1383,6 @@ class Boy(ObjectBase):
                 if (self.charging == None):
                     if(self.chargeTimer > self.chargeTimeLimit / 5):
                         self.shot_charging_effect()
-
-                #print("차지중")
-                #print(self.chargeTimer)
 
             elif(not self.beginCharge):
                 self.chargeStartTimer = get_time()
@@ -1409,7 +1394,7 @@ class Boy(ObjectBase):
             if(self.chargeTimer >= self.chargeTimeLimit):
                 self.add_event(CHARGE_SHOT_BUTTON)
             
-            #print("차치중아님")
+
             self.chargeTimer = 0
             self.beginCharge = False
             if(self.charging != None):
@@ -1486,9 +1471,9 @@ class Boy(ObjectBase):
         elif event.type == SDL_KEYUP and event.key == SDLK_RIGHT:
             RIGHT_KEY_ON_PRESS = False
 
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_LSHIFT:
+        elif event.type == SDL_KEYDOWN and event.key == SDLK_d:
             DASH_KEY_ON_PRESS = True
-        elif event.type == SDL_KEYUP and event.key == SDLK_LSHIFT:
+        elif event.type == SDL_KEYUP and event.key == SDLK_d:
             DASH_KEY_ON_PRESS = False
 
         elif event.type == SDL_KEYDOWN and event.key == SDLK_a:
@@ -1534,6 +1519,10 @@ class Boy(ObjectBase):
     # fill here
 
     def draw_bb(self):
+
+        if not self.curState.showBoundingBox:
+            return
+
         left,bottom,right,top = self.get_bb()
 
         left -= self.background.windowLeft
@@ -1580,8 +1569,12 @@ class Boy(ObjectBase):
 
         self.immortal = False
         self.barrierTimer = 0
-
+        for i in range(Boy.actions):
+            self.Images[i]["ImageFile"].opacify(1)
         pass
+
+    def OpacifyControl(self):
+        self.Images[self.imageState]["ImageFile"].opacify(random.randint(3,10) / 10.0)
 
 
     def HPReGen(self):

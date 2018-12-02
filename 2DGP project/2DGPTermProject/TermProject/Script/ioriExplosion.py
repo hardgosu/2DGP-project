@@ -212,6 +212,8 @@ class IoriExplosion(ObjectBase):
     # fill here
 
     def draw_bb(self):
+        if not self.curState.showBoundingBox:
+            return
 
         left,bottom,right,top = self.get_bb()
 

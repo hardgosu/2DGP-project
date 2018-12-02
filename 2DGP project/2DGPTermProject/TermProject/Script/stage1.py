@@ -9,7 +9,7 @@ import game_world
 
 from boy import Boy
 from grass import Grass
-from testBack import TestBack
+
 
 from boy import FallingState
 from boy import JumpingShotFallingState
@@ -59,7 +59,7 @@ gigadeathTimerSwitch = False
 
 
 
-showBoundingBox = True
+showBoundingBox = False
 
 
 footBoard = None

@@ -173,5 +173,7 @@ class Background2:
     # fill here
 
     def draw_bb(self):
+        if not self.curState.showBoundingBox:
+            return
         draw_rectangle(*self.get_bb())
 

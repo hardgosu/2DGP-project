@@ -145,7 +145,7 @@ class TowBeast(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 300
+        self.hPMax = 450
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 
@@ -288,6 +288,8 @@ class TowBeast(ObjectBase):
     # fill here
 
     def draw_bb(self):
+        if not self.curState.showBoundingBox:
+            return
         left,bottom,right,top = self.get_bb()
 
         left -= self.curState.GetBackground().windowLeft

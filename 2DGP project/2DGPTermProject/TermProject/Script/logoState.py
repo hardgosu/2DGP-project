@@ -1,6 +1,7 @@
 import game_framework
 from pico2d import *
 import titleState
+import stage1
 
 name = "LogoState"
 image = None
@@ -9,15 +10,14 @@ logo_time = 0.0
 
 def enter():
     global image
-    open_canvas()
-    image = load_image('kpu_credit.png')
+    image = load_image('sprite/titleLogo/kpuCredit.png')
 
 
 
 def exit():
     global image
     del(image)
-    close_canvas()
+
 
 
 def update():
@@ -35,15 +35,21 @@ def update():
 def draw():
     global image
     clear_canvas()
-    image.draw(400,300)
+    image.draw(stage1.screenX//2,stage1.screenY//2,stage1.screenX,stage1.screenY)
     update_canvas()
-    #print('종언')
+
 
 
 
 
 def handle_events():
     events = get_events()
+    for event in events:
+        if event.type == SDL_QUIT:
+            game_framework.quit()
+        else:
+            if (event.type,event.key) ==(SDL_KEYDOWN, SDLK_ESCAPE):
+                game_framework.quit()
     pass
 
 
