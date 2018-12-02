@@ -36,7 +36,7 @@ def draw():
     clear_canvas()
     image.draw(stage1.screenX//2,stage1.screenY//2,stage1.screenX,stage1.screenY)
 
-    font.draw(stage1.screenX // 2 * 0.8,stage1.screenY * 0.2, 'Press Space Button' ,(random.randint(0,255),random.randint(0,255),random.randint(0,255)))
+    font.draw(stage1.screenX // 2 * 0.8,stage1.screenY * 0.2, 'Press Space Button' ,(random.randint(55,255),random.randint(155,255),random.randint(195,255)))
     update_canvas()
 
 

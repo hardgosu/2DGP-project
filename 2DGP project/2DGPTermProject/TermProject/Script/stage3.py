@@ -5,6 +5,7 @@ import os
 from pico2d import *
 import game_framework
 import game_world
+import gameOverState
 
 from boy import Boy
 from grass import Grass
@@ -63,7 +64,7 @@ gigadeathTimerSwitch = False
 
 
 
-showBoundingBox = False
+showBoundingBox = True
 
 
 footBoard = None
@@ -91,6 +92,7 @@ def enter():
 
     global bgm
     boy = Boy()
+
 
     boy.SetPosition(140,600)
 
@@ -337,6 +339,10 @@ def get_boy():
     return boy
 def GetBackground():
     return background1
+
+
+def ChangeState():
+    game_framework.change_state(gameOverState)
 
 
 def GenPortal():

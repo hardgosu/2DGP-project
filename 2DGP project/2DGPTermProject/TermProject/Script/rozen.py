@@ -201,7 +201,7 @@ class Rozen(ObjectBase):
         #KaiserWave 관련
         self.busterSpeed = 10
         self.firePositionX = 0.4
-        self.firePositionY = 0.9
+        self.firePositionY = -0.9
 
 
         # self.subject = boy
@@ -209,7 +209,7 @@ class Rozen(ObjectBase):
 
         self.curState = game_framework.stack[-1]
 
-        self.moneyToGive = 5000
+        self.moneyToGive = 10000
 
 
         self.attack1Begin = False
@@ -263,8 +263,9 @@ class Rozen(ObjectBase):
         if self.curState.name == "Stage2":
             portal = PortalBlue(self)
             game_world.add_object(portal,1)
-
-
+        if self.curState.name == "Stage3":
+            portal = PortalBlue(self)
+            game_world.add_object(portal,1)
 
         game_world.remove_object(self)
 
@@ -282,7 +283,8 @@ class Rozen(ObjectBase):
         if (not self.beingDeath):
             self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Rozen.Images[self.imageState]["Frames"]
             if(self.imageState != Rozen.capeIdle):
-                self.bt.run()
+                if( self.imageState != Rozen.unCape):
+                    self.bt.run()
             self.x += self.velocity * self.dir * game_framework.frame_time
 
             if (int(self.frame) == 0):
@@ -298,9 +300,11 @@ class Rozen(ObjectBase):
 
             if (int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):
                 if(self.imageState == Rozen.capeIdle):
+                    self.imageState = Rozen.unCape
+                elif (self.imageState == Rozen.unCape):
                     self.imageState = Rozen.walking
                 self.row = Rozen.Images[self.imageState]["Row"] - 1
-
+                self.frame = 0
 
 
 
@@ -388,7 +392,7 @@ class Rozen(ObjectBase):
         if(not self.showHPBar):
             return
 
-        Rozen.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft + 30, self.y + 80 - self.curState.GetBackground().windowBottom, int(Rozen.hPBarImageX * (self.curHP / self.hPMax)), Rozen.hPBarImageY)
+        Rozen.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft + 0, self.y + 80 - self.curState.GetBackground().windowBottom, int(Rozen.hPBarImageX * (self.curHP / self.hPMax)), Rozen.hPBarImageY)
 
 
         pass
@@ -639,7 +643,7 @@ class Rozen(ObjectBase):
         chase_node.add_children(find_player_node, move_to_player_node)
         chase_node.add_child(randomPatternNode)
 
-        randomPatternNode.add_children(attack1Node,attack2Node)
+        randomPatternNode.add_children(attack2Node,attack1Node)
         randomPatternNode.add_child(attack3Node)
 
         wander_chase_node = SelectorNode("WanderChase")
