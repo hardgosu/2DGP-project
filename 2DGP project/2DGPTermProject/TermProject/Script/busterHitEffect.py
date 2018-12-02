@@ -82,7 +82,7 @@ class BusterHitEffect(ObjectBase):
 
 
         if BusterHitEffect.spriteSheet == None:
-            BusterHitEffect.spriteSheet = load_image('X_Buster_Hit_SpriteSheet.png')
+            BusterHitEffect.spriteSheet = load_image('sprite/X_Buster_Hit_SpriteSheet.png')
             for i in range(BusterHitEffect.actions):
                 BusterHitEffect.Images[i]["ImageFile"] = BusterHitEffect.spriteSheet
                 pass

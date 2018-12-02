@@ -8,7 +8,6 @@ import game_world
 
 from boy import Boy
 from grass import Grass
-from ball import Ball
 from testBack import TestBack
 
 from boy import FallingState

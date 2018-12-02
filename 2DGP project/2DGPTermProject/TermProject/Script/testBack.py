@@ -1,7 +1,7 @@
 from pico2d import *
 import game_world
 import game_framework
-import main_state
+
 
 
 # Boy Run Speed
@@ -54,7 +54,7 @@ class TestBack:
     def __init__(self):
 
         if(TestBack.Images[TestBack.idle]["ImageFile"] == None):
-            TestBack.Images[TestBack.idle]["ImageFile"] = load_image('TestBack3.png')
+            TestBack.Images[TestBack.idle]["ImageFile"] = load_image('sprite/TestBack3.png')
 
 
 

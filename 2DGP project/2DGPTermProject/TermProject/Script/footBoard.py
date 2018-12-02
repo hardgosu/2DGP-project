@@ -2,7 +2,6 @@ from pico2d import *
 
 import game_world
 import game_framework
-import main_state
 import random
 
 from objectBase import ObjectBase
@@ -77,7 +76,9 @@ class FootBoard(ObjectBase):
 
         self.land = False
 
-        self.x, self.y = main_state.screenX - 400, 100
+        self.curState = game_framework.stack[-1]
+
+        self.x, self.y = self.curState.screenX - 400, 100
         self.dir = -1
 
         self.frame = 0
@@ -139,7 +140,7 @@ class FootBoard(ObjectBase):
 
 
 
-        self.curState = game_framework.stack[-1]
+
 
 
 

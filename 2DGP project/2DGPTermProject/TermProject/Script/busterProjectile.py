@@ -80,13 +80,13 @@ class BusterProjectile(ObjectBase):
     def __init__(self,boy,imageState):
 
         if(BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] == None):
-            BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] = load_image('middleBuster.png')
+            BusterProjectile.Images[BusterProjectile.middleStart]["ImageFile"] = load_image('sprite/middleBuster.png')
 
         if(BusterProjectile.Images[BusterProjectile.middle]["ImageFile"] == None):
-            BusterProjectile.Images[BusterProjectile.middle]["ImageFile"] = load_image('middleBusterMoving.png')
+            BusterProjectile.Images[BusterProjectile.middle]["ImageFile"] = load_image('sprite/middleBusterMoving.png')
 
         if(BusterProjectile.Images[BusterProjectile.big]["ImageFile"] == None):
-            BusterProjectile.Images[BusterProjectile.big]["ImageFile"] = load_image('X_Big_Buster.png')
+            BusterProjectile.Images[BusterProjectile.big]["ImageFile"] = load_image('sprite/X_Big_Buster.png')
 
         if(BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"] == None):
             BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"] = load_wav("sound/XE_Buster0.wav")

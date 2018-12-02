@@ -32,7 +32,7 @@ class Grass:
         self.imageState = None
 
 
-        self.image = load_image('good.png')
+        self.image = load_image('sprite/good.png')
 
         self.boundingBoxOn = True
 

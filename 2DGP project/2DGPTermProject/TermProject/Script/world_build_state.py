@@ -23,7 +23,7 @@ menu = None
 
 def enter():
     global menu
-    menu = load_image('menu.png')
+    menu = load_image('sprite/menu.png')
     hide_cursor()
     hide_lattice()
 

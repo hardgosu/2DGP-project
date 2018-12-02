@@ -2,7 +2,6 @@ from pico2d import *
 
 import game_world
 import game_framework
-import main_state
 import random
 
 
@@ -92,8 +91,8 @@ class EnemyTest(ObjectBase):
         self.kind = game_world.Monster
 
         self.land = False
-
-        self.x, self.y = main_state.screenX - 180,160
+        self.curState = game_framework.stack[-1]
+        self.x, self.y = self.curState.screenX - 180,160
         self.dir = 1
         #self.velocity = velocityX *RUN_SPEED_PPS
         self.frame = 0
@@ -142,7 +141,7 @@ class EnemyTest(ObjectBase):
         self.clearness = 1
 
 
-        self.curState = game_framework.stack[-1]
+
 
         self.moneyToGive = 2000
 

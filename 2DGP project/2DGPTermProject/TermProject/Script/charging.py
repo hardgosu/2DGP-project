@@ -71,10 +71,10 @@ class Charging:
     def __init__(self,boy):
 
         if(Charging.Images[Charging.charge1]["ImageFile"] == None):
-            Charging.Images[Charging.charge1]["ImageFile"] = load_image('X_Charge_Effect_1.png')
+            Charging.Images[Charging.charge1]["ImageFile"] = load_image('sprite/X_Charge_Effect_1.png')
 
         if(Charging.Images[Charging.charge2]["ImageFile"] == None):
-            Charging.Images[Charging.charge2]["ImageFile"] = load_image('middleBusterMoving.png')
+            Charging.Images[Charging.charge2]["ImageFile"] = load_image('sprite/middleBusterMoving.png')
 
         if(Charging.sounds[Charging.soundCharging]["SoundFile"] == None):
             Charging.sounds[Charging.soundCharging]["SoundFile"] = load_wav("sound/XE_Charging3.wav")

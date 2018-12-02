@@ -1,5 +1,4 @@
 from pico2d import *
-from ball import Ball
 from busterProjectile import BusterProjectile
 from charging import Charging
 
@@ -1203,88 +1202,88 @@ class Boy(ObjectBase):
         for i in range(Boy.actions):
             Boy.Images.append({"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None , "XRevision" : None , "PivotY" : 0})
 
-        Boy.Images[Boy.idleShot]["ImageFile"] = load_image('X_IdleShot3.png')
+        Boy.Images[Boy.idleShot]["ImageFile"] = load_image('sprite/X_IdleShot3.png')
         Boy.Images[Boy.idleShot]["IntervalX"] = 63
         Boy.Images[Boy.idleShot]["IntervalY"] = 45
         Boy.Images[Boy.idleShot]["Frames"] = 12
         Boy.Images[Boy.idleShot]["XRevision"] = 51
 
 
-        Boy.Images[Boy.idle]["ImageFile"] = load_image('X_Idle2.png')
+        Boy.Images[Boy.idle]["ImageFile"] = load_image('sprite/X_Idle2.png')
         Boy.Images[Boy.idle]["IntervalX"] = 36
         Boy.Images[Boy.idle]["IntervalY"] = 46
         Boy.Images[Boy.idle]["Frames"] = 73
         Boy.Images[Boy.idle]["XRevision"] = 0
 
 
-        Boy.Images[Boy.walking]["ImageFile"] = load_image('X_Right_Walking2.png')
+        Boy.Images[Boy.walking]["ImageFile"] = load_image('sprite/X_Right_Walking2.png')
         Boy.Images[Boy.walking]["IntervalX"] = 63
         Boy.Images[Boy.walking]["IntervalY"] = 47
         Boy.Images[Boy.walking]["Frames"] = 14
         Boy.Images[Boy.walking]["XRevision"] = 50
 
-        Boy.Images[Boy.dashStart]["ImageFile"] = load_image('X_DashBegin.png')
+        Boy.Images[Boy.dashStart]["ImageFile"] = load_image('sprite/X_DashBegin.png')
         Boy.Images[Boy.dashStart]["IntervalX"] = 50
         Boy.Images[Boy.dashStart]["IntervalY"] = 46
         Boy.Images[Boy.dashStart]["Frames"] = 3
         Boy.Images[Boy.dashStart]["XRevision"] = 0
 
 
-        Boy.Images[Boy.dashEnd]["ImageFile"] = load_image('X_DashEnd.png')
+        Boy.Images[Boy.dashEnd]["ImageFile"] = load_image('sprite/X_DashEnd.png')
         Boy.Images[Boy.dashEnd]["IntervalX"] = 70
         Boy.Images[Boy.dashEnd]["IntervalY"] = 47
         Boy.Images[Boy.dashEnd]["Frames"] = 9
         Boy.Images[Boy.dashEnd]["XRevision"] = 0
 
 
-        Boy.Images[Boy.dash]["ImageFile"] = load_image('X_Dash.png')
+        Boy.Images[Boy.dash]["ImageFile"] = load_image('sprite/X_Dash.png')
         Boy.Images[Boy.dash]["IntervalX"] = 70
         Boy.Images[Boy.dash]["IntervalY"] = 46
         Boy.Images[Boy.dash]["Frames"] = 3
         Boy.Images[Boy.dash]["XRevision"] = 0
 
 
-        Boy.Images[Boy.jump]["ImageFile"] = load_image('X_jump.png')
+        Boy.Images[Boy.jump]["ImageFile"] = load_image('sprite/X_jump.png')
         Boy.Images[Boy.jump]["IntervalX"] = 36
         Boy.Images[Boy.jump]["IntervalY"] = 58
         Boy.Images[Boy.jump]["Frames"] = 24
         Boy.Images[Boy.jump]["XRevision"] = 0
 
 
-        Boy.Images[Boy.walkingShot]["ImageFile"] = load_image('X_Walking_Shot3.png')
+        Boy.Images[Boy.walkingShot]["ImageFile"] = load_image('sprite/X_Walking_Shot3.png')
         Boy.Images[Boy.walkingShot]["IntervalX"] = 63
         Boy.Images[Boy.walkingShot]["IntervalY"] = 47
         Boy.Images[Boy.walkingShot]["Frames"] = 16
         Boy.Images[Boy.walkingShot]["XRevision"] = 48
 
-        Boy.Images[Boy.jumpShotBegin]["ImageFile"] = load_image('X_Jumping_Shot_Begin.png')
+        Boy.Images[Boy.jumpShotBegin]["ImageFile"] = load_image('sprite/X_Jumping_Shot_Begin.png')
         Boy.Images[Boy.jumpShotBegin]["IntervalX"] = 63
         Boy.Images[Boy.jumpShotBegin]["IntervalY"] = 57
         Boy.Images[Boy.jumpShotBegin]["Frames"] = 14
         Boy.Images[Boy.jumpShotBegin]["XRevision"] = 48
 
 
-        Boy.Images[Boy.jumpShotFalling]["ImageFile"] = load_image('X_Jumping_Shot_Falling.png')
+        Boy.Images[Boy.jumpShotFalling]["ImageFile"] = load_image('sprite/X_Jumping_Shot_Falling.png')
         Boy.Images[Boy.jumpShotFalling]["IntervalX"] = 63
         Boy.Images[Boy.jumpShotFalling]["IntervalY"] = 56
         Boy.Images[Boy.jumpShotFalling]["Frames"] = 7
         Boy.Images[Boy.jumpShotFalling]["XRevision"] = 42
 
 
-        Boy.Images[Boy.jumpShotBeginFlash]["ImageFile"] = load_image('X_Jumping_Shot_Begin_Flash.png')
+        Boy.Images[Boy.jumpShotBeginFlash]["ImageFile"] = load_image('sprite/X_Jumping_Shot_Begin_Flash.png')
         Boy.Images[Boy.jumpShotBeginFlash]["IntervalX"] = 63
         Boy.Images[Boy.jumpShotBeginFlash]["IntervalY"] = 57
         Boy.Images[Boy.jumpShotBeginFlash]["Frames"] = 14
         Boy.Images[Boy.jumpShotBeginFlash]["XRevision"] = 48
 
 
-        Boy.Images[Boy.jumpShotFallingFlash]["ImageFile"] = load_image('X_Jumping_Shot_Falling_Flash.png')
+        Boy.Images[Boy.jumpShotFallingFlash]["ImageFile"] = load_image('sprite/X_Jumping_Shot_Falling_Flash.png')
         Boy.Images[Boy.jumpShotFallingFlash]["IntervalX"] = 63
         Boy.Images[Boy.jumpShotFallingFlash]["IntervalY"] = 56
         Boy.Images[Boy.jumpShotFallingFlash]["Frames"] = 7
         Boy.Images[Boy.jumpShotFallingFlash]["XRevision"] = 42
 
-        Boy.Images[Boy.idleChargeShot]["ImageFile"] = load_image('X_Idle_Charge_Shot2.png')
+        Boy.Images[Boy.idleChargeShot]["ImageFile"] = load_image('sprite/X_Idle_Charge_Shot2.png')
         Boy.Images[Boy.idleChargeShot]["IntervalX"] = 81
         Boy.Images[Boy.idleChargeShot]["IntervalY"] = 78
         Boy.Images[Boy.idleChargeShot]["Frames"] = 16
