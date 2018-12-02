@@ -145,7 +145,7 @@ class TowBeast(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 450
+        self.hPMax = 670
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 
@@ -173,7 +173,7 @@ class TowBeast(ObjectBase):
 
 
         #damage 필드
-        self.smashDamage = 10
+        self.smashDamage = 20
 
         # self.subject = boy
 

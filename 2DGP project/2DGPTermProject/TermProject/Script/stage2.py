@@ -128,10 +128,10 @@ def enter():
 
 
 
-    background1 = Background1()
+    background = Background1()
 
-    background1.SetCenterObject(boy)
-    boy.SetBackground(background1)
+    background.SetCenterObject(boy)
+    boy.SetBackground(background)
 
 
 
@@ -139,7 +139,7 @@ def enter():
 
 
     #순서 중요
-    game_world.add_object(background1, 0)
+    game_world.add_object(background, 0)
 
 
     game_world.add_object(grass, 0)

@@ -276,6 +276,7 @@ class Gigadeath(ObjectBase):
             self.DeathAnimation()
             if(object != None):
                 object.subject.money += self.moneyToGive
+                object.subject.AddCurHP(8)
 
     def SetPosition(self,x,y):
 

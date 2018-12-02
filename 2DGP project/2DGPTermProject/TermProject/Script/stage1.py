@@ -116,7 +116,7 @@ def enter():
 
 
     footBoard5 = FootBoard()
-    footBoard5.SetPosition(200,350)
+    footBoard5.SetPosition(200,250)
 
 
 

@@ -70,7 +70,7 @@ class FootBoard(ObjectBase):
     def __init__(self):
 
         if (FootBoard.spriteSheet == None):
-            FootBoard.spriteSheet = load_image('sprite/brick180x40.png')
+            FootBoard.spriteSheet = load_image('sprite/tile1.png')
 
         self.kind = game_world.FootBoard
 

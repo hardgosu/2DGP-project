@@ -175,7 +175,7 @@ class Luke(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 950
+        self.hPMax = 1150
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 
@@ -203,7 +203,9 @@ class Luke(ObjectBase):
 
 
         #damage 필드
-        self.smashDamage = 10
+        self.icePickDamage = 16
+        self.thunderDamage = 20
+
 
         #KaiserWave 관련
         self.busterSpeed = 10
@@ -516,14 +518,14 @@ class Luke(ObjectBase):
 
             if self.curHP > self.hPMax // 2:
                 if(self.frame - int(self.frame) < 0.1):
-                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                    ice = IcePick(self.targetXPosition, self.targetYPosition, self.dir, self.icePickDamage)
                     game_world.add_object(ice,1)
                     self.targetXPosition = boy.x
                     self.targetYPosition = boy.landingYPosition
 
             else:
                 if(self.frame - int(self.frame) < 0.2):
-                    ice = IcePick(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                    ice = IcePick(self.targetXPosition, self.targetYPosition, self.dir, self.icePickDamage)
                     game_world.add_object(ice,1)
                     self.targetXPosition = boy.x
                     self.targetYPosition = boy.landingYPosition
@@ -561,14 +563,14 @@ class Luke(ObjectBase):
         if(self.frame >= 2):
 
             if self.curHP > self.hPMax // 2:
-                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                thunder = Thunder(self.targetXPosition, self.targetYPosition, self.dir, self.thunderDamage)
                 game_world.add_object(thunder,1)
                 self.targetXPosition = boy.x
                 self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
 
             else:
 
-                thunder = Thunder(self.targetXPosition ,self.targetYPosition,self.dir,self.smashDamage)
+                thunder = Thunder(self.targetXPosition, self.targetYPosition, self.dir, self.thunderDamage)
                 game_world.add_object(thunder,1)
                 self.targetXPosition = boy.x
                 self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]

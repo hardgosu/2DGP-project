@@ -57,11 +57,17 @@ collisionCount = 0
 bgm = None
 
 gigadeath = None
-gigadeathLimit = 2
+
+
+gigadeathLimit = 4
 gigadeathTimer = 0
 gigadeathTimerSwitch = False
 
 
+
+gigadeathLimit2 = 2
+gigadeathTimer2 = 0
+gigadeathTimerSwitch2 = False
 
 
 showBoundingBox = False
@@ -72,7 +78,12 @@ footBoard2 = None
 footBoard3 = None
 footBoard4 = None
 footBoard5 = None
+footBoard6 = None
+footBoard7 = None
+footBoard8 = None
 
+
+footBoardList = []
 
 
 genPortalTimer = 0
@@ -88,7 +99,7 @@ deadLineBottom = -1500
 def enter():
     global boy, grass , enemyTest , background , towBeast
 
-    global footBoard,footBoard2,footBoard3,footBoard4,footBoard5
+    global footBoard,footBoard2,footBoard3,footBoard4,footBoard5,footBoard7,footBoard6,footBoard8
 
     global bgm
     boy = Boy()
@@ -124,7 +135,16 @@ def enter():
 
 
 
+    footBoard6= FootBoard()
+    footBoard6.SetPosition(800,180)
 
+
+    footBoard7 = FootBoard()
+    footBoard7.SetPosition(1100,300)
+
+
+    footBoard8 = FootBoard()
+    footBoard8.SetPosition(1500,250)
 
 
 
@@ -153,8 +173,9 @@ def enter():
     game_world.add_object(footBoard4,0)
     game_world.add_object(footBoard5,0)
 
-
-
+    game_world.add_object(footBoard6,0)
+    game_world.add_object(footBoard7,0)
+    game_world.add_object(footBoard8,0)
 
     game_world.add_object(boy, 1)
 
@@ -193,6 +214,7 @@ def GenMonster():
     global gigadeathTimer,gigadeathTimerSwitch,gigadeathLimit
 
     gigadeathCount = 0
+    rand = random.randint(0,4)
 
     for o in game_world.all_objects():
         if type(o) == Gigadeath:
@@ -204,10 +226,19 @@ def GenMonster():
 
         if  get_time() - gigadeathTimer  >= 2:
             gigadeathTimerSwitch = False
-            global footBoard3
+            global footBoard3,footBoard2,footBoard4,footBoard8
             while gigadeathCount < gigadeathLimit:
+                rand = random.randint(0, 4)
                 gigadeath = Gigadeath()
-                gigadeath.SetPosition(random.randint(footBoard3.get_bb()[0],footBoard3.get_bb()[2]),footBoard3.get_bb()[3] + 50)
+                if rand == 0:
+                    gigadeath.SetPosition(random.randint(footBoard3.get_bb()[0],footBoard3.get_bb()[2]),footBoard3.get_bb()[3] + 50)
+                elif rand == 1:
+                    gigadeath.SetPosition(random.randint(footBoard2.get_bb()[0],footBoard2.get_bb()[2]),footBoard2.get_bb()[3] + 50)
+                elif rand == 2:
+                    gigadeath.SetPosition(random.randint(footBoard4.get_bb()[0],footBoard4.get_bb()[2]),footBoard4.get_bb()[3] + 50)
+                else:
+                    gigadeath.SetPosition(random.randint(footBoard8.get_bb()[0],footBoard8.get_bb()[2]),footBoard8.get_bb()[3] + 50)
+
                 game_world.add_object(gigadeath, 1)
                 gigadeathCount += 1
 
