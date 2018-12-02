@@ -532,7 +532,7 @@ class DashState:
 
         elif(event == CHARGE_SHOT_BUTTON):
             boy.fire_ball(BusterProjectile.big)
-        pass
+
 
 
         if(LEFT_KEY_ON_PRESS or RIGHT_KEY_ON_PRESS):
@@ -1107,13 +1107,13 @@ next_state_table = {
 
     JumpState: { JUMP_UP : FallingState , SHOT_BUTTON : JumpingShotState,CHARGE_SHOT_BUTTON : JumpingShotState},
 
-    IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState ,  JUMP_DOWN : JumpState},
+    IdleShotState : {SHOT_BUTTON : IdleShotState,LEFT_DOWN: RunState, RIGHT_DOWN :RunState , JUMP_DOWN : JumpState,DASHDOWN : DashState},
 
     WalkingShotState : {SHOT_BUTTON : WalkingShotState, DASHDOWN : DashState , JUMP_DOWN : JumpState},
 
     JumpingShotState : {},
 
-    IdleChargeShotState : { RIGHT_DOWN : RunState, LEFT_DOWN: RunState},
+    IdleChargeShotState : { RIGHT_DOWN : RunState, LEFT_DOWN: RunState,JUMP_DOWN : JumpState,DASHDOWN : DashState},
 
     FallingState : {SHOT_BUTTON : JumpingShotFallingState,CHARGE_SHOT_BUTTON : JumpingShotFallingState},
 

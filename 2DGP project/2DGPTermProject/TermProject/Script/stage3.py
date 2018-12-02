@@ -24,7 +24,7 @@ from footBoard import FootBoard
 
 from ioriExplosion import IoriExplosion
 
-from background1 import Background1
+from background4 import Background4
 
 from gigadeath import Gigadeath
 
@@ -48,7 +48,7 @@ grass = None
 
 enemyTest = None
 
-background1 = None
+background = None
 
 towBeast = None
 
@@ -86,7 +86,7 @@ deadLineBottom = -1500
 
 #기본 스테이지
 def enter():
-    global boy, grass , enemyTest , background1 , towBeast
+    global boy, grass , enemyTest , background , towBeast
 
     global footBoard,footBoard2,footBoard3,footBoard4,footBoard5
 
@@ -129,10 +129,10 @@ def enter():
 
 
 
-    background1 = Background1()
+    background = Background4()
 
-    background1.SetCenterObject(boy)
-    boy.SetBackground(background1)
+    background.SetCenterObject(boy)
+    boy.SetBackground(background)
 
 
 
@@ -140,7 +140,7 @@ def enter():
 
 
     #순서 중요
-    game_world.add_object(background1, 0)
+    game_world.add_object(background, 0)
 
 
     game_world.add_object(grass, 0)
@@ -172,7 +172,7 @@ def enter():
     bgm.set_volume(25)
 
 def exit():
-    global boy, grass,background1,bgm
+    global boy, grass,background,bgm
 
 
     game_world.clear()
@@ -338,7 +338,7 @@ def BottomAndTopCollide(a,b):
 def get_boy():
     return boy
 def GetBackground():
-    return background1
+    return background
 
 
 def ChangeState():

@@ -48,7 +48,7 @@ grass = None
 
 enemyTest = None
 
-background1 = None
+background = None
 
 towBeast = None
 
@@ -86,7 +86,7 @@ deadLineBottom = -1500
 
 #기본 스테이지
 def enter():
-    global boy, grass , enemyTest , background1 , towBeast
+    global boy, grass , enemyTest , background , towBeast
 
     global footBoard,footBoard2,footBoard3,footBoard4,footBoard5
 
@@ -171,7 +171,7 @@ def enter():
     bgm.set_volume(25)
 
 def exit():
-    global boy, grass,background1,bgm
+    global boy, grass,background,bgm
 
 
     game_world.clear()
@@ -337,7 +337,7 @@ def BottomAndTopCollide(a,b):
 def get_boy():
     return boy
 def GetBackground():
-    return background1
+    return background
 
 
 def GenPortal():
