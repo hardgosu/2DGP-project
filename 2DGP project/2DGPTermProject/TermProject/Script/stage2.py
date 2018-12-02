@@ -1,6 +1,8 @@
 import random
 import json
 import os
+import stage3
+
 
 from pico2d import *
 import game_framework
@@ -353,6 +355,8 @@ def GenPortal():
         genPortalSwitch = False
         yield True
 
+def ChangeState():
+    game_framework.change_state(stage3)
 
 
 def PlayerFallingDeathCheck():

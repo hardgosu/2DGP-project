@@ -175,7 +175,7 @@ class Luke(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 700
+        self.hPMax = 950
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 
@@ -264,6 +264,10 @@ class Luke(ObjectBase):
     def destroy(self):
 
         if self.curState.name == "Stage1":
+            portal = PortalBlue(self)
+            game_world.add_object(portal,1)
+
+        if self.curState.name == "Stage2":
             portal = PortalBlue(self)
             game_world.add_object(portal,1)
 

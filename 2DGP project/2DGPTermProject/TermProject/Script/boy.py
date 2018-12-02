@@ -2,10 +2,12 @@ from pico2d import *
 from busterProjectile import BusterProjectile
 from charging import Charging
 
+import gameOverState
 import game_world
 import game_framework
 import random
 from objectBase import ObjectBase
+
 
 # Boy Run Speed
 # fill expressions correctly
@@ -1140,6 +1142,17 @@ class Boy(ObjectBase):
 
 
     def __init__(self):
+        global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS,DASH_KEY_ON_PRESS, SHOT_KEY_ON_PRESS,LeftRightKeylist
+
+        LeftRightKeylist = []
+        LEFT_KEY_ON_PRESS = False
+        RIGHT_KEY_ON_PRESS = False
+        DASH_KEY_ON_PRESS = False
+        SHOT_KEY_ON_PRESS = False
+
+
+
+
         self.kind = game_world.Player
 
 
@@ -1546,6 +1559,7 @@ class Boy(ObjectBase):
 
         if(self.curHP < 0):
             self.curHP = 0
+            #game_framework.change_state(gameOverState)
         self.ActivateBarrier()
         print(self.curHP)
 
@@ -1579,6 +1593,8 @@ class Boy(ObjectBase):
 
     def HPReGen(self):
 
+        self.curHP += 1
+
         pass
 
     def CollisionHandling(self,object):
@@ -1600,4 +1616,7 @@ class Boy(ObjectBase):
         Boy.hPBarImage.draw(self.x - self.background.windowLeft ,self.y  + 70- self.background.windowBottom,int(Boy.hPBarImageX *(self.curHP/self.hPMax)),Boy.hPBarImageY)
 
 
+        pass
+
+    def destroy(self):
         pass

@@ -34,7 +34,7 @@ def remove_object(o):
 def clear():
     global objects
     for o in all_objects():
-        del o
+        remove_object(o)
     objects.clear()
     objects = [[],[]]
 

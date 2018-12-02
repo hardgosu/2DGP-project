@@ -7,6 +7,9 @@ name = "TitleState"
 image = None
 font = None
 
+screenX = 1600
+screenY = 600
+
 def enter():
     global  image, font
     image = load_image('sprite/titleLogo/titleScreen.png')
