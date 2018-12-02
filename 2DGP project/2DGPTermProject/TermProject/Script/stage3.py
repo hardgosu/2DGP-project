@@ -64,7 +64,7 @@ gigadeathTimerSwitch = False
 
 
 
-showBoundingBox = True
+showBoundingBox = False
 
 
 footBoard = None

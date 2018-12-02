@@ -348,7 +348,7 @@ class Rozen(ObjectBase):
 
 
     def get_bb(self):
-        return self.x - 40, self.y - 150, self.x + 80, self.y + 60
+        return self.x - 60, self.y - 150, self.x + 30, self.y + 60
 
     # fill here
 
