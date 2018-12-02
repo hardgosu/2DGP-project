@@ -1322,7 +1322,8 @@ class Boy(ObjectBase):
             Boy.hPBarImage = load_image('sprite/UI/HPBar.png')
 
 
-
+        self.hPRegenTimer = 0
+        self.hPRegenPerTime = 1
 
     def GetBusterStartPosition(self):
 
@@ -1384,6 +1385,9 @@ class Boy(ObjectBase):
 
 
         self.cur_state.do(self)
+
+
+        self.HPReGen()
 
         if(self.immortal):
             self.OpacifyControl()
@@ -1593,9 +1597,19 @@ class Boy(ObjectBase):
 
     def HPReGen(self):
 
-        self.curHP += 1
+
+
+
+        if get_time() - self.hPRegenTimer > self.hPRegenPerTime:
+
+            self.AddCurHP(1)
+            self.hPRegenTimer = get_time()
 
         pass
+
+    def AddCurHP(self,healAmount):
+        self.curHP = clamp(0,self.curHP + healAmount,self.hPMax)
+
 
     def CollisionHandling(self,object):
 

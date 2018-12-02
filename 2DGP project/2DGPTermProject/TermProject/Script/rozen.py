@@ -37,9 +37,9 @@ ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 8
 
 
-class Luke(ObjectBase):
-    actions = 6
-    idle,appear,walking,attack1,attack2,attack3 = range(actions)
+class Rozen(ObjectBase):
+    actions = 5
+    capeIdle,unCape,idle,walking,attack1 = range(actions)
 
     # test = {"ImageFile" : None,"IntervalX" : None,"IntervalY" : None,"Frames" : None}
 
@@ -59,19 +59,18 @@ class Luke(ObjectBase):
 
     Images[idle]["IntervalX"] = 300
     Images[idle]["IntervalY"] = 300
-    Images[idle]["Frames"] = 6
+    Images[idle]["Frames"] = 10
     Images[idle]["XRevision"] = 0
-    Images[idle]["Row"] = 10
+    Images[idle]["Row"] = 5
     Images[idle]["Column"] = 10
 
+    Images[capeIdle]["IntervalX"] = 300
+    Images[capeIdle]["IntervalY"] = 300
+    Images[capeIdle]["Frames"] = 13
+    Images[capeIdle]["XRevision"] = 0
+    Images[capeIdle]["Row"] = 9
+    Images[capeIdle]["Column"] = 10
 
-
-    Images[appear]["IntervalX"] = 300
-    Images[appear]["IntervalY"] = 300
-    Images[appear]["Frames"] = 54
-    Images[appear]["XRevision"] = 0
-    Images[appear]["Row"] = 13
-    Images[appear]["Column"] = 10
 
 
     Images[walking]["IntervalX"] = 300
@@ -86,28 +85,22 @@ class Luke(ObjectBase):
 
     Images[attack1]["IntervalX"] = 300
     Images[attack1]["IntervalY"] = 300
-    Images[attack1]["Frames"] = 17
+    Images[attack1]["Frames"] = 18
     Images[attack1]["XRevision"] = 0
-    Images[attack1]["Row"] = 7
+    Images[attack1]["Row"] = 2
     Images[attack1]["Column"] = 10
 
 
 
-    Images[attack2]["IntervalX"] = 300
-    Images[attack2]["IntervalY"] = 300
-    Images[attack2]["Frames"] = 3
-    Images[attack2]["XRevision"] = 0
-    Images[attack2]["Row"] = 5
-    Images[attack2]["Column"] = 10
+    Images[unCape]["IntervalX"] = 300
+    Images[unCape]["IntervalY"] = 300
+    Images[unCape]["Frames"] = 13
+    Images[unCape]["XRevision"] = 0
+    Images[unCape]["Row"] = 7
+    Images[unCape]["Column"] = 10
 
 
 
-    Images[attack3]["IntervalX"] = 300
-    Images[attack3]["IntervalY"] = 300
-    Images[attack3]["Frames"] = 8
-    Images[attack3]["XRevision"] = 0
-    Images[attack3]["Row"] = 4
-    Images[attack3]["Column"] = 10
 
 
 
@@ -134,10 +127,10 @@ class Luke(ObjectBase):
 
     def __init__(self):
 
-        if (Luke.spriteSheet == None):
-            Luke.spriteSheet = load_image('sprite/luke3.png')
+        if (Rozen.spriteSheet == None):
+            Rozen.spriteSheet = load_image('sprite/rozen2.png')
 
-        Luke.spriteSheet.opacify(1)
+        Rozen.spriteSheet.opacify(1)
 
         self.kind = game_world.Monster
 
@@ -152,7 +145,7 @@ class Luke(ObjectBase):
         # self.cur_state = BusterProjectile.small
 
         # self.cur_state.enter(self, None)
-        self.imageState = Luke.appear
+        self.imageState = Rozen.capeIdle
 
 
         self.collisionRelation = [game_world.Feature]
@@ -175,13 +168,13 @@ class Luke(ObjectBase):
         self.startTimer = get_time()
         self.endTimer = 0
 
-        self.hPMax = 950
+        self.hPMax = 2000
 
         self.curHP = clamp(0, self.hPMax, self.hPMax)
 
         self.shallHandleCollision = True
 
-        self.deathAnimationNumber = Luke.deathImmediately
+        self.deathAnimationNumber = Rozen.deathImmediately
 
         self.beingDeath = False
         self.deathAnimationFrame = 0
@@ -230,13 +223,13 @@ class Luke(ObjectBase):
         self.x, self.y = self.curState.screenX - 400, 250
 
 
-        self.row = Luke.Images[self.imageState]["Row"] - 1
+        self.row = Rozen.Images[self.imageState]["Row"] - 1
         self.check = False
 
 
         self.showHPBar = True
-        if Luke.hPBarImage == None:
-            Luke.hPBarImage = load_image('sprite/UI/HPBar.png')
+        if Rozen.hPBarImage == None:
+            Rozen.hPBarImage = load_image('sprite/UI/HPBar.png')
 
 
 
@@ -250,9 +243,9 @@ class Luke(ObjectBase):
         self.beingDeath = True
         self.shallHandleCollision = False
 
-        if (self.deathAnimationNumber == Luke.deathImmediately):
+        if (self.deathAnimationNumber == Rozen.deathImmediately):
             self.clearness = (self.clearness + 0.3) % 1
-            Luke.spriteSheet.opacify(self.clearness)
+            Rozen.spriteSheet.opacify(self.clearness)
             if (int(self.deathAnimationFrame) % 3 == 0):
                 explosion = ExplosionEffect(random.randint(int(self.get_bb()[0]), int(self.get_bb()[2])),
                                             random.randint(int(self.get_bb()[1]), int(self.get_bb()[3])), self.dir, 0,
@@ -287,38 +280,38 @@ class Luke(ObjectBase):
         # self.set_direction()
 
         if (not self.beingDeath):
-            self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Luke.Images[self.imageState]["Frames"]
-            if(self.imageState != Luke.appear):
+            self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % Rozen.Images[self.imageState]["Frames"]
+            if(self.imageState != Rozen.capeIdle):
                 self.bt.run()
             self.x += self.velocity * self.dir * game_framework.frame_time
 
             if (int(self.frame) == 0):
-                self.row = Luke.Images[self.imageState]["Row"] - 1
+                self.row = Rozen.Images[self.imageState]["Row"] - 1
 
 
-            elif int(self.frame) % Luke.Images[self.imageState]["Column"] == 0:
+            elif int(self.frame) % Rozen.Images[self.imageState]["Column"] == 0:
                 if (not self.check):
                     self.row -= 1
                     self.check = True
             else:
                 self.check = False
 
-            if (int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
-                if(self.imageState == Luke.appear):
-                    self.imageState = Luke.walking
-                self.row = Luke.Images[self.imageState]["Row"] - 1
+            if (int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):
+                if(self.imageState == Rozen.capeIdle):
+                    self.imageState = Rozen.walking
+                self.row = Rozen.Images[self.imageState]["Row"] - 1
 
 
 
 
         else:
-            if (self.deathAnimationNumber == Luke.deathImmediately):
+            if (self.deathAnimationNumber == Rozen.deathImmediately):
                 self.DeathAnimation()
                 self.deathAnimationFrame = (
                                                        self.deathAnimationFrame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % \
-                                           Luke.deathAnimations[self.deathAnimationNumber]["Frames"]
+                                           Rozen.deathAnimations[self.deathAnimationNumber]["Frames"]
 
-                if (self.deathAnimationFrame >= Luke.deathAnimations[self.deathAnimationNumber]["Frames"] - 1):
+                if (self.deathAnimationFrame >= Rozen.deathAnimations[self.deathAnimationNumber]["Frames"] - 1):
                     self.destroy()
 
 
@@ -341,9 +334,9 @@ class Luke(ObjectBase):
 
 
         if self.dir == 1:
-            Luke.spriteSheet.clip_composite_draw( ( int(self.frame) % Luke.Images[self.imageState]["Column"] ) * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"], 0, '', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
+            Rozen.spriteSheet.clip_composite_draw((int(self.frame) % Rozen.Images[self.imageState]["Column"]) * Rozen.Images[self.imageState]["IntervalX"] + Rozen.Images[self.imageState]["XRevision"], Rozen.Images[self.imageState]["IntervalY"] * self.row, Rozen.Images[self.imageState]["IntervalX"], Rozen.Images[self.imageState]["IntervalY"], 0, '', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Rozen.Images[self.imageState]["IntervalX"], Rozen.Images[self.imageState]["IntervalY"])
         else:
-            Luke.spriteSheet.clip_composite_draw(( int(self.frame) % Luke.Images[self.imageState]["Column"] )  * Luke.Images[self.imageState]["IntervalX"] + Luke.Images[self.imageState]["XRevision"], Luke.Images[self.imageState]["IntervalY"] * self.row, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"], 0, 'h', self.x- self.curState.GetBackground().windowLeft, self.y- self.curState.GetBackground().windowBottom, Luke.Images[self.imageState]["IntervalX"], Luke.Images[self.imageState]["IntervalY"])
+            Rozen.spriteSheet.clip_composite_draw((int(self.frame) % Rozen.Images[self.imageState]["Column"]) * Rozen.Images[self.imageState]["IntervalX"] + Rozen.Images[self.imageState]["XRevision"], Rozen.Images[self.imageState]["IntervalY"] * self.row, Rozen.Images[self.imageState]["IntervalX"], Rozen.Images[self.imageState]["IntervalY"], 0, 'h', self.x - self.curState.GetBackground().windowLeft, self.y - self.curState.GetBackground().windowBottom, Rozen.Images[self.imageState]["IntervalX"], Rozen.Images[self.imageState]["IntervalY"])
 
 
         if self.beingDeath:
@@ -395,7 +388,7 @@ class Luke(ObjectBase):
         if(not self.showHPBar):
             return
 
-        Luke.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft  + 30,self.y  + 80- self.curState.GetBackground().windowBottom,int(Luke.hPBarImageX *(self.curHP/self.hPMax)),Luke.hPBarImageY)
+        Rozen.hPBarImage.draw(self.x - self.curState.GetBackground().windowLeft + 30, self.y + 80 - self.curState.GetBackground().windowBottom, int(Rozen.hPBarImageX * (self.curHP / self.hPMax)), Rozen.hPBarImageY)
 
 
         pass
@@ -411,7 +404,7 @@ class Luke(ObjectBase):
         # fill here
 
         #state change
-        self.imageState = Luke.walking
+        self.imageState = Rozen.walking
 
 
         self.velocity = RUN_SPEED_PPS
@@ -428,7 +421,7 @@ class Luke(ObjectBase):
     def find_player(self):
         # fill here
         #state change
-        self.imageState = Luke.walking
+        self.imageState = Rozen.walking
 
 
         boy = self.curState.get_boy()
@@ -458,7 +451,7 @@ class Luke(ObjectBase):
 
 
         #state change
-        self.imageState = Luke.walking
+        self.imageState = Rozen.walking
 
 
         if get_time() - self.smashRecognizeTimer > self.smashRecognizeTime:
@@ -503,7 +496,7 @@ class Luke(ObjectBase):
 
         boy = self.curState.get_boy()
         self.velocity = 0
-        self.imageState = Luke.attack1
+        self.imageState = Rozen.attack1
         #state change
 
         if(not self.attack1Begin):
@@ -530,7 +523,7 @@ class Luke(ObjectBase):
                     print("우우아악악")
 
 
-        if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
+        if(int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):
             self.attack1Begin = False
             self.frame = 0
             return BehaviorTree.SUCCESS
@@ -549,7 +542,7 @@ class Luke(ObjectBase):
 
         boy = self.curState.get_boy()
         self.velocity = 0
-        self.imageState = Luke.attack2
+        self.imageState = Rozen.attack1
         #state change
 
         if(not self.attack2Begin):
@@ -575,7 +568,7 @@ class Luke(ObjectBase):
                 print("우우아악악")
 
 
-        if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
+        if(int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):
             self.attack2Begin = False
             self.frame = 0
             return BehaviorTree.SUCCESS
@@ -589,7 +582,7 @@ class Luke(ObjectBase):
 
         boy = self.curState.get_boy()
         self.velocity = 0
-        self.imageState = Luke.attack3
+        self.imageState = Rozen.attack1
         #state change
 
         if(not self.attack3Begin):
@@ -613,7 +606,7 @@ class Luke(ObjectBase):
                 print("우우아악악")
 
 
-        if(int(self.frame) >= Luke.Images[self.imageState]["Frames"] - 1):
+        if(int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):
             self.attack3Begin = False
             self.frame = 0
             return BehaviorTree.SUCCESS

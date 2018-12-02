@@ -30,7 +30,7 @@ from gigadeath import Gigadeath
 from portalBlue import PortalBlue
 
 from luke import Luke
-
+from rozen import Rozen
 
 
 
@@ -99,8 +99,8 @@ def enter():
 
 
 
-    luke = Luke()
-    luke.SetPosition(screenX//2,210)
+    rozen = Rozen()
+    rozen.SetPosition(screenX//2,210)
 
     footBoard = FootBoard()
 
@@ -158,13 +158,13 @@ def enter():
 
 
 
-    game_world.add_object(luke,1)
+    game_world.add_object(rozen,1)
 
 
 
 
 
-    bgm = load_music("sound/music/Dungeon Fighter (KR) Luke Battle Theme.mp3")
+    bgm = load_music("sound/music/rozenBGM.mp3")
 
     bgm.repeat_play()
     bgm.set_volume(25)
