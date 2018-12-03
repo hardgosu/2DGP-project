@@ -1325,6 +1325,16 @@ class Boy(ObjectBase):
         self.hPRegenTimer = 0
         self.hPRegenPerTime = 1
 
+        self.boosterGauge = 0
+        self.boosterGaugeMax = 100
+
+    def AddBoosterGauge(self,amount):
+
+        self.boosterGauge = clamp(0,self.boosterGauge + amount,self.boosterGaugeMax)
+
+        pass
+
+
     def GetBusterStartPosition(self):
 
 
@@ -1383,7 +1393,7 @@ class Boy(ObjectBase):
     def update(self):
 
 
-
+        print(self.boosterGauge)
         self.cur_state.do(self)
 
 

@@ -224,6 +224,7 @@ class BusterProjectile(ObjectBase):
 
         busterHitEffect = BusterHitEffect(self.x,self.y,self.dir,self.velocity,2)
         game_world.add_object(busterHitEffect, 1)
+        self.subject.AddBoosterGauge(1)
         game_world.remove_object(self)
 
 
