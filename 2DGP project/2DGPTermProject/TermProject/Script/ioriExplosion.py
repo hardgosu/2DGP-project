@@ -72,10 +72,10 @@ class IoriExplosion(ObjectBase):
 
         if (IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] == None):
                 IoriExplosion.sounds[IoriExplosion.soundExplosion2]["SoundFile"] = load_wav("sound/FireExplosion.wav")
-                IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"] = 5
+                IoriExplosion.sounds[IoriExplosion.soundExplosion2]["Volume"] = 10
         if (IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] == None):
                 IoriExplosion.sounds[IoriExplosion.soundExplosion1]["SoundFile"] = load_wav("sound/FireExplosion2.wav")
-                IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"] = 5
+                IoriExplosion.sounds[IoriExplosion.soundExplosion1]["Volume"] = 10
 
         self.kind = game_world.EffectAttack
 

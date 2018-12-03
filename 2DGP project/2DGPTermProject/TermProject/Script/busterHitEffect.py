@@ -88,7 +88,7 @@ class BusterHitEffect(ObjectBase):
                 pass
         if(BusterHitEffect.sounds[BusterHitEffect.soundHit]["SoundFile"] == None):
             BusterHitEffect.sounds[BusterHitEffect.soundHit]["SoundFile"] = load_wav("sound/E_BusterHit.wav")
-            BusterHitEffect.sounds[BusterHitEffect.soundHit]["Volume"] = 3
+            BusterHitEffect.sounds[BusterHitEffect.soundHit]["Volume"] = 10
             BusterHitEffect.sounds[BusterHitEffect.soundHit]["SoundFile"].set_volume(BusterHitEffect.sounds[BusterHitEffect.soundHit]["Volume"])
 
 

@@ -168,7 +168,7 @@ def enter():
     bgm = load_music("sound/music/Dungeon Fighter (KR) Luke Battle Theme.mp3")
 
     bgm.repeat_play()
-    bgm.set_volume(25)
+    bgm.set_volume(45)
 
 def exit():
     global boy, grass,background,bgm

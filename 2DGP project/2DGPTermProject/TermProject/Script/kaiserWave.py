@@ -77,7 +77,7 @@ class KaiserWave(ObjectBase):
 
         if(KaiserWave.sounds[KaiserWave.soundBasic]["SoundFile"] == None):
             KaiserWave.sounds[KaiserWave.soundBasic]["SoundFile"] = load_wav("sound/XE_Buster0.wav")
-            KaiserWave.sounds[KaiserWave.soundBasic]["Volume"] = 5
+            KaiserWave.sounds[KaiserWave.soundBasic]["Volume"] = 10
 
 
 

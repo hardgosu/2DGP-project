@@ -110,7 +110,7 @@ class JumpingShotFallingState:
 
         if JumpingShotFallingState.landSound == None:
             JumpingShotFallingState.landSound = load_wav('sound/XE_Land.wav')
-            JumpingShotFallingState.landSound.set_volume(3)
+            JumpingShotFallingState.landSound.set_volume(10)
 
         if(boy.imageState == boy.jump):
             boy.frame = boy.frame * 0.584
@@ -249,7 +249,7 @@ class FallingState:
 
         if FallingState.landSound == None:
             FallingState.landSound = load_wav('sound/XE_Land.wav')
-            FallingState.landSound.set_volume(3)
+            FallingState.landSound.set_volume(10)
 
 
         if(boy.imageState != boy.jump):
@@ -510,10 +510,10 @@ class DashState:
 
         if(DashState.dashSound == None):
             DashState.dashSound = load_wav('sound/XE_Dash.wav')
-            DashState.dashSound.set_volume(3)
+            DashState.dashSound.set_volume(10)
         if(DashState.dashEndSound == None):
             DashState.dashEndSound = load_wav('sound/XE_DashEnd.wav')
-            DashState.dashEndSound.set_volume(3)
+            DashState.dashEndSound.set_volume(10)
 
         DashState.dashSound.play(1)
 
@@ -611,10 +611,10 @@ class JumpState:
 
         if(JumpState.jumpSound == None):
             JumpState.jumpSound = load_wav('sound/XE_Jump.wav')
-            JumpState.jumpSound.set_volume(3)
+            JumpState.jumpSound.set_volume(10)
         if(JumpState.jumpVoice == None):
             JumpState.jumpVoice = load_wav('sound/XV_Jump.wav')
-            JumpState.jumpVoice.set_volume(3)
+            JumpState.jumpVoice.set_volume(10)
 
 
 
@@ -1328,6 +1328,10 @@ class Boy(ObjectBase):
         self.boosterGauge = 0
         self.boosterGaugeMax = 100
 
+        self.willBeOver = True
+        self.busterDamage = 4
+
+
     def AddBoosterGauge(self,amount):
 
         self.boosterGauge = clamp(0,self.boosterGauge + amount,self.boosterGaugeMax)
@@ -1393,7 +1397,7 @@ class Boy(ObjectBase):
     def update(self):
 
 
-        print(self.boosterGauge)
+
         self.cur_state.do(self)
 
 
@@ -1458,29 +1462,6 @@ class Boy(ObjectBase):
     def handle_event(self, event):
         global LEFT_KEY_ON_PRESS,RIGHT_KEY_ON_PRESS,DASH_KEY_ON_PRESS, SHOT_KEY_ON_PRESS
 
-        """""
-
-        if(event.type == SDL_KEYDOWN and event.key == SDLK_q):
-
-            if(self.charging != None):
-                self.charging.Images[Charging.charge1]["IntervalX"] += 1
-                print(self.charging.Images[Charging.charge1]["IntervalX"])
-        if(event.type == SDL_KEYDOWN and event.key == SDLK_w):
-            if(self.charging != None):
-                self.charging.Images[Charging.charge1]["IntervalX"] -= 1
-                print(self.charging.Images[Charging.charge1]["IntervalX"])
-
-        if(event.type == SDL_KEYDOWN and event.key == SDLK_e):
-
-            if(self.charging != None):
-                self.charging.Images[Charging.charge1]["XRevision"] += 1
-                print(self.charging.Images[Charging.charge1]["XRevision"])
-        if(event.type == SDL_KEYDOWN and event.key == SDLK_r):
-            if(self.charging != None):
-                self.charging.Images[Charging.charge1]["XRevision"] -= 1
-                print(self.charging.Images[Charging.charge1]["XRevision"])
-        """""
-
 
 
         if event.type == SDL_KEYDOWN and event.key == SDLK_LEFT:
@@ -1533,8 +1514,17 @@ class Boy(ObjectBase):
 
 
 
+        if event.key == SDLK_F5:
+            self.willBeOver = False
+        elif event.key == SDLK_F6:
+            self.willBeOver = True
+        elif event.key == SDLK_F7:
+            self.busterDamage = clamp(1,self.busterDamage + 1,self.busterDamage + 1)
+        elif event.key == SDLK_F8:
+            self.busterDamage = clamp(1,self.busterDamage - 1,self.busterDamage - 1)
 
 
+        print(self.busterDamage)
 
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
@@ -1573,7 +1563,8 @@ class Boy(ObjectBase):
 
         if(self.curHP < 0):
             self.curHP = 0
-            #game_framework.change_state(gameOverState)
+            if self.willBeOver:
+                game_framework.change_state(gameOverState)
         self.ActivateBarrier()
         print(self.curHP)
 

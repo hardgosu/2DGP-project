@@ -76,7 +76,7 @@ class GigadeathBullet(ObjectBase):
 
         if(GigadeathBullet.sounds[GigadeathBullet.soundRun]["SoundFile"] == None):
             GigadeathBullet.sounds[GigadeathBullet.soundRun]["SoundFile"] = load_wav("sound/XE_Buster0.wav")
-            GigadeathBullet.sounds[GigadeathBullet.soundRun]["Volume"] = 1
+            GigadeathBullet.sounds[GigadeathBullet.soundRun]["Volume"] = 5
 
 
 

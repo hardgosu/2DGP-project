@@ -190,7 +190,7 @@ def enter():
     bgm = load_music("sound/music/rozenBGM.mp3")
 
     bgm.repeat_play()
-    bgm.set_volume(25)
+    bgm.set_volume(45)
 
 def exit():
     global boy, grass,background,bgm

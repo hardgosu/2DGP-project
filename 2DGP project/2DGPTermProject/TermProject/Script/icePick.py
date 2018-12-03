@@ -72,7 +72,7 @@ class IcePick(ObjectBase):
 
         if (IcePick.sounds[IcePick.soundIceRise]["SoundFile"] == None):
                 IcePick.sounds[IcePick.soundIceRise]["SoundFile"] = load_wav("sound/IcePickRise.wav")
-                IcePick.sounds[IcePick.soundIceRise]["Volume"] = 5
+                IcePick.sounds[IcePick.soundIceRise]["Volume"] = 10
 
         self.kind = game_world.EffectAttack
 

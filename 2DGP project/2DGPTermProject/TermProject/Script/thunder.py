@@ -72,7 +72,7 @@ class Thunder(ObjectBase):
 
         if (Thunder.sounds[Thunder.soundThunder]["SoundFile"] == None):
                 Thunder.sounds[Thunder.soundThunder]["SoundFile"] = load_wav("sound/Thunder.wav")
-                Thunder.sounds[Thunder.soundThunder]["Volume"] = 8
+                Thunder.sounds[Thunder.soundThunder]["Volume"] = 10
 
         self.kind = game_world.EffectAttack
 

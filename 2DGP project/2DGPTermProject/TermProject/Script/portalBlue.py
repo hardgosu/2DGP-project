@@ -67,10 +67,10 @@ class PortalBlue:
 
         if(PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"] == None):
             PortalBlue.sounds[PortalBlue.soundEnter]["SoundFile"] = load_wav("sound/Diablo2PortalEnter.wav")
-            PortalBlue.sounds[PortalBlue.soundEnter]["Volume"] = 8
+            PortalBlue.sounds[PortalBlue.soundEnter]["Volume"] = 10
         if(PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"] == None):
             PortalBlue.sounds[PortalBlue.soundOpen]["SoundFile"] = load_wav("sound/Diablo2PortalOpen.wav")
-            PortalBlue.sounds[PortalBlue.soundOpen]["Volume"] = 8
+            PortalBlue.sounds[PortalBlue.soundOpen]["Volume"] = 10
 
 
 

@@ -90,10 +90,10 @@ class BusterProjectile(ObjectBase):
 
         if(BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"] == None):
             BusterProjectile.sounds[BusterProjectile.soundMiddle]["SoundFile"] = load_wav("sound/XE_Buster0.wav")
-            BusterProjectile.sounds[BusterProjectile.soundMiddle]["Volume"] = 5
+            BusterProjectile.sounds[BusterProjectile.soundMiddle]["Volume"] = 10
         if(BusterProjectile.sounds[BusterProjectile.soundBig]["SoundFile"] == None):
             BusterProjectile.sounds[BusterProjectile.soundBig]["SoundFile"] = load_wav("sound/XE_Buster2.wav")
-            BusterProjectile.sounds[BusterProjectile.soundBig]["Volume"] = 5
+            BusterProjectile.sounds[BusterProjectile.soundBig]["Volume"] = 10
 
 
 
@@ -138,7 +138,7 @@ class BusterProjectile(ObjectBase):
 
         #버스터 충돌효과 이펙트
         self.hitEffect = None
-        self.damage = 4
+        self.damage = boy.busterDamage
 
         if(self.imageState == BusterProjectile.big):
             self.damage *=5

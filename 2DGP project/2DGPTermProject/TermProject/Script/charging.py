@@ -78,10 +78,10 @@ class Charging:
 
         if(Charging.sounds[Charging.soundCharging]["SoundFile"] == None):
             Charging.sounds[Charging.soundCharging]["SoundFile"] = load_wav("sound/XE_Charging3.wav")
-            Charging.sounds[Charging.soundCharging]["Volume"] = 5
+            Charging.sounds[Charging.soundCharging]["Volume"] = 10
         if(Charging.sounds[Charging.soundBeginCharge]["SoundFile"] == None):
             Charging.sounds[Charging.soundBeginCharge]["SoundFile"] = load_wav("sound/XE_Charging.wav")
-            Charging.sounds[Charging.soundBeginCharge]["Volume"] = 5
+            Charging.sounds[Charging.soundBeginCharge]["Volume"] = 10
 
 
         self.kind = game_world.Effect
