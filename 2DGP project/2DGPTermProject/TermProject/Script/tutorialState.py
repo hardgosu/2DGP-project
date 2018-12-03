@@ -2,20 +2,17 @@ import game_framework
 from pico2d import *
 import stage1
 import random
-import tutorialState
 
-name = "TitleState"
+name = "TutorialState"
 image = None
 font = None
 
 screenX = 1600
 screenY = 600
 
-firtGenerated = False
-
 def enter():
     global  image, font
-    image = load_image('sprite/titleLogo/titleScreen.png')
+    image = load_image('sprite/titleLogo/tutorialState.png')
     font = load_font('ENCR10B.TTF')
 
 def exit():
@@ -24,7 +21,6 @@ def exit():
 
 
 def handle_events():
-    global firtGenerated
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -33,12 +29,7 @@ def handle_events():
             if (event.type,event.key) ==(SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                if not firtGenerated:
-                    game_framework.change_state(tutorialState)
-                    firtGenerated = True
-                else:
-                    game_framework.change_state(stage1)
-
+                game_framework.change_state(stage1)
 
 def draw():
 

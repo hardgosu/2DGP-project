@@ -3,7 +3,9 @@ from pico2d import *
 
 import random
 import titleState
-
+import stage1
+import stage2
+import stage3
 
 name = "GameOverState"
 image = None
@@ -32,6 +34,12 @@ def handle_events():
                 game_framework.quit()
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 game_framework.change_state(titleState)
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_1):
+                game_framework.change_state(stage1)
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_2):
+                game_framework.change_state(stage2)
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_3):
+                game_framework.change_state(stage3)
 
 def draw():
     global opacity
@@ -43,7 +51,9 @@ def draw():
     if(opacity > 0):
         opacity -= 0.1
 
-    font.draw(titleState.screenX // 2 * 0.7, titleState.screenY * 0.2, 'Press Space Button To TitleScreen', (random.randint(222, 255), random.randint(155, 255), random.randint(255, 255)))
+    font.draw(titleState.screenX // 2 * 0.7, titleState.screenY * 0.3, 'Press Space Button To TitleScreen', (random.randint(222, 255), random.randint(155, 255), random.randint(255, 255)))
+    font.draw(titleState.screenX // 2 * 0.7, titleState.screenY * 0.4, 'Press 1,2,3 Button To Stage 1,2,3',(random.randint(222, 255), random.randint(155, 255), random.randint(255, 255)))
+
     update_canvas()
 
 
