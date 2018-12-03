@@ -464,7 +464,6 @@ class TowBeast(ObjectBase):
                     explosion = IoriExplosion(self.targetXPosition ,self.y,-self.dir,self.smashDamage)
                     game_world.add_object(explosion,1)
                     self.targetXPosition = boy.x
-                    print("우우아악")
 
 
         if(int(self.frame) >= TowBeast.Images[self.imageState]["Frames"] - 1):

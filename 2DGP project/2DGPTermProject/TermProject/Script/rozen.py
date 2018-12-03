@@ -526,7 +526,7 @@ class Rozen(ObjectBase):
                     game_world.add_object(ice,1)
                     self.targetXPosition = boy.x
                     self.targetYPosition = boy.landingYPosition
-                    print("우우아악악")
+
 
 
         if(int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):
@@ -571,7 +571,7 @@ class Rozen(ObjectBase):
                 game_world.add_object(thunder,1)
                 self.targetXPosition = boy.x
                 self.targetYPosition = boy.landingYPosition + thunder.get_bb()[1]
-                print("우우아악악")
+
 
 
         if(int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):
@@ -609,7 +609,7 @@ class Rozen(ObjectBase):
             if self.curHP <= self.hPMax // 2:
                 kaiser = KaiserWave(self)
                 game_world.add_object(kaiser,1)
-                print("우우아악악")
+
 
 
         if(int(self.frame) >= Rozen.Images[self.imageState]["Frames"] - 1):

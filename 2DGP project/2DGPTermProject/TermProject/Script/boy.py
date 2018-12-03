@@ -1524,7 +1524,7 @@ class Boy(ObjectBase):
             self.busterDamage = clamp(1,self.busterDamage - 1,self.busterDamage - 1)
 
 
-        print(self.busterDamage)
+
 
         if (event.type, event.key) in key_event_table:
             key_event = key_event_table[(event.type, event.key)]
@@ -1566,7 +1566,7 @@ class Boy(ObjectBase):
             if self.willBeOver:
                 game_framework.change_state(gameOverState)
         self.ActivateBarrier()
-        print(self.curHP)
+
 
         pass
 
